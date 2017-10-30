@@ -1,0 +1,41 @@
+Sua função é identificar palavras e símbolos pertinentes a uma linguagem de programação.
+
+A análise deve ser feita identificando palavras-chave e buscando por operadores da linguagem (relacionais, lógicos, etc.), parênteses, atribuição, entre outros.
+
+Em suma, devemos ter métodos capazes de fragmentar um texto em comandos, comandos em expressões, expressões em operadores e operandos e assim por diante.
+
+Para identificar esses "pedacinhos de código", o compilador deve ter um vetor que armazena todas as palavras-chave, para poder verificá-lo posteriormente.
+
+O compilador só compreende dois tipos, inteiro (integer) e booleano (boolean), sendo que o código a ser interpretado deve ser Pascal (ou algo parecido)
+
+Deve haver um tipo enumerado que contém cada tipo de fragmento que seu compilador pode identificar (ex: "while", "if", "try"). Entre esses, há dois deles que vale ressaltar: O primeiro é a enumeração "Numero" (evidentemente indica que o compilador achou um número) e "Identificador" (que expressa o nome de uma variável). Esses dois não constam no vetor de palavras chave apesar de estarem aqui, uma vez que são imprevisíveis.
+O último valor enumerado deve ser "Desconchecido", um valor que identifica
+
+Os indices do tipo enumerado devem coincidir com os índices do vetor de palavras chave.
+
+Deve haver uma classe (como "AnalisadorLexico") que, no contrutor, recebe o nome de um arquivo e que possui os métodos "ProximoPedaco" e "TemPedacos". "ProximoPedaco" retorna um valor do tipo enumerado que identifica que tipo de fragmento de código seu compilador achou.
+
+Os caracteres de "\n", " ", "\t" podem ser ignorados, exceto durante a identificação do fim de palavras.
+
+Ele deve ser capaz de identificar letras, digitos, <, >, =, ;, (), etc. Lembrando que símbolos também servem como indicadores de fim de palavras. Todos os indicadores são: '\n', '\t', ' ' e 'EOF' são considerados fim de palavra.
+
+Deve haver uma pilha que armazena o tipo enumerado e indica em que ponto do programa estamos.
+
+O esboço da classe deve ser:
+
+class AnalisadorLexico
+{
+    AnalisadorLexico(char* nomeArquivo);
+
+    TipoPedaco proximoPedaco();
+    char       temMaisPedacos();
+    char*      getNome();        //Retorna o nome  do identificador, caso proximoPedaco retorne "Identificador"
+    int        getValor();       //Retorna o valor do numero,        caso proximoPedaco retorne "Numero"        
+}
+
+A linguagem deve ter as seguintes características:
+Tipos: integer e boolean
+Loops: while
+Condicional: if
+
+write e read devem ser interpretados como palavras chave, não chamadas de método
