@@ -8,6 +8,11 @@ typedef enum
     Comeco,
     Fim,
     Atribuicao,
+    Soma,
+    Subtracao,
+    Multiplicacao,
+    Divisao,
+    Negacao,
     Maior,
     Menor,
     MaiorOuIgual,
@@ -17,6 +22,7 @@ typedef enum
 
     Identificador,
     Numero,
+    Logico,
     Desconhecido
 } TipoPedaco;
 
