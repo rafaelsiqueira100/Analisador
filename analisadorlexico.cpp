@@ -1,4 +1,5 @@
 #include <string>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -46,6 +47,11 @@ bool AnalisadorLexico::armazenarValor(string palavraLida)
     return false;
 }
 
+bool AnalisadorLexico::fimDaPalavra()
+{
+    return true;
+}
+
 string AnalisadorLexico::proximaPalavra()
 {
     string* retorno;
@@ -54,7 +60,8 @@ string AnalisadorLexico::proximaPalavra()
     char letra;
     int tamanhoPalavra = 0;
 
-    /** Capturar uma única palavra **/
+    while (this->fimDaPalavra())
+        palavraEmVetor[tamanhoPalavra++] = this->arquivo.get();
 
     retorno = new string(palavraEmVetor, tamanhoPalavra);
 
@@ -63,11 +70,26 @@ string AnalisadorLexico::proximaPalavra()
     return *retorno;
 }
 
+string AnalisadorLexico::paraMinusculas(string palavra)
+{
+    string emMinusculas (palavra);
+    int i;
+
+    for (i = 0; i < palavra.size(); i++)
+        emMinusculas[i] = tolower(palavra[i]);
+
+    return emMinusculas;
+}
+
 TipoPedaco AnalisadorLexico::proximoPedaco()
 {
-    string pedaco = this->proximaPalavra();
+    string pedaco (AnalisadorLexico::paraMinusculas(this->proximaPalavra()));
 
+    int i;
 
+    for (i = 0; i < NUM_PALAVRAS_CHAVE; i++)
+        if (pedaco == AnalisadorLexico::palavrasChave[i])
+            return TipoPedaco(i);
 }
 
 char AnalisadorLexico::temMaisPedacos()

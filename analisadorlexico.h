@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define NUM_PALAVRAS_CHAVE 30
+#define NUM_PALAVRAS_CHAVE 16
 
 class AnalisadorLexico
 {
@@ -17,14 +17,18 @@ private:
     static const string* palavrasChave;
 
     bool   armazenarValor(string);
+
+    bool   fimDaPalavra();
     string proximaPalavra();
+
+    static string paraMinusculas(string);
 
     string valorLiteral;
     int    valorNumerico;
 
     ifstream arquivo;
 public:
-    AnalisadorLexico(string);
+     AnalisadorLexico(string);
     ~AnalisadorLexico();
 
     TipoPedaco proximoPedaco();
