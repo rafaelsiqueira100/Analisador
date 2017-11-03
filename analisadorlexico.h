@@ -3,19 +3,33 @@
 
 #include "tipopedaco.h"
 
+#include <string>
+#include <fstream>
+#include <stdio.h>
+
+using namespace std;
+
+#define NUM_PALAVRAS_CHAVE 30
+
 class AnalisadorLexico
 {
 private:
-    char* proximaPalavra();
+    static const string* palavrasChave;
 
-    char* valorLiteral;
-    int   valorNumerico;
+    bool   armazenarValor(string);
+    string proximaPalavra();
+
+    string valorLiteral;
+    int    valorNumerico;
+
+    ifstream arquivo;
 public:
-    public AnalisadorLexico(char*);
+    AnalisadorLexico(string);
+    ~AnalisadorLexico();
 
     TipoPedaco proximoPedaco();
     char       temMaisPedacos();
-    char*      getLiteral();
+    string     getLiteral();
     int        getNumero();
 };
 
