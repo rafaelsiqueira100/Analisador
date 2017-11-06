@@ -8,6 +8,7 @@ typedef enum
     Comeco,
     Fim,
     Atribuicao,
+    Comparacao, //igual
     Soma,
     Subtracao,
     Multiplicacao,
@@ -18,7 +19,15 @@ typedef enum
     MaiorOuIgual,
     MenorOuIgual,
     Se,
+    Enquanto,
     Senao,
+    AbreParenteses,
+    FechaParenteses,
+    Tente,
+    Pegue,
+    Virgula,
+    PontoVirgula,
+    Ponto
 
     Identificador,
     Numero,
