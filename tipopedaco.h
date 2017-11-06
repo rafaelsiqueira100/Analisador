@@ -7,8 +7,8 @@ typedef enum
     Variavel,
     Comeco,
     Fim,
-    Atribuicao,
-    Comparacao, //igual
+    Atribuicao, // :=
+    Comparacao, //  =
     Soma,
     Subtracao,
     Multiplicacao,
@@ -27,7 +27,7 @@ typedef enum
     Pegue,
     Virgula,
     PontoVirgula,
-    Ponto
+    Ponto,
 
     Identificador,
     Numero,
