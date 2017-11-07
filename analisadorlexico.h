@@ -3,13 +3,13 @@
 
 #include "tipopedaco.h"
 
-#include <string>
+#include <string.h>
 #include <fstream>
 #include <stdio.h>
 
 using namespace std;
 
-#define NUM_PALAVRAS_CHAVE 16
+#define NUM_PALAVRAS_CHAVE 31
 
 class AnalisadorLexico
 {
@@ -18,7 +18,7 @@ private:
 
     bool   armazenarValor(string);
 
-    bool   fimDaPalavra();
+    bool   fimDaPalavra(char* , int );
     string proximaPalavra();
 
     static string paraMinusculas(string);
@@ -26,7 +26,7 @@ private:
     string valorLiteral;
     int    valorNumerico;
 
-    ifstream arquivo;
+    ifstream* arquivo;
 public:
      AnalisadorLexico(string);
     ~AnalisadorLexico();

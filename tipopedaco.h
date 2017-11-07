@@ -16,6 +16,7 @@ typedef enum
     Negacao,
     Maior,
     Menor,
+	Diferente,
     MaiorOuIgual,
     MenorOuIgual,
     Se,
@@ -28,10 +29,15 @@ typedef enum
     Virgula,
     PontoVirgula,
     Ponto,
-
-    Identificador,
-    Numero,
-    Logico,
+	DoisPontos,
+	Inteiro,
+	Logico,
+	Verdadeiro,
+	Falso,
+	Procedimento,
+	Funcao,
+	Numero,
+    Identificador,//possível identificador(uma string alfanumérico)
     Desconhecido
 } TipoPedaco;
 
