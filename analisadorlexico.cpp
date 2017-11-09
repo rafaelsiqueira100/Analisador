@@ -1,11 +1,3 @@
-#include <string>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-
-
-
 #include "analisadorlexico.h"
 
 using namespace std;
@@ -28,19 +20,21 @@ static const string palavras_chave[] =
 "<=",
 "if",
 "while",
-"else"//18
+"else",//18
 "(",//19
 ")",//20
 "try", //21
 "except",//22
-",",//23
-";",
+";",//23
+",",//24
 ".",//25
 ":",//26
-"Integer",//27
-"Boolean",
+"integer",//27
+"boolean",
 "true",
 "false",
+"and",
+"or",
 "procedure",
 "function"
 };
@@ -49,8 +43,9 @@ const string* AnalisadorLexico::palavrasChave = palavras_chave;
 
 AnalisadorLexico::AnalisadorLexico(string nomeArquivo)
 {
-    (this->arquivo)= new ifstream(nomeArquivo.c_str());
-
+    (this->arquivo)= new ifstream();
+    this->arquivo->open(nomeArquivo.c_str());
+    this->doisCharLidos=false;
 }
 
 AnalisadorLexico::~AnalisadorLexico()
@@ -80,8 +75,9 @@ bool AnalisadorLexico::armazenarValor(string palavraLida)
 
         return true;
     }
-	for (i = 4; i < NUM_PALAVRAS_CHAVE; i++) {
-		if (palavraLida.at(0) == palavras_chave[i].at(0)){
+    char primeiro ;
+	for (i = 4; i < NUM_PALAVRAS_CHAVE; i++){
+		if (palavraLida.compare(palavrasChave[i])==0){
                 this->valorLiteral = palavraLida;
 			return true;
         }
@@ -94,22 +90,30 @@ bool AnalisadorLexico::armazenarValor(string palavraLida)
 bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
 {
 	int indice;
-    if(tamanhoPalavra==0)
-        return false;
+    bool espacos = false;
     char proxChar = this->arquivo->get();
     this->arquivo->unget();
 
-	if (isspace(proxChar)) {
-		this->arquivo->get();
-		return true;
-	}
-	if (proxChar == EOF) {
-		return true;
-	}
+    while(isspace(proxChar)|| proxChar==EOF){
+    if(proxChar==EOF){
+            this->arquivo->get();
+    return true;}
+        proxChar = this->arquivo->get();
+    espacos=true;
+    }
+    if(espacos){
+            this->arquivo->unget();
+        return true;}
 
-    if(isalpha(palavraEmVetor[tamanhoPalavra]))
+    if(tamanhoPalavra==0)
+        return false;
+    if(isalpha(proxChar)&&tamanhoPalavra==1&&(this->doisCharLidos= false))
+        return false;
+        else
+            this->doisCharLidos = true;
+    if(isalpha(palavraEmVetor[tamanhoPalavra-1]))
     {
-		if (isalnum(proxChar)) {
+		if (isalpha(proxChar) || isdigit(proxChar)) {
 
 			return false;
 		}
@@ -118,7 +122,7 @@ bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
 			return true;
 		}
     }
-	if (isdigit(palavraEmVetor[tamanhoPalavra])) {
+	if (isdigit(palavraEmVetor[tamanhoPalavra-1])) {
 		if (isdigit(proxChar)) {
 
 			return false;
@@ -128,18 +132,22 @@ bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
 			return true;
 		}
 	}
-	if (palavraEmVetor[tamanhoPalavra] == '<' || palavraEmVetor[tamanhoPalavra] == '>'
-		|| palavraEmVetor[tamanhoPalavra] == ':') {
+	if (palavraEmVetor[tamanhoPalavra-1] == '<' || palavraEmVetor[tamanhoPalavra-1] == '>'
+		|| palavraEmVetor[tamanhoPalavra-1] == ':') {
 		if (proxChar == '=') {
 
 			return false;
 		}
-		else
+		else{
+                if(palavraEmVetor[tamanhoPalavra-1]=='<'){
+                    if(proxChar=='>')
+                        return false;
+                }
 			return true;
-	}
+	}}
 	for (indice = 5; indice < NUM_PALAVRAS_CHAVE; indice++) {//se for um dos símbolos independentes, retorna true
 		if ((indice>4&&indice < 10) || (indice>18 && indice < 21) || (indice>22 && indice < 26)) {
-			if (palavraEmVetor[tamanhoPalavra] == palavras_chave[indice].at(0))
+			if (palavraEmVetor[tamanhoPalavra-1] == palavras_chave[indice].at(0))
 				return true;
 		}
 	}
@@ -153,14 +161,17 @@ string AnalisadorLexico::proximaPalavra()
     char palavraEmVetor[1024];
     char letra;
     int tamanhoPalavra = 0;
-
-	while (!this->fimDaPalavra(palavraEmVetor, tamanhoPalavra)) {
-		palavraEmVetor[tamanhoPalavra++] = this->arquivo->get();
-	}
-	if (temMaisPedacos()) {
+    char caracAtual;
+	while ((!this->fimDaPalavra(palavraEmVetor, tamanhoPalavra))&&caracAtual!=EOF) {
+            caracAtual = this->arquivo->get();
+    if(caracAtual!=EOF)
+		palavraEmVetor[tamanhoPalavra++] = caracAtual;
+    else{
+        this->arquivo->get();
+	}}
+verif:if (tamanhoPalavra>0) {
 		retorno = new string(palavraEmVetor, tamanhoPalavra);
-
-		this->armazenarValor(*retorno);
+        this->armazenarValor(*retorno);
 
 		return *retorno;
 	}
@@ -186,13 +197,14 @@ TipoPedaco AnalisadorLexico::proximoPedaco()
 {
 	string retorno = AnalisadorLexico::paraMinusculas(this->proximaPalavra());
 		if (retorno != "") {
-			string pedaco(retorno);
+			string pedaco = (retorno);
 
 			int i;
-
-			for (i = 0; i < NUM_PALAVRAS_CHAVE; i++)
-				if (pedaco == AnalisadorLexico::palavrasChave[i])
-					return TipoPedaco(i);
+            string palavraChave;
+			for (i = 0; i < NUM_PALAVRAS_CHAVE; i++){
+                    palavraChave=(palavrasChave[i]);
+				if (pedaco.compare(palavraChave)==0)
+					return TipoPedaco(i);}
 			int numero;
 			sscanf(pedaco.c_str(), "%i", &numero);
 			if (this->valorNumerico == numero) {
@@ -208,7 +220,13 @@ return Desconhecido;
 
 char AnalisadorLexico::temMaisPedacos()
 {
-    return this->arquivo->eof();
+    char atual = this->arquivo->get();
+    if(atual==EOF)
+        return false;
+    else{
+        this->arquivo->unget();
+        return true;
+    }
 }
 
 string AnalisadorLexico::getLiteral()

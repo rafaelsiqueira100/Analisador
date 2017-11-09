@@ -7,7 +7,7 @@ typedef enum
     Variavel,
     Comeco,
     Fim,
-    Atribuicao, // :=
+    Atribuicao, // 4
     Comparacao, //  =
     Soma,
     Subtracao,
@@ -26,14 +26,16 @@ typedef enum
     FechaParenteses,
     Tente,
     Pegue,
-    Virgula,
-    PontoVirgula,
+    PontoVirgula,//23
+    Virgula,//24
     Ponto,
 	DoisPontos,
 	Inteiro,
 	Logico,
 	Verdadeiro,
 	Falso,
+	E,
+	Ou,
 	Procedimento,
 	Funcao,
 	Numero,
