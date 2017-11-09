@@ -1,0 +1,71 @@
+# depslib dependency file v1.0
+1510061524 source:e:\analexteste\main.cpp
+	"tipopedaco.h"
+	"analisadorlexico.cpp"
+	<iostream>
+
+1510059306 e:\analexteste\tipopedaco.h
+
+1510062352 e:\analexteste\analisadorlexico.cpp
+	<string>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"analisadorlexico.h"
+
+1510062208 e:\analexteste\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<fstream>
+	<stdio.h>
+
+1510061524 source:f:\analexteste\main.cpp
+	"tipopedaco.h"
+	"analisadorlexico.cpp"
+	<iostream>
+
+1510059306 f:\analexteste\tipopedaco.h
+
+1510062352 f:\analexteste\analisadorlexico.cpp
+	<string>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"analisadorlexico.h"
+
+1510062208 f:\analexteste\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<fstream>
+	<stdio.h>
+
+1510228938 source:d:\analexteste\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1510228992 d:\analexteste\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<fstream>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+
+1510228926 d:\analexteste\tipopedaco.h
+
+1510230570 source:d:\analexteste\main.cpp
+	<iostream>
+	"analisadorlexico.h"
+	"stdafx.h"
+
+1510152146 d:\analexteste\analisadorlexico.cpp
+	<string>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<windows.h>
+	"analisadorlexico.h"
+
