@@ -1,4 +1,5 @@
 program prog1;
+[]{}}}{
 var a,b,c:Integer;
 var l,m:Boolean;
 	procedure proc1;

@@ -46,6 +46,7 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo)
     (this->arquivo)= new ifstream();
     this->arquivo->open(nomeArquivo.c_str());
     this->doisCharLidos=false;
+    this->valorNumeroValido = false;
 }
 
 AnalisadorLexico::~AnalisadorLexico()
@@ -60,8 +61,8 @@ bool AnalisadorLexico::armazenarValor(string palavraLida)
 
     if (isalpha(palavraLida.at(0)))
     {
+        this->valorNumeroValido = false;
         this->valorLiteral = palavraLida;
-
         return true;
     }
 
@@ -71,14 +72,16 @@ bool AnalisadorLexico::armazenarValor(string palavraLida)
 
     if (ehNumero)
     {
+        this->valorNumeroValido  =true;
         this->valorNumerico = atoi(palavraLida.c_str());
-
+        this->valorLiteral = "";
         return true;
     }
     char primeiro ;
 	for (i = 4; i < NUM_PALAVRAS_CHAVE; i++){
 		if (palavraLida.compare(palavrasChave[i])==0){
                 this->valorLiteral = palavraLida;
+                this->valorNumeroValido = false;
 			return true;
         }
 	}
@@ -215,6 +218,8 @@ TipoPedaco AnalisadorLexico::proximoPedaco()
 
 		}
 //jogar exceção
+this->valorLiteral= "";
+this->valorNumeroValido = false;
 return Desconhecido;
 }
 
@@ -231,10 +236,14 @@ char AnalisadorLexico::temMaisPedacos()
 
 string AnalisadorLexico::getLiteral()
 {
+    //if(this->valorLiteral !="")
     return this->valorLiteral;
+    //throw exception
 }
 
 int AnalisadorLexico::getNumero()
 {
+    //if(this->valorNumeroValido)
     return this->valorNumerico;
+    //throw exception
 }

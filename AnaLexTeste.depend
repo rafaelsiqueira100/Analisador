@@ -69,3 +69,37 @@
 	<windows.h>
 	"analisadorlexico.h"
 
+1510231181 source:c:\users\rafae\downloads\analisador-master\main.cpp
+	<iostream>
+	"analisadorlexico.h"
+	"stdafx.h"
+
+1510232388 c:\users\rafae\downloads\analisador-master\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<fstream>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+
+1510231181 c:\users\rafae\downloads\analisador-master\tipopedaco.h
+
+1510231181 source:c:\users\rafae\downloads\analisador-master\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1510231181 c:\users\rafae\downloads\analisador-master\metodo.h
+	"simbolo.h"
+
+1510231181 c:\users\rafae\downloads\analisador-master\simbolo.h
+	<string>
+	"tiposimbolo.h"
+
+1510231181 c:\users\rafae\downloads\analisador-master\tiposimbolo.h
+
+1510231181 source:c:\users\rafae\downloads\analisador-master\simbolo.cpp
+	"simbolo.h"
+	"tiposimbolo.h"
+

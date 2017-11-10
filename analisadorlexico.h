@@ -22,7 +22,7 @@ private:
     string proximaPalavra();
 
     static string paraMinusculas(string);
-
+    bool valorNumeroValido;
     string valorLiteral;
     int    valorNumerico;
     bool doisCharLidos ;
