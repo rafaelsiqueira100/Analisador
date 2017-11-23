@@ -7,6 +7,7 @@ class Metodo : public Simbolo
 {
 private:
     Simbolo* parametros;
+    //colocar depois ponteiro para método pai
     int quantosParametros;
 public:
      Metodo(string, int, Simbolo*, int);

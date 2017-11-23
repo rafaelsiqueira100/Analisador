@@ -31,8 +31,24 @@ public:
      AnalisadorLexico(string);
     ~AnalisadorLexico();
 
+     /* 
+        TipoPedaco proximoPedaco()
+
+        retorna o TipoPedaco da palavra chave, 
+        TipoPedaco.Desconhecido se não encontrado
+        TipoPedaco.Numero se é valor numerico
+        TipoPedaco.Identificador se é alfanumérico e não é palavra chave
+     */
     TipoPedaco proximoPedaco();
+
     char       temMaisPedacos();
+
+    /* 
+        TipoPedaco getLiteral()
+        
+        retorna o valor literal caso seja do tipo 
+        Identificador ou uma palavra chave
+     */
     string     getLiteral();
     int        getNumero();
 };
