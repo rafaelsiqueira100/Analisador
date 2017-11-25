@@ -34,6 +34,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="AnalisadorSintatico.cpp" />
+		<Unit filename="AnalisadorSintatico.h" />
+		<Unit filename="TabelaDeSimbolos.cpp" />
+		<Unit filename="TabelaDeSimbolos.h" />
 		<Unit filename="analisadorlexico.cpp" />
 		<Unit filename="analisadorlexico.h" />
 		<Unit filename="main.cpp" />
@@ -41,7 +45,6 @@
 		<Unit filename="metodo.h" />
 		<Unit filename="simbolo.cpp" />
 		<Unit filename="simbolo.h" />
-		<Unit filename="src/TabelaDeSimbolos.cpp" />
 		<Unit filename="tipopedaco.h" />
 		<Unit filename="tiposimbolo.h" />
 		<Extensions>

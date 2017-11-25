@@ -98,15 +98,21 @@ bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
     this->arquivo->unget();
 
     while(isspace(proxChar)|| proxChar==EOF){
-    if(proxChar==EOF){
-            this->arquivo->get();
-    return true;}
+            this->lengthUltimaLeitura++;//é espaço
+        if(proxChar==EOF){
+                this->arquivo->get();
+
+                return true;
+        }
         proxChar = this->arquivo->get();
-    espacos=true;
+        espacos=true;
     }
     if(espacos){
-            this->arquivo->unget();
-        return true;}
+        this->lengthUltimaLeitura--;//decrementando pq ele leu o primeiro char
+            this->arquivo->unget();//  da próxima palavra
+        return true;
+    }
+        this->lengthUltimaLeitura++;//não é espaço
 
     if(tamanhoPalavra==0)
         return false;
@@ -121,7 +127,7 @@ bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
 			return false;
 		}
 		else {
-
+            this->lengthUltimaLeitura--;
 			return true;
 		}
     }
@@ -131,7 +137,7 @@ bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
 			return false;
 		}
 		else {
-
+            this->lengthUltimaLeitura--;
 			return true;
 		}
 	}
@@ -146,14 +152,19 @@ bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
                     if(proxChar=='>')
                         return false;
                 }
+                this->lengthUltimaLeitura--;
 			return true;
 	}}
 	for (indice = 5; indice < NUM_PALAVRAS_CHAVE; indice++) {//se for um dos símbolos independentes, retorna true
 		if ((indice>4&&indice < 10) || (indice>18 && indice < 21) || (indice>22 && indice < 26)) {
-			if (palavraEmVetor[tamanhoPalavra-1] == palavras_chave[indice].at(0))
+			if (palavraEmVetor[tamanhoPalavra-1] == palavras_chave[indice].at(0)){
+				this->lengthUltimaLeitura--;
 				return true;
+				}
+
 		}
 	}
+	this->lengthUltimaLeitura--;
 	return true;
 }
 
@@ -165,6 +176,7 @@ string AnalisadorLexico::proximaPalavra()
     char letra;
     int tamanhoPalavra = 0;
     char caracAtual;
+    this->lengthUltimaLeitura = 0;
 	while ((!this->fimDaPalavra(palavraEmVetor, tamanhoPalavra))&&caracAtual!=EOF) {
             caracAtual = this->arquivo->get();
     if(caracAtual!=EOF)
@@ -195,6 +207,19 @@ string AnalisadorLexico::paraMinusculas(string palavra)
 	return "";
 
 }
+TipoPedaco AnalisadorLexico::verPedaco(){
+    TipoPedaco retorno  = proximoPedaco();
+
+    for (int i = 0; i < this->lengthUltimaLeitura; i++){
+        this->arquivo->unget();
+    }
+
+    return retorno;
+}
+
+int AnalisadorLexico::getLengthUltimoPedaco(){
+    return this->lengthUltimaLeitura;
+}
 
 TipoPedaco AnalisadorLexico::proximoPedaco()
 {
@@ -210,7 +235,7 @@ TipoPedaco AnalisadorLexico::proximoPedaco()
 					return TipoPedaco(i);}
 			int numero;
 			sscanf(pedaco.c_str(), "%i", &numero);
-			if (this->valorNumerico == numero) {
+			if ((this->valorNumerico == numero)&&this->valorNumeroValido ){
 				return Numero;
 			}
         if(isalpha(pedaco.at(0)))
@@ -233,6 +258,128 @@ char AnalisadorLexico::temMaisPedacos()
         return true;
     }
 }
+
+string AnalisadorLexico::nomeTipo(TipoPedaco tp){
+    string tipoPed;
+    switch(tp){
+        case Programa:
+            tipoPed="Programa";
+        break;
+        case Variavel:
+        tipoPed="Variavel";
+        break;
+        case Comeco:
+        tipoPed="Comeco";
+        break;
+        case Fim:
+        tipoPed="Fim";
+        break;
+        case Atribuicao:
+        tipoPed="Atribuicao";
+        break;
+        case Comparacao:
+        tipoPed="Comparacao";
+        break;
+        case Soma:
+        tipoPed="Soma";
+        break;
+        case Subtracao:
+        tipoPed="Subtracao";
+        break;
+        case Multiplicacao:
+        tipoPed="Multiplicacao";
+        break;
+        case Divisao:
+        tipoPed="Divisao";
+        break;
+        case Negacao:
+        tipoPed="Negacao";
+        break;
+        case Maior:
+        tipoPed="Maior";
+        break;
+        case Menor:
+        tipoPed="Menor";
+        break;
+        case Diferente:
+        tipoPed="Diferente";
+        break;
+        case MaiorOuIgual:
+        tipoPed="MaiorOuIgual";
+        break;
+        case MenorOuIgual:
+        tipoPed="MenorOuIgual";
+        break;
+        case Se:
+        tipoPed="Se";
+        break;
+        case Enquanto:
+        tipoPed="Enquanto";
+        break;
+        case Senao:
+        tipoPed="Senao";
+        break;
+        case AbreParenteses:
+        tipoPed="AbreParenteses";
+        break;
+        case FechaParenteses:
+        tipoPed="FechaParenteses";
+        break;
+        case Tente:
+        tipoPed="Tente";
+        break;
+        case Pegue:
+        tipoPed="Pegue";
+        break;
+        case PontoVirgula:
+        tipoPed="PontoVirgula";
+        break;
+        case Virgula:
+        tipoPed="Virgula";
+        break;
+        case Ponto:
+        tipoPed="Ponto";
+        break;
+        case DoisPontos:
+        tipoPed="DoisPontos";
+        break;
+        case Inteiro:
+        tipoPed="Inteiro";
+        break;
+        case Logico:
+        tipoPed="Logico";
+        break;
+        case Verdadeiro:
+        tipoPed="Verdadeiro";
+        break;
+        case Falso:
+        tipoPed="Falso";
+        break;
+        case E:
+        tipoPed="E";
+        break;
+        case Ou:
+        tipoPed="Ou";
+        break;
+        case Procedimento:
+        tipoPed="Procedimento";
+        break;
+        case Funcao:
+        tipoPed="Funcao";
+        break;
+        case Numero:
+        tipoPed="Numero";
+        break;
+        case Identificador:
+        tipoPed="Identificador";
+        break;
+        case Desconhecido:
+        tipoPed="Desconhecido";
+        break;
+        }
+        return tipoPed;
+}
+
 
 string AnalisadorLexico::getLiteral()
 {

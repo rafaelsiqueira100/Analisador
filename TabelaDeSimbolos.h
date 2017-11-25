@@ -1,11 +1,14 @@
 #ifndef TABELADESIMBOLOS_H_INCLUDED
 #define TABELADESIMBOLOS_H_INCLUDED
 #include "simbolo.h"
+#include <list>
 using namespace std;
 class TabelaDeSimbolos{
 private:
-	List<Simbolo*> armazenador;
+	list<Simbolo*> armazenador;
 public:
-	void guarde(Simbolo);
+    TabelaDeSimbolos();
+	void guarde(Simbolo*);
 	void eliminaNivel(int);
 };
+#endif

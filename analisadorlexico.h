@@ -15,7 +15,7 @@ class AnalisadorLexico
 {
 private:
     static const string* palavrasChave;
-
+    int     lengthUltimaLeitura;
     bool   armazenarValor(string);
 
     bool   fimDaPalavra(char* , int );
@@ -30,23 +30,25 @@ private:
 public:
      AnalisadorLexico(string);
     ~AnalisadorLexico();
-
-     /* 
+    static string nomeTipo(TipoPedaco);
+    int getLengthUltimoPedaco();
+     /*
         TipoPedaco proximoPedaco()
 
-        retorna o TipoPedaco da palavra chave, 
+        retorna o TipoPedaco da palavra chave,
         TipoPedaco.Desconhecido se não encontrado
         TipoPedaco.Numero se é valor numerico
         TipoPedaco.Identificador se é alfanumérico e não é palavra chave
      */
     TipoPedaco proximoPedaco();
+    TipoPedaco verPedaco();
 
     char       temMaisPedacos();
 
-    /* 
+    /*
         TipoPedaco getLiteral()
-        
-        retorna o valor literal caso seja do tipo 
+
+        retorna o valor literal caso seja do tipo
         Identificador ou uma palavra chave
      */
     string     getLiteral();
