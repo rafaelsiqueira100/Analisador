@@ -155,3 +155,56 @@
 	"simbolo.h"
 	<list>
 
+1511708740 source:c:\users\matheus\desktop\repositorios\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1511708740 c:\users\matheus\desktop\repositorios\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+
+1511708740 c:\users\matheus\desktop\repositorios\analisador\simbolo.h
+	<string>
+	"tiposimbolo.h"
+
+1511708740 c:\users\matheus\desktop\repositorios\analisador\tiposimbolo.h
+
+1511708740 source:c:\users\matheus\desktop\repositorios\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1511708740 c:\users\matheus\desktop\repositorios\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<fstream>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+
+1511708740 c:\users\matheus\desktop\repositorios\analisador\tipopedaco.h
+
+1511708740 source:c:\users\matheus\desktop\repositorios\analisador\main.cpp
+	<iostream>
+	"analisadorlexico.h"
+	"stdafx.h"
+
+1511708740 source:c:\users\matheus\desktop\repositorios\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1511708740 c:\users\matheus\desktop\repositorios\analisador\metodo.h
+	"simbolo.h"
+
+1511708740 source:c:\users\matheus\desktop\repositorios\analisador\simbolo.cpp
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1511709606 source:c:\users\matheus\desktop\repositorios\analisador\analisadorsintatico.cpp
+	"AnalisadorSintatico.h"
+	<exception>
+
+1511708740 c:\users\matheus\desktop\repositorios\analisador\analisadorsintatico.h
+	"analisadorlexico.h"
+
