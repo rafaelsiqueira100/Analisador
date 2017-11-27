@@ -24,6 +24,8 @@ class AnalisadorSintatico
         void CompExpressaoLogica();
         void CompTermoRelacional();
         void CompFatorRelacional();
+   /**/ void CompDeclaracaoVariavel();
+        void CompInicioPrograma();
 };
 
 #endif // ANALISADORSINTATICO_H_INCLUDED

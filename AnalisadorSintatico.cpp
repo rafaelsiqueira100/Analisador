@@ -38,10 +38,10 @@ void AnalisadorSintatico::CompProcedimento(){
     }
 
     prox = anaLex->verPedaco();
-    if (prox != Variavel){
+    if (prox == Variavel){
         CompDeclaracaoVariavel();
     }
-
+    //loop da main
     CompComandoComposto();
 
     prox = anaLex->proximoPedaco();
@@ -212,4 +212,45 @@ void AnalisadorSintatico::CompFatorRelacional(){
 }
 
 void AnalisadorSintatico::CompComandoComposto(){
+    TipoPedaco prox = anaLex->proximoPedaco();
+    if(prox!= Inicio)
+        throw "Início esperado";
+    do{
+        CompComando();
+        prox = anaLex.proximoPedaco();
+    }while(prox!=Fim && anaLex.temMaisPedacos())
+    if(prox!=Fim)
+        throw "Fim esperado";
+}
+void AnalisadorSintatico::CompDecVariavel(){
+    TipoPedaco prox = anaLex.proximoPedaco();
+    if(prox!=Variavel)
+        throw "Variável esperado";
+    prox = anaLex.proximoPedaco();
+    if(prox!= Identificador)
+        throw "Identificador esperado";
+    while(anaLex->verPedaco()!=DoisPontos && anaLex.temMaisPedacos()){
+        prox = anaLex.proximoPedaco();
+        if(prox!=Virgula)
+            throw "Vírgula esperado";
+        prox = anaLex.proximoPedaco();
+        if(prox!=Identificador)
+            throw "Identificador esperado";
+
+    }
+    if(anaLex.proximoPedaco()!=DoisPontos)
+        throw "Dois Pontos esperado";
+    prox = anaLex.proximoPedaco();
+    if(prox==Logico || prox == Inteiro){
+        prox = anaLex.proximoPedaco();
+        if(prox!=PontoVirgula)
+            throw "Ponto e Vírgula esperado";
+        return;
+    }//não é uma constante literal
+    throw "Tipo Primitivo esperado";
+}
+void AnalisadorSintatico::CompInicioPrograma(){
+    CompProgramaPrincipal();
+    if(anaLex.proximoPedaco()!=Ponto)
+        throw "Ponto esperado";
 }
