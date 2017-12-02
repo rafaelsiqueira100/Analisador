@@ -21,7 +21,7 @@ typedef enum
     MenorOuIgual,
     Se,
     Enquanto,
-    Senao,
+    Senao,//18
     AbreParenteses,
     FechaParenteses,
     Tente,
