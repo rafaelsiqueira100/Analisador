@@ -1,0 +1,3 @@
+program prog1;var a,b:Integer;var c:Boolean;procedure proc1();begin b:=b+1; end function f1(Integer x):Integer begin  x:= x+1;f1:=x;end begin a:=0;b:=a+5-2*a/5;if(a>b or a<=b and a>=b not a>b and a<>b)then begin while(a<3)begin a:=a+1;end end else begin try begin proc1(); b:= f1(a); c:=false;end except begin c:=true;end
+																		end
+																	end.
