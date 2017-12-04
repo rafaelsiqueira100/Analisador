@@ -2,6 +2,7 @@
 #define METODO_H_INCLUDED
 
 #include "simbolo.h"
+#include "tiposimbolo.h"
 
 class Metodo : public Simbolo
 {
@@ -10,11 +11,10 @@ private:
     //colocar depois ponteiro para método pai
     int quantosParametros;
 public:
-     Metodo(string, int, Simbolo*, int);
+     Metodo(string, int, Simbolo*, int, TipoSimbolo);
     ~Metodo();
 
     Simbolo getParametro(int);
 };
 
 #endif // METODO_H_INCLUDED
-	

@@ -20,6 +20,8 @@ static const string palavras_chave[] =
 "if",
 "while",
 "else",//18
+"then",
+"mod",
 "(",//19
 ")",//20
 "try", //21

@@ -3,9 +3,11 @@
 
 typedef enum
 {
-    Inteiro,
-    Logico,
-    Vacuo
+    SimboloInteiro,
+    SimboloLogico,
+    SimboloVacuo,
+    SimboloProcedimento,
+    SimboloFuncao,
 } TipoSimbolo;
 
 #endif // TIPOSIMBOLO_H_INCLUDED

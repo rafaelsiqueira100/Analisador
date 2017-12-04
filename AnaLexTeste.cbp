@@ -40,11 +40,13 @@
 		<Unit filename="TabelaDeSimbolos.h" />
 		<Unit filename="analisadorlexico.cpp" />
 		<Unit filename="analisadorlexico.h" />
+		<Unit filename="include/variavel.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="metodo.cpp" />
 		<Unit filename="metodo.h" />
 		<Unit filename="simbolo.cpp" />
 		<Unit filename="simbolo.h" />
+		<Unit filename="src/variavel.cpp" />
 		<Unit filename="tipopedaco.h" />
 		<Unit filename="tiposimbolo.h" />
 		<Extensions>

@@ -22,6 +22,8 @@ typedef enum
     Se,
     Enquanto,
     Senao,//18
+    Entao,
+    Resto,
     AbreParenteses,
     FechaParenteses,
     Tente,

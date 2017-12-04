@@ -208,3 +208,71 @@
 1511708740 c:\users\matheus\desktop\repositorios\analisador\analisadorsintatico.h
 	"analisadorlexico.h"
 
+1512430093 source:c:\users\work\desktop\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1512239858 c:\users\work\desktop\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+
+1512430066 c:\users\work\desktop\analisador\tipopedaco.h
+
+1512430835 source:c:\users\work\desktop\analisador\analisadorsintatico.cpp
+	"AnalisadorSintatico.h"
+
+1512431318 c:\users\work\desktop\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+
+1512431338 source:c:\users\work\desktop\analisador\main.cpp
+	<iostream>
+	"analisadorlexico.h"
+	"analisadorsintatico.h"
+	"stdafx.h"
+
+1512431816 source:c:\users\work\desktop\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1512432114 c:\users\work\desktop\analisador\metodo.h
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1511478949 c:\users\work\desktop\analisador\simbolo.h
+	<string>
+	"tiposimbolo.h"
+
+1512246448 c:\users\work\desktop\analisador\tiposimbolo.h
+
+1511478949 source:c:\users\work\desktop\analisador\simbolo.cpp
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1512431723 source:c:\users\work\desktop\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1512431657 c:\users\work\desktop\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512431854 source:c:\users\work\desktop\analisador\variavel.cpp
+	"variavel.h"
+
+1512431959 c:\users\work\desktop\analisador\variavel.h
+	"simbolo.h"
+	"tiposimbolo.h"
+

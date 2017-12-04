@@ -2,6 +2,7 @@
 #define TABELADESIMBOLOS_H_INCLUDED
 #include "simbolo.h"
 #include <list>
+#include <string.h>
 using namespace std;
 class TabelaDeSimbolos{
 private:
@@ -9,6 +10,8 @@ private:
 public:
     TabelaDeSimbolos();
 	void guarde(Simbolo*);
+	Simbolo* pegue(string);
+	bool encontrar(string, Simbolo*);
 	void eliminaNivel(int);
 };
 #endif

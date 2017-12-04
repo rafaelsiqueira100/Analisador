@@ -1,8 +1,10 @@
 #include<iostream>
 #include "analisadorlexico.h"
+#include "analisadorsintatico.h"
 /*#include<windows.h>
 #include "stdafx.h"*/
 int main(){
+    AnalisadorSintatico a;
     int indice;
 	AnalisadorLexico anaLex("teste.txt");
     TipoPedaco pedAtual;
