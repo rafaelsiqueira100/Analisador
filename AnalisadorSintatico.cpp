@@ -265,8 +265,8 @@ bool AnalisadorSintatico::EhIdDeVariavel(string nomeSimbolo){
 bool AnalisadorSintatico::EhIdDeProcedimento(string nomeSimbolo){
     Simbolo* simbolo;
     bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
-    bool ehProcedimento = EhFuncao(*simbolo) && (simbolo->getTipo() == SimboloVacuo);
-    return encontrou && (simbolo->getTipo() && ehProcedimento);
+    bool ehProcedimento = simbolo->getTipo() == SimboloProcedimento;
+    return encontrou && ehProcedimento;
 }
 bool AnalisadorSintatico::EhMaisOuMenos(TipoPedaco tipo){
     return (tipo == Soma) || (tipo == Subtracao);
@@ -278,12 +278,7 @@ bool AnalisadorSintatico::EhVezesOuDividirOuResto(TipoPedaco tipo){
     return EhVezesOuDividir(tipo) || (tipo == Resto);
 }
 bool AnalisadorSintatico::EhFuncao(Simbolo simbolo){
-    const type_info& tiSimbolo = typeid(simbolo);
-    const type_info& tiMetodo = typeid(Metodo);
-    if(type_index(tiSimbolo) == type_index(tiMetodo)){
-       return true;
-    }
-    return false;
+    return simbolo.getTipo() == SimboloFuncao;
 }
 bool AnalisadorSintatico::FuncaoRetornaInteiro(Simbolo simbolo){
     return simbolo.getTipo()== SimboloInteiro;
@@ -292,12 +287,7 @@ bool AnalisadorSintatico::FuncaoRetornaBool(Simbolo simbolo){
     return simbolo.getTipo()== SimboloLogico;
 }
 bool AnalisadorSintatico::EhVariavel(Simbolo simbolo){
-    const type_info& tiSimbolo = typeid(simbolo);
-    const type_info& tiVar = typeid(Variavel);
-    if(type_index(tiSimbolo) == type_index(tiVar)){
-       return true;
-    }
-    return false;
+    return simbolo.getTipo() == SimboloVariavel;
 }
 bool AnalisadorSintatico::EhInteiro(Simbolo simbolo){
     return simbolo.getTipo() == SimboloInteiro;
@@ -312,9 +302,38 @@ bool AnalisadorSintatico::EhBool(Simbolo simbolo){
     return simbolo.getTipo()== SimboloLogico;
 }
 void AnalisadorSintatico::CompChamadaDeVariavel(){
+    TipoPedaco prox = anaLex->proximoPedaco();
+    if (prox != Identificador)
+        throw "Identificador esperado";
 
+    if (!EhIdDeVariavel(anaLex->getLiteral()))
+        throw "id de variavel invalido";
+
+    Simbolo* simbolo = this->tabela.pegue(anaLex->getLiteral());
+
+    prox = anaLex->proximoPedaco();
+
+    if (prox == Atribuicao){
+        if (simbolo->getTipo() == SimboloInteiro){
+            CompExpressaoAritimetica();
+        }
+        else if (simbolo->getTipo() == SimboloLogico){
+            CompExpressaoLogica();
+        }
+    }
+
+    if(prox != PontoVirgula)
+        throw "ponto e virgula esperado";
 }
 void AnalisadorSintatico::CompChamadaDeProcedimento(){
+    TipoPedaco prox = anaLex->proximoPedaco();
+    if (prox != Identificador)
+        throw "Identificador esperado";
+
+    if (!EhIdDeProcedimento(anaLex->getLiteral()))
+        throw "id de procedimento invalido";
+
+    Simbolo* simbolo = this->tabela.pegue(anaLex->getLiteral());
 
 }
 void AnalisadorSintatico::CompChamadaDeFuncao(){

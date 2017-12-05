@@ -222,10 +222,10 @@
 
 1512430066 c:\users\work\desktop\analisador\tipopedaco.h
 
-1512430835 source:c:\users\work\desktop\analisador\analisadorsintatico.cpp
+1512437132 source:c:\users\work\desktop\analisador\analisadorsintatico.cpp
 	"AnalisadorSintatico.h"
 
-1512431318 c:\users\work\desktop\analisador\analisadorsintatico.h
+1512433379 c:\users\work\desktop\analisador\analisadorsintatico.h
 	"TabelaDeSimbolos.h"
 	"analisadorlexico.h"
 	"tipopedaco.h"
@@ -249,11 +249,12 @@
 	"simbolo.h"
 	"tiposimbolo.h"
 
-1511478949 c:\users\work\desktop\analisador\simbolo.h
+1512436467 c:\users\work\desktop\analisador\simbolo.h
 	<string>
 	"tiposimbolo.h"
+	"TipoRetorno.h"
 
-1512246448 c:\users\work\desktop\analisador\tiposimbolo.h
+1512436586 c:\users\work\desktop\analisador\tiposimbolo.h
 
 1511478949 source:c:\users\work\desktop\analisador\simbolo.cpp
 	"simbolo.h"
@@ -275,4 +276,6 @@
 1512431959 c:\users\work\desktop\analisador\variavel.h
 	"simbolo.h"
 	"tiposimbolo.h"
+
+1512436674 c:\users\work\desktop\analisador\tiporetorno.h
 

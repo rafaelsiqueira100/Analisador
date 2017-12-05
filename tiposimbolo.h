@@ -3,9 +3,7 @@
 
 typedef enum
 {
-    SimboloInteiro,
-    SimboloLogico,
-    SimboloVacuo,
+    SimboloVariavel,
     SimboloProcedimento,
     SimboloFuncao,
 } TipoSimbolo;
