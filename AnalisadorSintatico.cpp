@@ -1,8 +1,6 @@
 #include "AnalisadorSintatico.h"
 
-AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo):
-    this->anaLex(new AnalisadorLexico(nomeArquivo)),
-    this->nivelAtual(0){}
+AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo):anaLex(new AnalisadorLexico(nomeArquivo)),nivelAtual(0){}
 
 
 
@@ -11,7 +9,7 @@ AnalisadorSintatico::~AnalisadorSintatico()
     delete (this->anaLex);
 }
 
-void AnalisadorSintatico::CompProgramaPrincipal()throws(string){
+void AnalisadorSintatico::CompProgramaPrincipal()throw(string){
      TipoPedaco prox = anaLex->proximoPedaco();
      if(prox!=Programa)
          throw "Programa esperado";
@@ -32,18 +30,18 @@ void AnalisadorSintatico::CompProgramaPrincipal()throws(string){
     if(prox==Funcao)
         CompFuncao();
     prox = anaLex->verPedaco();
-    if(prox!=Inicio)
+    if(prox!= Comeco)
         throw "Início inesperado";
 
     CompComandoComposto();//COMPILA INÍCIO E FIM
 
 }
-void AnalisadorSintatico::CompInicioPrograma() throws(string){
+void AnalisadorSintatico::CompInicioPrograma() throw(string){
     CompProgramaPrincipal();
     if(anaLex->proximoPedaco()!=Ponto)
         throw "Ponto esperado";
 }
-void AnalisadorSintatico::CompProcedimento()throws(string){
+void AnalisadorSintatico::CompProcedimento()throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Procedimento){
         throw "procedimento esperado";
@@ -71,7 +69,7 @@ void AnalisadorSintatico::CompProcedimento()throws(string){
             case Virgula:
             anaLex->proximoPedaco();
             break;
-            case default:
+            default:
                 throw "Vírgula ou Fecha Parênteses esperado!";
         }
         prox = anaLex->verPedaco();
@@ -97,7 +95,7 @@ foraLoop:prox = anaLex->proximoPedaco();
     if(prox==Funcao)
         CompFuncao();
     prox = anaLex->verPedaco();
-    if(prox!=Inicio)
+    if(prox!=Comeco)
         throw "Início inesperado";
     CompComandoComposto();
 
@@ -107,7 +105,7 @@ foraLoop:prox = anaLex->proximoPedaco();
     }*/
 }
 // E função??
-void AnalisadorSintatico::CompComando()throws(string){
+void AnalisadorSintatico::CompComando()throw(string){
     TipoPedaco prox = anaLex->verPedaco();
     if (prox == Identificador){
         string nomeId = anaLex->getLiteral();
@@ -133,7 +131,7 @@ void AnalisadorSintatico::CompComando()throws(string){
     }
 }
 
-void AnalisadorSintatico::CompSe()throws(string){
+void AnalisadorSintatico::CompSe()throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Se){
         throw "if esperado";
@@ -185,11 +183,11 @@ void AnalisadorSintatico::CompTermo(){
     }
 }
 
-void AnalisadorSintatico::CompFator()throws(string){
+void AnalisadorSintatico::CompFator()throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
 
     if (prox == Identificador){
-        Simbolo* simbolo
+        Simbolo* simbolo;
        this->tabela.encontrar(anaLex->getLiteral(), simbolo);
         if(EhFuncao(*simbolo) && FuncaoRetornaInteiro(*simbolo)){
             CompFuncao();
@@ -215,7 +213,7 @@ void AnalisadorSintatico::CompFator()throws(string){
 
 }
 
-void AnalisadorSintatico::CompExpressaoRelacional()throws(string){
+void AnalisadorSintatico::CompExpressaoRelacional()throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
     if (! EhOperadorRelacional(prox)){
         throw "operador relacional esperado";
@@ -245,7 +243,7 @@ void AnalisadorSintatico::CompTermoRelacional(){
     }
 }
 
-void AnalisadorSintatico::CompFatorRelacional() throws(string){
+void AnalisadorSintatico::CompFatorRelacional() throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
 
     if (prox == Negacao){
@@ -278,7 +276,7 @@ void AnalisadorSintatico::CompFatorRelacional() throws(string){
     }
 }
 
-void AnalisadorSintatico::CompComandoComposto() throws(string){
+void AnalisadorSintatico::CompComandoComposto() throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
     if(prox!= Comeco)
         throw "Início esperado";
@@ -291,7 +289,7 @@ void AnalisadorSintatico::CompComandoComposto() throws(string){
         throw "Fim esperado";
     this->nivelAtual--;
 }
-void AnalisadorSintatico::CompDeclaracaoVariavel() throws(string){
+void AnalisadorSintatico::CompDeclaracaoVariavel() throw(string){
     TipoRetorno tipoVar(SimboloVacuo);
     string id("");
     TipoPedaco prox = anaLex->proximoPedaco();
@@ -323,7 +321,7 @@ void AnalisadorSintatico::CompDeclaracaoVariavel() throws(string){
             throw "Ponto e Vírgula esperado";
 
         Simbolo* novaVar = new Simbolo(id, this->nivelAtual, tipoVar);
-        anaLex->tabela.guarde(novaVar);
+        this->tabela.guarde(novaVar);
         return;
     }//não é uma constante literal
     throw "Tipo Primitivo esperado";
@@ -358,7 +356,7 @@ bool AnalisadorSintatico::EhVezesOuDividirOuResto(TipoPedaco tipo){
     return EhVezesOuDividir(tipo) || (tipo == Resto);
 }
 bool AnalisadorSintatico::EhFuncao(Simbolo simbolo){
-    return typeid(simbolo)==typeid(Metodo) && simbolo.getTipoRetorno != SimboloVacuo;
+    return typeid(simbolo)==typeid(Metodo) && (simbolo.getTipoRetorno() != SimboloVacuo);
 }
 bool AnalisadorSintatico::FuncaoRetornaInteiro(Simbolo simbolo){
     return simbolo.getTipoRetorno()== SimboloInteiro && typeid(simbolo) == typeid(Metodo);
@@ -381,7 +379,7 @@ bool AnalisadorSintatico::EhValorLogico(TipoPedaco tipo){
 bool AnalisadorSintatico::EhBool(Simbolo simbolo){
     return simbolo.getTipoRetorno()== SimboloLogico;
 }
-void AnalisadorSintatico::CompChamadaDeVariavel() throws(string){
+void AnalisadorSintatico::CompChamadaDeVariavel() throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Identificador)
         throw "Identificador esperado";
@@ -407,22 +405,22 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throws(string){
     if(prox != PontoVirgula)
         throw "Ponto e vírgula esperado !";
 }
-void AnalisadorSintatico::CompChamadaDeProcedimento() throws(string){
+void AnalisadorSintatico::CompChamadaDeProcedimento() throw(string){
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Identificador)
         throw "Identificador esperado";
 
     if (!EhIdDeProcedimento(anaLex->getLiteral()))
         throw "Identificador de procedimento esperado";
-    if(anaLex->proximoPedaco!=AbreParenteses)
+    if(anaLex->proximoPedaco()!=AbreParenteses)
         throw "Abre parênteses esperado";
 
     Simbolo* simbolo;
     this->tabela.encontrar(anaLex->getLiteral(), simbolo);
 //compilar parâmetros....
-    if(anaLex->proximoPedaco!=FechaParenteses)
+    if(anaLex->proximoPedaco()!=FechaParenteses)
         throw "Fecha parênteses esperado !";
-    if(anaLex->proximoPedaco!=PontoVirgula)
+    if(anaLex->proximoPedaco()!=PontoVirgula)
         throw "Ponto e Vírgula esperado !";
 }
 void AnalisadorSintatico::CompChamadaDeFuncao(){
@@ -439,7 +437,7 @@ void AnalisadorSintatico::CompEnquanto(){
     CompExpressaoLogica();
 
     prox = anaLex->proximoPedaco();
-    if (prox == Faça){
+    if (prox == Faca){
         throw "Do esperado";
     }
 
@@ -483,7 +481,7 @@ void AnalisadorSintatico::CompFuncao(){
             case Virgula:
             anaLex->proximoPedaco();
             break;
-            case default:
+            default:
                 throw "Vírgula ou Fecha Parênteses esperado!";
         }
         prox = anaLex->verPedaco();
@@ -495,7 +493,7 @@ foraLoop:prox = anaLex->proximoPedaco();
     prox = anaLex->proximoPedaco();
     if(prox !=DoisPontos)
             throw "Dois Pontos esperado !";
-    prox = anaLex->proximoPedaco;
+    prox = anaLex->proximoPedaco();
     if(!(prox==Inteiro || prox==Logico))
             throw "Tipo de retorno esperado !";
     prox = anaLex->verPedaco();
@@ -509,7 +507,7 @@ foraLoop:prox = anaLex->proximoPedaco();
     if(prox==Funcao)
         CompFuncao();
     prox = anaLex->verPedaco();
-    if(prox!=Inicio)
+    if(prox!=Comeco)
         throw "Início inesperado";
     CompComandoComposto();
 }

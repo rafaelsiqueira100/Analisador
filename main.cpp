@@ -4,7 +4,7 @@
 /*#include<windows.h>
 #include "stdafx.h"*/
 int main(){
-    AnalisadorSintatico a;
+    AnalisadorSintatico a("teste.txt");
     int indice;
 	AnalisadorLexico anaLex("teste.txt");
     TipoPedaco pedAtual;
@@ -33,7 +33,7 @@ loop:while(anaLex.temMaisPedacos()){
             cout << tipoPed <<'\t' <<anaLex.getLiteral()<<"\n";
         }
 
-        cout << anaLex.getLengthUltimoPedaco() << "\n";
+
         goto loop;
         }
     char c;

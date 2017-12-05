@@ -208,10 +208,10 @@
 1511708740 c:\users\matheus\desktop\repositorios\analisador\analisadorsintatico.h
 	"analisadorlexico.h"
 
-1512430093 source:c:\users\work\desktop\analisador\analisadorlexico.cpp
+1512515930 source:c:\users\work\desktop\analisador\analisadorlexico.cpp
 	"analisadorlexico.h"
 
-1512239858 c:\users\work\desktop\analisador\analisadorlexico.h
+1512515930 c:\users\work\desktop\analisador\analisadorlexico.h
 	"tipopedaco.h"
 	<string.h>
 	<stdio.h>
@@ -220,12 +220,12 @@
 	<ctype.h>
 	<fstream>
 
-1512430066 c:\users\work\desktop\analisador\tipopedaco.h
+1512515930 c:\users\work\desktop\analisador\tipopedaco.h
 
-1512437132 source:c:\users\work\desktop\analisador\analisadorsintatico.cpp
+1512519105 source:c:\users\work\desktop\analisador\analisadorsintatico.cpp
 	"AnalisadorSintatico.h"
 
-1512433379 c:\users\work\desktop\analisador\analisadorsintatico.h
+1512518485 c:\users\work\desktop\analisador\analisadorsintatico.h
 	"TabelaDeSimbolos.h"
 	"analisadorlexico.h"
 	"tipopedaco.h"
@@ -234,46 +234,46 @@
 	<typeindex>
 	<typeinfo>
 
-1512431338 source:c:\users\work\desktop\analisador\main.cpp
+1512520029 source:c:\users\work\desktop\analisador\main.cpp
 	<iostream>
 	"analisadorlexico.h"
 	"analisadorsintatico.h"
 	"stdafx.h"
 
-1512431816 source:c:\users\work\desktop\analisador\metodo.cpp
+1512519476 source:c:\users\work\desktop\analisador\metodo.cpp
 	"metodo.h"
 	"simbolo.h"
 	"tiposimbolo.h"
 
-1512432114 c:\users\work\desktop\analisador\metodo.h
+1512519450 c:\users\work\desktop\analisador\metodo.h
 	"simbolo.h"
 	"tiposimbolo.h"
 
-1512436467 c:\users\work\desktop\analisador\simbolo.h
+1512519425 c:\users\work\desktop\analisador\simbolo.h
 	<string>
 	"tiposimbolo.h"
 	"TipoRetorno.h"
 
 1512436586 c:\users\work\desktop\analisador\tiposimbolo.h
 
-1511478949 source:c:\users\work\desktop\analisador\simbolo.cpp
+1512519396 source:c:\users\work\desktop\analisador\simbolo.cpp
 	"simbolo.h"
 	"tiposimbolo.h"
 
-1512431723 source:c:\users\work\desktop\analisador\tabeladesimbolos.cpp
+1512519803 source:c:\users\work\desktop\analisador\tabeladesimbolos.cpp
 	"TabelaDeSimbolos.h"
 	"simbolo.h"
 	<list>
 
-1512431657 c:\users\work\desktop\analisador\tabeladesimbolos.h
+1512515929 c:\users\work\desktop\analisador\tabeladesimbolos.h
 	"simbolo.h"
 	<list>
 	<string.h>
 
-1512431854 source:c:\users\work\desktop\analisador\variavel.cpp
+1512519841 source:c:\users\work\desktop\analisador\variavel.cpp
 	"variavel.h"
 
-1512431959 c:\users\work\desktop\analisador\variavel.h
+1512519840 c:\users\work\desktop\analisador\variavel.h
 	"simbolo.h"
 	"tiposimbolo.h"
 

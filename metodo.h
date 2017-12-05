@@ -11,7 +11,7 @@ private:
     //colocar depois ponteiro para método pai
     int quantosParametros;
 public:
-     Metodo(string, int, Simbolo*, int, TipoSimbolo);
+     Metodo(string, int, Simbolo*, int, TipoRetorno);
     ~Metodo();
 
     Simbolo getParametro(int);

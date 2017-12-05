@@ -7,7 +7,7 @@
 class variavel: public Simbolo
 {
     public:
-        variavel(string, int, TipoSimbolo);
+        variavel(string, int, TipoRetorno);
         virtual ~variavel();
 
     protected:
