@@ -10,7 +10,6 @@ private:
 public:
     TabelaDeSimbolos();
 	void guarde(Simbolo*);
-	Simbolo* pegue(string);
 	bool encontrar(string, Simbolo*);
 	void eliminaNivel(int);
 };

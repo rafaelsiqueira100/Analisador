@@ -15,8 +15,7 @@ class AnalisadorSintatico
     private:
         TabelaDeSimbolos tabela;
         AnalisadorLexico* anaLex;
-        int nivelAtual = 0;
-
+        int nivelAtual ;
     public:
         AnalisadorSintatico() ;
         AnalisadorSintatico(string);
