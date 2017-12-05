@@ -2,8 +2,7 @@
 #include "simbolo.h"
 #include <list>
 using namespace std;
-TabelaDeSimbolos::TabelaDeSimbolos(){
-}
+TabelaDeSimbolos::TabelaDeSimbolos(): this->armazenador();
 
 void TabelaDeSimbolos::guarde(Simbolo* aGuardar){
     int nivel = aGuardar->getNivel();
@@ -41,7 +40,7 @@ bool TabelaDeSimbolos::encontrar(string nomeSimbolo, Simbolo* retorno){
     list<Simbolo*>::iterator it;
     for (it=armazenador.begin(); it!=armazenador.end(); ++it){
         if (nomeSimbolo == (*(*it)).getNome()){
-            retorno = *it;
+            *retorno = *it;
             return true;
         }
         return false;

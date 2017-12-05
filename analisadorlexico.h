@@ -9,7 +9,7 @@
 #include <fstream>
 using namespace std;
 
-#define NUM_PALAVRAS_CHAVE 34
+#define NUM_PALAVRAS_CHAVE 37
 //Esta classe não possui operator=, construtor de cópia e destrutor
 //porque não possui atributos ponteiros dinamicamente alocados,
 //logo não há problema realizar uma cópia binária disparada quando

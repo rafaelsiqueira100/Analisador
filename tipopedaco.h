@@ -21,6 +21,7 @@ typedef enum
     MenorOuIgual,
     Se,
     Enquanto,
+    Faca,
     Senao,//18
     Entao,
     Resto,

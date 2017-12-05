@@ -19,18 +19,19 @@ static const string palavras_chave[] =
 "<=",
 "if",
 "while",
-"else",//18
+"do",
+"else",//19
 "then",
 "mod",
-"(",//19
-")",//20
-"try", //21
-"except",//22
-";",//23
-",",//24
-".",//25
-":",//26
-"integer",//27
+"(",//22
+")",//23
+"try", //24
+"except",//25
+";",//26
+",",//27
+".",//28
+":",//29
+"integer",//30
 "boolean",
 "true",
 "false",
@@ -40,7 +41,7 @@ static const string palavras_chave[] =
 "function"
 };
 
-const string* AnalisadorLexico::palavrasChave = palavras_chave;
+const string* AnalisadorLexico::palavrasChave(palavras_chave);
 
 AnalisadorLexico::AnalisadorLexico(string nomeArquivo):
      arquivo(),
@@ -349,6 +350,10 @@ string AnalisadorLexico::nomeTipo(TipoPedaco tp){
         case Se:
         tipoPed="Se";
         break;
+        case Entao:
+        tipoPed="Entao";
+        case Resto:
+        tipoPed="Resto";
         case Enquanto:
         tipoPed="Enquanto";
         break;

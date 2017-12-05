@@ -18,23 +18,23 @@ class AnalisadorSintatico
         int nivelAtual = 0;
 
     public:
-        AnalisadorSintatico();
+        AnalisadorSintatico() ;
         AnalisadorSintatico(string);
         ~AnalisadorSintatico();
-        void CompComandoComposto();
-        void CompProcedimento();
-        void CompComando();
-        void CompSe();
+        void CompComandoComposto() throws(string);
+        void CompProcedimento() throws(string);
+        void CompComando() throws(string);
+        void CompSe() throws(string);
         void CompExpressaoAritimetica();
         void CompTermo();
-        void CompExpressaoRelacional();
-        void CompFator();
-        void CompProgramaPrincipal();
+        void CompExpressaoRelacional() throws(string);
+        void CompFator() throws(string);
+        void CompProgramaPrincipal() throws(string);
         void CompExpressaoLogica();
         void CompTermoRelacional();
         void CompFatorRelacional();
-        void CompDeclaracaoVariavel();
-        void CompInicioPrograma();
+        void CompDeclaracaoVariavel() throws(string);
+        void CompInicioPrograma() throws(string);
         bool EhIdDeVariavel(string);
         bool EhIdDeProcedimento(string);
         bool EhMaisOuMenos(TipoPedaco);
@@ -48,8 +48,8 @@ class AnalisadorSintatico
         bool EhOperadorRelacional(TipoPedaco);
         bool EhBool(Simbolo);
         bool EhValorLogico(TipoPedaco);
-        void CompChamadaDeVariavel();
-        void CompChamadaDeProcedimento();
+        void CompChamadaDeVariavel()throws(string);
+        void CompChamadaDeProcedimento() throws(string);
         void CompChamadaDeFuncao();
         void CompEnquanto();
         void CompFuncao();

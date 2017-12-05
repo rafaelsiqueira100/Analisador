@@ -9,17 +9,17 @@ using namespace std;
 class Simbolo
 {
 private:
-    string nome;
-    int    nivel;
-    TipoSimbolo tipo;
-    TipoRetorno tipoRetorno;
+   string nome;
+   int    nivel;
+   //TipoSimbolo tipo;
+   TipoRetorno tipoRetorno;
 public:
      Simbolo(string, int, TipoSimbolo, TipoRetorno);
     ~Simbolo();
 
     string getNome();
     int    getNivel();
-    TipoSimbolo getTipo();
+   // TipoSimbolo getTipo();
     TipoRetorno getTipoRetorno();
 };
 

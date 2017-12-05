@@ -279,3 +279,66 @@
 
 1512436674 c:\users\work\desktop\analisador\tiporetorno.h
 
+1512473317 source:c:\users\rafae\downloads\analisador\main.cpp
+	<iostream>
+	"analisadorlexico.h"
+	"analisadorsintatico.h"
+	"stdafx.h"
+
+1512476756 c:\users\rafae\downloads\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+
+1512478705 c:\users\rafae\downloads\analisador\tipopedaco.h
+
+1512474182 c:\users\rafae\downloads\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+
+1512473317 c:\users\rafae\downloads\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512478013 c:\users\rafae\downloads\analisador\simbolo.h
+	<string>
+	"tiposimbolo.h"
+	"TipoRetorno.h"
+
+1512473317 c:\users\rafae\downloads\analisador\tiposimbolo.h
+
+1512473317 c:\users\rafae\downloads\analisador\tiporetorno.h
+
+1512473317 c:\users\rafae\downloads\analisador\metodo.h
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1512473317 source:c:\users\rafae\downloads\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1512473317 source:c:\users\rafae\downloads\analisador\simbolo.cpp
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1512473317 source:c:\users\rafae\downloads\analisador\variavel.cpp
+	"variavel.h"
+
+1512473317 c:\users\rafae\downloads\analisador\variavel.h
+	"simbolo.h"
+	"tiposimbolo.h"
+
+1512478788 source:c:\users\rafae\downloads\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+

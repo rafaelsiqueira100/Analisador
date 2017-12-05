@@ -2,11 +2,11 @@
 
 #include "tiposimbolo.h"
 
-Simbolo::Simbolo(string nome, int nivel, TipoSimbolo tipo, TipoRetorno tipoRetorno)
+Simbolo::Simbolo(string nome, int nivel, TipoRetorno tipoRetorno)
 {
     this->nome  = nome;
     this->nivel = nivel;
-    this->tipo  = tipo;
+   // this->tipo  = tipo;
     this->tipoRetorno = tipoRetorno;
 }
 
@@ -26,10 +26,10 @@ int Simbolo::getNivel()
     return this->nivel;
 }
 
-TipoSimbolo Simbolo::getTipo()
+/*TipoSimbolo Simbolo::getTipo()
 {
     return this->tipo;
-}
+}*/
 
 TipoRetorno Simbolo::getTipoRetorno(){
     return this->tipoRetorno;
