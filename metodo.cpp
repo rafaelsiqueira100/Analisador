@@ -10,4 +10,12 @@ Metodo::Metodo(string nome, int nivel, Simbolo* parametros, int quantosParametro
 
 Metodo::~Metodo() { }
 
+Simbolo Metodo::getParametro(int indice) {
+	return *(parametros + indice);
+}
+int Metodo::getQuantosParametros(){
+	return this->quantosParametros;
+}
+
+
 

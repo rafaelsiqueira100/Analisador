@@ -15,6 +15,7 @@ private:
    TipoRetorno tipoRetorno;
 public:
      Simbolo(string, int,  TipoRetorno);
+     Simbolo();
     ~Simbolo();
 
     string getNome();

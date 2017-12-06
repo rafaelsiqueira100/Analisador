@@ -74,16 +74,16 @@
 	"analisadorlexico.h"
 	"stdafx.h"
 
-1510232388 c:\users\rafae\downloads\analisador-master\analisadorlexico.h
+1512524159 c:\users\rafae\downloads\analisador-master\analisadorlexico.h
 	"tipopedaco.h"
 	<string.h>
-	<fstream>
 	<stdio.h>
 	<string>
 	<stdlib.h>
 	<ctype.h>
+	<fstream>
 
-1510231181 c:\users\rafae\downloads\analisador-master\tipopedaco.h
+1512524159 c:\users\rafae\downloads\analisador-master\tipopedaco.h
 
 1510231181 source:c:\users\rafae\downloads\analisador-master\metodo.cpp
 	"metodo.h"
@@ -93,13 +93,14 @@
 1510231181 c:\users\rafae\downloads\analisador-master\metodo.h
 	"simbolo.h"
 
-1510231181 c:\users\rafae\downloads\analisador-master\simbolo.h
+1512538378 c:\users\rafae\downloads\analisador-master\simbolo.h
 	<string>
 	"tiposimbolo.h"
+	"TipoRetorno.h"
 
-1510231181 c:\users\rafae\downloads\analisador-master\tiposimbolo.h
+1512524159 c:\users\rafae\downloads\analisador-master\tiposimbolo.h
 
-1510231181 source:c:\users\rafae\downloads\analisador-master\simbolo.cpp
+1512524159 source:c:\users\rafae\downloads\analisador-master\simbolo.cpp
 	"simbolo.h"
 	"tiposimbolo.h"
 
@@ -341,4 +342,26 @@
 
 1512478788 source:c:\users\rafae\downloads\analisador\analisadorlexico.cpp
 	"analisadorlexico.h"
+
+1512524159 source:c:\users\rafae\downloads\analisador-master\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1512524159 c:\users\rafae\downloads\analisador-master\tiporetorno.h
+
+1512524159 source:c:\users\rafae\downloads\analisador-master\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1512524159 c:\users\rafae\downloads\analisador-master\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512524159 source:c:\users\rafae\downloads\analisador-master\variavel.cpp
+	"variavel.h"
+
+1512524159 c:\users\rafae\downloads\analisador-master\variavel.h
+	"simbolo.h"
+	"tiposimbolo.h"
 

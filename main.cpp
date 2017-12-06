@@ -4,8 +4,13 @@
 /*#include<windows.h>
 #include "stdafx.h"*/
 int main(){
+    try{
     AnalisadorSintatico a("teste.txt");
-    int indice;
+    a.CompInicioPrograma();}
+    catch(string s){
+    cerr << s;
+    }
+    /*int indice;
 	AnalisadorLexico anaLex("teste.txt");
     TipoPedaco pedAtual;
 loop:while(anaLex.temMaisPedacos()){
@@ -38,5 +43,5 @@ loop:while(anaLex.temMaisPedacos()){
         }
     char c;
     cin >> c;
-	return 0;
+	return 0;*/
 }

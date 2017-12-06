@@ -53,6 +53,8 @@ class AnalisadorSintatico
         void CompChamadaDeFuncao();
         void CompEnquanto();
         void CompFuncao();
+		void CompTente() throw(string);
+		void CompPegue() throw(string);
 
 };
 
