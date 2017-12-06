@@ -2,7 +2,6 @@
 #define METODO_H_INCLUDED
 
 #include "simbolo.h"
-#include "tiposimbolo.h"
 
 class Metodo : public Simbolo
 {

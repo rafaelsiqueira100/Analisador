@@ -1,8 +1,7 @@
 #include<iostream>
 #include "analisadorlexico.h"
 #include "analisadorsintatico.h"
-/*#include<windows.h>
-#include "stdafx.h"*/
+
 int main(){
     try{
     AnalisadorSintatico a("teste.txt");

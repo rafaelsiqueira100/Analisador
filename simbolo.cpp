@@ -1,14 +1,14 @@
 #include "simbolo.h"
 
-#include "tiposimbolo.h"
+
 
 Simbolo::Simbolo(string nome, int nivel, TipoRetorno tipoRetorno):
-    this->nome(nome),this->nivel(nivel),this->tipoRetorno(tipoRetorno)
+    nome(nome),nivel(nivel),tipoRetorno(tipoRetorno)
 {
 }
 
 Simbolo::Simbolo():
-    this->nome(""),this->nivel(0),this->tipoRetorno(SimboloVacuo)
+    nome(""),nivel(0),tipoRetorno(SimboloVacuo)
 {
 }
 

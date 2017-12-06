@@ -2,10 +2,14 @@
 #define SIMBOLO_H_INCLUDED
 
 #include <string>
-#include "tiposimbolo.h"
-#include "TipoRetorno.h"
-using namespace std;
 
+using namespace std;
+typedef enum
+{
+    SimboloInteiro,
+    SimboloLogico,
+    SimboloVacuo
+} TipoRetorno;
 class Simbolo
 {
 private:

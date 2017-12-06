@@ -69,10 +69,10 @@
 	<windows.h>
 	"analisadorlexico.h"
 
-1510231181 source:c:\users\rafae\downloads\analisador-master\main.cpp
+1512578558 source:c:\users\rafae\downloads\analisador-master\main.cpp
 	<iostream>
 	"analisadorlexico.h"
-	"stdafx.h"
+	"analisadorsintatico.h"
 
 1512524159 c:\users\rafae\downloads\analisador-master\analisadorlexico.h
 	"tipopedaco.h"
@@ -85,22 +85,19 @@
 
 1512524159 c:\users\rafae\downloads\analisador-master\tipopedaco.h
 
-1510231181 source:c:\users\rafae\downloads\analisador-master\metodo.cpp
+1512582683 source:c:\users\rafae\downloads\analisador-master\metodo.cpp
 	"metodo.h"
 	"simbolo.h"
-	"tiposimbolo.h"
 
-1510231181 c:\users\rafae\downloads\analisador-master\metodo.h
+1512582674 c:\users\rafae\downloads\analisador-master\metodo.h
 	"simbolo.h"
 
-1512538378 c:\users\rafae\downloads\analisador-master\simbolo.h
+1512582610 c:\users\rafae\downloads\analisador-master\simbolo.h
 	<string>
-	"tiposimbolo.h"
-	"TipoRetorno.h"
 
 1512524159 c:\users\rafae\downloads\analisador-master\tiposimbolo.h
 
-1512524159 source:c:\users\rafae\downloads\analisador-master\simbolo.cpp
+1512580606 source:c:\users\rafae\downloads\analisador-master\simbolo.cpp
 	"simbolo.h"
 	"tiposimbolo.h"
 
@@ -346,14 +343,14 @@
 1512524159 source:c:\users\rafae\downloads\analisador-master\analisadorlexico.cpp
 	"analisadorlexico.h"
 
-1512524159 c:\users\rafae\downloads\analisador-master\tiporetorno.h
+1512582341 c:\users\rafae\downloads\analisador-master\tiporetorno.h
 
 1512524159 source:c:\users\rafae\downloads\analisador-master\tabeladesimbolos.cpp
 	"TabelaDeSimbolos.h"
 	"simbolo.h"
 	<list>
 
-1512524159 c:\users\rafae\downloads\analisador-master\tabeladesimbolos.h
+1512582616 c:\users\rafae\downloads\analisador-master\tabeladesimbolos.h
 	"simbolo.h"
 	<list>
 	<string.h>
@@ -364,4 +361,16 @@
 1512524159 c:\users\rafae\downloads\analisador-master\variavel.h
 	"simbolo.h"
 	"tiposimbolo.h"
+
+1512558121 source:c:\users\rafae\downloads\analisador-master\analisadorsintatico.cpp
+	"AnalisadorSintatico.h"
+
+1512555717 c:\users\rafae\downloads\analisador-master\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
 

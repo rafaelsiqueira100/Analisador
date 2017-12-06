@@ -38,7 +38,6 @@
 		<Unit filename="AnalisadorSintatico.h" />
 		<Unit filename="TabelaDeSimbolos.cpp" />
 		<Unit filename="TabelaDeSimbolos.h" />
-		<Unit filename="TipoRetorno.h" />
 		<Unit filename="analisadorlexico.cpp" />
 		<Unit filename="analisadorlexico.h" />
 		<Unit filename="include/TipoRetorno.h" />
@@ -52,8 +51,6 @@
 		<Unit filename="src/variavel.cpp" />
 		<Unit filename="tipopedaco.h" />
 		<Unit filename="tiposimbolo.h" />
-		<Unit filename="variavel.cpp" />
-		<Unit filename="variavel.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

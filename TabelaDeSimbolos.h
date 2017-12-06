@@ -4,6 +4,9 @@
 #include <list>
 #include <string.h>
 using namespace std;
+
+
+
 class TabelaDeSimbolos{
 private:
 	list<Simbolo*> armazenador;
