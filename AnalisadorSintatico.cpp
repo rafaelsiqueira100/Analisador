@@ -50,6 +50,11 @@ void AnalisadorSintatico::CompProcedimento()throw(string){
     if (prox != Identificador){
         throw "identificador esperado";
     }
+    string nomeProc = anaLex->getLiteral();
+    std::list<Simbolo*> listaParametros;
+    std::list<Simbolo*>::iterator it;
+    int tamanhoLista = 0;
+    it = listaParametros.begin();
     prox = anaLex->proximoPedaco();
     if (prox != AbreParenteses){
         throw "Abre Parênteses esperado";
@@ -57,10 +62,23 @@ void AnalisadorSintatico::CompProcedimento()throw(string){
 
     prox = anaLex->verPedaco();
     while(prox == Inteiro || prox == Logico){
+        TipoPedaco tipoParametro = prox;
+        TipoRetorno retornoParametro;
+
+        switch(tipoParametro){
+            case Inteiro:
+                retornoParametro = SimboloInteiro;
+            case Logico:
+                retornoParametro = SimboloLogico;
+        }
+
         anaLex->proximoPedaco();
         prox = anaLex->proximoPedaco();
         if(prox != Identificador)
             throw "Identificador esperado !";
+        Simbolo* param = new Simbolo(anaLex->getLiteral(), this->nivelAtual, retornoParametro);
+        listaParametros.insert(it, param);
+        tamanhoLista ++;
         prox = anaLex->verPedaco();
         switch(prox){
             case FechaParenteses:
@@ -76,6 +94,8 @@ void AnalisadorSintatico::CompProcedimento()throw(string){
 
     }//fim do while
 foraLoop:prox = anaLex->proximoPedaco();
+    it = listaParametros.begin();
+    Metodo* procedimento = new Metodo( nomeProc, this->nivelAtual, *it, tamanhoLista, SimboloVacuo );
     if(prox !=FechaParenteses)
             throw "Fecha Parênteses esperado !";
 
@@ -127,7 +147,7 @@ void AnalisadorSintatico::CompComando()throw(string){
         else if (prox == Enquanto){
             CompEnquanto();
         }
-        //....
+        //.... acho que não precisa fazer try/except
     }
 }
 
@@ -287,6 +307,8 @@ void AnalisadorSintatico::CompComandoComposto() throw(string){
     }while(prox!=Fim && anaLex->temMaisPedacos());
     if(prox!=Fim)
         throw "Fim esperado";
+
+    this->tabela.eliminaNivel(this->nivelAtual);
     this->nivelAtual--;
 }
 void AnalisadorSintatico::CompDeclaracaoVariavel() throw(string){
@@ -462,6 +484,12 @@ void AnalisadorSintatico::CompFuncao(){
         throw "Identificador esperado";
     }
 
+    string nomeFunc = anaLex->getLiteral();
+    std::list<Simbolo*> listaParametros;
+    std::list<Simbolo*>::iterator it;
+    it = listaParametros.begin();
+    int tamanhoLista = 0;
+
     prox = anaLex->proximoPedaco();
     if (prox != AbreParenteses){
         throw "Abre Parênteses esperado";
@@ -469,10 +497,24 @@ void AnalisadorSintatico::CompFuncao(){
 
     prox = anaLex->verPedaco();
     while(prox == Inteiro || prox == Logico){
+        TipoPedaco tipoParametro = prox;
+        TipoRetorno retornoParametro;
+
+        switch(tipoParametro){
+            case Inteiro:
+                retornoParametro = SimboloInteiro;
+            case Logico:
+                retornoParametro = SimboloLogico;
+        }
+
         anaLex->proximoPedaco();
         prox = anaLex->proximoPedaco();
+
         if(prox != Identificador)
             throw "Identificador esperado !";
+        Simbolo* param = new Simbolo(anaLex->getLiteral(), this->nivelAtual, retornoParametro);
+        listaParametros.insert(it, param);
+        int tamanhoLista;
         prox = anaLex->verPedaco();
         switch(prox){
             case FechaParenteses:
@@ -488,6 +530,7 @@ void AnalisadorSintatico::CompFuncao(){
 
     }//fim do while
 foraLoop:prox = anaLex->proximoPedaco();
+
     if(prox !=FechaParenteses)
             throw "Fecha Parênteses esperado !";
     prox = anaLex->proximoPedaco();
@@ -496,6 +539,18 @@ foraLoop:prox = anaLex->proximoPedaco();
     prox = anaLex->proximoPedaco();
     if(!(prox==Inteiro || prox==Logico))
             throw "Tipo de retorno esperado !";
+
+
+    TipoRetorno retorno;
+    switch(prox){
+        case Inteiro:
+            retorno = SimboloInteiro;
+        case Logico:
+            retorno = SimboloLogico;
+    }
+    it = listaParametros.begin();
+    Metodo* procedimento = new Metodo(nomeFunc, this->nivelAtual, *it, tamanhoLista, SimboloLogico);
+
     prox = anaLex->verPedaco();
     while (prox == Variavel){
         CompDeclaracaoVariavel();
