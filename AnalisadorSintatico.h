@@ -19,6 +19,7 @@ class AnalisadorSintatico
         string nomeFuncAtual;
         bool retornoFuncInt;
         bool jaRetornou;
+        string erro;
     public:
         AnalisadorSintatico() ;
         AnalisadorSintatico(string);
@@ -58,7 +59,7 @@ class AnalisadorSintatico
         void CompFuncao();
 		void CompTente() throw(string);
 		void CompPegue() throw(string);
-
+        void ExibeErro();
 };
 
 #endif // ANALISADORSINTATICO_H_INCLUDED

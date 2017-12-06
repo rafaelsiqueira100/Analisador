@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1512586491 source:c:\users\rafae\downloads\analisador\main.cpp
+	<iostream>
+	"AnalisadorLexico.h"
+	"AnalisadorSintatico.h"
+
+1512524159 c:\users\rafae\downloads\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+
+1512524159 c:\users\rafae\downloads\analisador\tipopedaco.h
+
+1512587664 c:\users\rafae\downloads\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+
+1512582616 c:\users\rafae\downloads\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512582610 c:\users\rafae\downloads\analisador\simbolo.h
+	<string>
+
+1512582674 c:\users\rafae\downloads\analisador\metodo.h
+	"simbolo.h"
+
+1512524159 source:c:\users\rafae\downloads\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1512558121 source:c:\users\rafae\downloads\analisador\analisadorsintatico.cpp
+	"AnalisadorSintatico.h"
+
+1512582683 source:c:\users\rafae\downloads\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+
+1512582692 source:c:\users\rafae\downloads\analisador\simbolo.cpp
+	"simbolo.h"
+
+1512524159 source:c:\users\rafae\downloads\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
