@@ -8,7 +8,7 @@ int main(){
     AnalisadorSintatico a("teste.txt");
     a.CompInicioPrograma();}
     catch(string s){
-    cerr << s;
+    cout << s;
     }
     /*int indice;
 	AnalisadorLexico anaLex("teste.txt");

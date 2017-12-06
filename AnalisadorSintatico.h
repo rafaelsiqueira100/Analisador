@@ -16,6 +16,9 @@ class AnalisadorSintatico
         TabelaDeSimbolos tabela;
         AnalisadorLexico* anaLex;
         int nivelAtual ;
+        string nomeFuncAtual;
+        bool retornoFuncInt;
+        bool jaRetornou;
     public:
         AnalisadorSintatico() ;
         AnalisadorSintatico(string);

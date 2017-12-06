@@ -1,7 +1,11 @@
 #include "AnalisadorSintatico.h"
 
-AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo):anaLex(new AnalisadorLexico(nomeArquivo)),nivelAtual(0){}
-
+AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo):
+    anaLex(new AnalisadorLexico(nomeArquivo)),
+    nivelAtual(0),
+    nomeFuncAtual(""),
+    retornoFuncInt(false),
+    jaRetornou(false){}
 
 
 AnalisadorSintatico::~AnalisadorSintatico()
@@ -298,9 +302,23 @@ void AnalisadorSintatico::CompExpressaoRelacional()throw(string){
 }
 
 void AnalisadorSintatico::CompExpressaoLogica(){
-    CompTermoRelacional();
-
     TipoPedaco prox = anaLex->verPedaco();
+
+   /* if(prox == AbreParenteses){
+        anaLex->proximoPedaco();
+        CompExpressaoLogica();
+        prox = anaLex->proximoPedaco();
+        if(prox!=FechaParenteses)
+            throw ") esperado !";
+        prox = anaLex->verPedaco();
+    }
+
+
+    if(prox!= Ou && prox!=E && !Eh)
+            throw "Operador relacional ou lógico esperado !";
+    */CompTermoRelacional();
+
+    prox = anaLex->verPedaco();
     while (prox == Ou){
         anaLex->proximoPedaco();
         CompTermoRelacional();
@@ -495,7 +513,7 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw(string){
 
     Simbolo* simbolo;
     this->tabela.encontrar(anaLex->getLiteral(), simbolo);
-	int qtosParametros = (Metodo(*simbolo)).getQuantosParametros();
+	int qtosParametros = ((Metodo*)simbolo)->getQuantosParametros();
 	Simbolo parFormal;
 	Simbolo* parReal;
 	string nomeParReal;
@@ -504,7 +522,7 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw(string){
 	for ( i = 0; i < qtosParametros; i++) {
 		if (i > 0)
 			anaLex->proximoPedaco();//vírgula
-		parFormal= ((Metodo)simbolo).getParametro(i);
+		parFormal= ((Metodo*)simbolo)->getParametro(i);
 		prox = anaLex->verPedaco();
 		if(prox!=Identificador)
 		{
@@ -543,18 +561,85 @@ verif:	    anaLex->proximoPedaco();
 }
 void AnalisadorSintatico::CompChamadaDeFuncao(){
 	TipoPedaco prox = anaLex->proximoPedaco();
+	string nomeId("");
 	if (prox != Identificador)
 		throw "Identificador esperado";
+    string nomeFuncEncontrado(anaLex->getLiteral());
+	if (!EhIdDeFuncao(nomeFuncEncontrado))
+		throw "Identificador de função esperado";
+        if((this->nomeFuncAtual).compare(nomeFuncEncontrado)==0){
+            prox = anaLex->proximoPedaco();
+            //POR ENQUANTO NÃO TEM RECURSÃO
 
-	if (!EhIdDeProcedimento(anaLex->getLiteral()))
-		throw "Identificador de procedimento esperado";
+            if(prox != Atribuicao)
+                throw ":= esperado!";
+            prox= anaLex->verPedaco();
+            if(this->retornoFuncInt){
+                switch(prox){
+                    case Identificador:
+                        nomeId = anaLex->getLiteral();
+                        Simbolo* simboloId;
+                        if(tabela.encontrar(nomeId, simboloId)){
+                                if(EhInteiro(*simboloId)){
+                                    if(EhIdDeFuncao(nomeId))
+                                        CompChamadaDeFuncao();
+                                    else
+                                        this->anaLex->proximoPedaco();
+                                }
+                                else{
+                                    throw "Inteiro esperado, mas Booleano encontrado !";
+                                }
+                        }
+                        else
+                            throw "Identificador não declarado!";
+
+                    break;
+                    case Numero://por enquanto não
+                        //aceita expressão aritmétoica
+                        anaLex->proximoPedaco();
+                    break;
+                }
+            }
+            else{//função retorna bool
+                switch(prox){
+                    case Identificador:
+                     nomeId = anaLex->getLiteral();
+                        Simbolo* simboloId;
+                        if(tabela.encontrar(nomeId, simboloId)){
+                                if(EhBool(*simboloId)){
+                                    if(EhIdDeFuncao(nomeId))
+                                        CompChamadaDeFuncao();
+                                    else
+                                        this->anaLex->proximoPedaco();
+                                }
+                                else{
+                                    throw "Inteiro esperado, mas Booleano encontrado !";
+                                }
+                        }
+                        else
+                            throw "Identificador não declarado!";
+
+                    break;
+                    case Verdadeiro:
+                    case Falso:
+                        anaLex->proximoPedaco();
+                    break;
+                }//FIM DO SWITCH
+
+            }//FIM DO IF(FUNCAORETONAINT)
+            prox = anaLex->proximoPedaco();
+            if(prox != PontoVirgula)
+                throw "; esperado !";
+            return;
+            }//FIM DO IF NOME DA FUNÇÃO É IGUAL AO ENCONTRADO
+
 	if (anaLex->proximoPedaco() != AbreParenteses)
 		throw "Abre parênteses esperado";
 
 	Simbolo* simbolo;
 	this->tabela.encontrar(anaLex->getLiteral(), simbolo);
-	int qtosParametros = ((Metodo)simbolo).getQuantosParametros();
-	Simbolo parFormal;
+    int qtosParametros = ((Metodo*)simbolo)->getQuantosParametros();
+    Simbolo parFormal;
 	Simbolo* parReal;
 	string nomeParReal;
 	int i;
@@ -562,7 +647,7 @@ void AnalisadorSintatico::CompChamadaDeFuncao(){
 	for (i = 0; i < qtosParametros; i++) {
 		if (i > 0)
 			anaLex->proximoPedaco();//vírgula
-		parFormal = ((Metodo)simbolo).getParametro(i);
+		parFormal = ((Metodo*)simbolo)->getParametro(i);
 		prox = anaLex->verPedaco();
 		if (prox != Identificador)
 		{
@@ -634,6 +719,7 @@ void AnalisadorSintatico::CompFuncao(){
     }
 
     string nomeFunc = anaLex->getLiteral();
+    this->nomeFuncAtual = nomeFunc;
     std::list<Simbolo> listaParametros;
     //std::list<Simbolo>::iterator it;
     //it = listaParametros.begin();
@@ -652,8 +738,12 @@ void AnalisadorSintatico::CompFuncao(){
         switch(tipoParametro){
             case Inteiro:
                 retornoParametro = SimboloInteiro;
+
+                break;
             case Logico:
                 retornoParametro = SimboloLogico;
+
+                break;
         }
 
         anaLex->proximoPedaco();
@@ -693,8 +783,12 @@ foraLoop:prox = anaLex->proximoPedaco();
     switch(prox){
         case Inteiro:
             retorno = SimboloInteiro;
+            this->retornoFuncInt=true;
+            break;
         case Logico:
             retorno = SimboloLogico;
+            this->retornoFuncInt=false;
+            break;
     }
 
      Simbolo* vetor = new Simbolo[tamanhoLista];
@@ -716,12 +810,21 @@ foraLoop:prox = anaLex->proximoPedaco();
         prox = anaLex->verPedaco();
     }
     //loop da main
-    if(prox==Procedimento)
-        CompProcedimento();
-    if(prox==Funcao)
-        CompFuncao();
+    if(prox==Procedimento){
+        this->nomeFuncAtual = "";
+        CompProcedimento();}
+    if(prox==Funcao){
+        this->nomeFuncAtual= "";
+        CompFuncao();}
+    this->nomeFuncAtual= nomeFunc;
+    this->retornoFuncInt = retorno == SimboloInteiro;
+    this->jaRetornou = false;
     prox = anaLex->verPedaco();
     if(prox!=Comeco)
         throw "Início esperado";
     CompComandoComposto();
+    if(!jaRetornou)
+        throw "Função não retorna nenhum valor!";
+    this->nomeFuncAtual = "";
+    this->jaRetornou = false;
 }
