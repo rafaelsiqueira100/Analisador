@@ -1,11 +1,8 @@
 # depslib dependency file v1.0
-1512647524 source:c:\users\rafae\downloads\analisador\main.cpp
-	<iostream>
-	"AnalisadorLexico.h"
-	<exception>
-	"AnalisadorSintatico.h"
+1512648018 source:c:\users\u14187\desktop\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
 
-1512524159 c:\users\rafae\downloads\analisador\analisadorlexico.h
+1512648018 c:\users\u14187\desktop\analisador\analisadorlexico.h
 	"tipopedaco.h"
 	<string.h>
 	<stdio.h>
@@ -14,9 +11,13 @@
 	<ctype.h>
 	<fstream>
 
-1512524159 c:\users\rafae\downloads\analisador\tipopedaco.h
+1512648018 c:\users\u14187\desktop\analisador\tipopedaco.h
 
-1512647657 c:\users\rafae\downloads\analisador\analisadorsintatico.h
+1512652987 source:c:\users\u14187\desktop\analisador\analisadorsintatico.cpp
+	<iostream>
+	"AnalisadorSintatico.h"
+
+1512648018 c:\users\u14187\desktop\analisador\analisadorsintatico.h
 	"TabelaDeSimbolos.h"
 	"analisadorlexico.h"
 	"tipopedaco.h"
@@ -26,32 +27,31 @@
 	<typeinfo>
 	<exception>
 
-1512582616 c:\users\rafae\downloads\analisador\tabeladesimbolos.h
+1512648018 c:\users\u14187\desktop\analisador\tabeladesimbolos.h
 	"simbolo.h"
 	<list>
 	<string.h>
 
-1512649021 c:\users\rafae\downloads\analisador\simbolo.h
+1512650842 c:\users\u14187\desktop\analisador\simbolo.h
 	<string>
 
-1512582674 c:\users\rafae\downloads\analisador\metodo.h
+1512648018 c:\users\u14187\desktop\analisador\metodo.h
 	"simbolo.h"
 
-1512524159 source:c:\users\rafae\downloads\analisador\analisadorlexico.cpp
-	"analisadorlexico.h"
-
-1512648452 source:c:\users\rafae\downloads\analisador\analisadorsintatico.cpp
+1512648018 source:c:\users\u14187\desktop\analisador\main.cpp
 	<iostream>
+	"AnalisadorLexico.h"
+	<exception>
 	"AnalisadorSintatico.h"
 
-1512582683 source:c:\users\rafae\downloads\analisador\metodo.cpp
+1512648018 source:c:\users\u14187\desktop\analisador\metodo.cpp
 	"metodo.h"
 	"simbolo.h"
 
-1512649066 source:c:\users\rafae\downloads\analisador\simbolo.cpp
+1512650782 source:c:\users\u14187\desktop\analisador\simbolo.cpp
 	"simbolo.h"
 
-1512650093 source:c:\users\rafae\downloads\analisador\tabeladesimbolos.cpp
+1512652394 source:c:\users\u14187\desktop\analisador\tabeladesimbolos.cpp
 	"TabelaDeSimbolos.h"
 	"simbolo.h"
 	<list>

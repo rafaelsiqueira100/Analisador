@@ -21,7 +21,6 @@ public:
      Simbolo(string, int,  TipoRetorno);
      Simbolo();
     ~Simbolo();
-    Simbolo& operator=(const Simbolo& outro);
     string getNome() const;
     int    getNivel() const;
    // TipoSimbolo getTipo();

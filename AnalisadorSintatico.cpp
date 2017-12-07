@@ -9,7 +9,7 @@ AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo):
     nomeFuncAtual(""),
     retornoFuncInt(false),
     jaRetornou(false),
-    erro(""),
+    erro("")
 {}
 
 
@@ -50,8 +50,12 @@ void AnalisadorSintatico::CompProgramaPrincipal() throw(){
         prox = anaLex->verPedaco();
 
     }
+
     if(prox==Procedimento)
         CompProcedimento();
+
+    prox = anaLex->verPedaco();
+
     if(prox==Funcao)
         CompFuncao();
     prox = anaLex->verPedaco();
@@ -154,9 +158,9 @@ foraLoop:prox = anaLex->proximoPedaco();
         }
     Metodo* procedimento;
     if(tamanhoLista!=0)
-    procedimento = new Metodo( nomeProc, this->nivelAtual,vetor, tamanhoLista, SimboloVacuo );
+        procedimento = new Metodo( nomeProc, this->nivelAtual,vetor, tamanhoLista, SimboloVacuo );
     else
-    procedimento = new Metodo( nomeProc, this->nivelAtual,nullptr, tamanhoLista, SimboloVacuo );
+        procedimento = new Metodo( nomeProc, this->nivelAtual,nullptr, tamanhoLista, SimboloVacuo );
 
     if(prox !=FechaParenteses)
     {
@@ -325,11 +329,12 @@ void AnalisadorSintatico::CompSe()throw(){
 void AnalisadorSintatico::CompExpressaoAritimetica() throw(){
     if(this->erro.compare("")!=0)
         return;
+
     CompTermo();
 
     TipoPedaco prox;
 
-    while (EhMaisOuMenos(anaLex->verPedaco())){
+    while (EhMaisOuMenos(anaLex->verPedaco())) {
         prox = anaLex->proximoPedaco();
     }
 
@@ -355,7 +360,7 @@ void AnalisadorSintatico::CompFator()throw(){
     TipoPedaco prox = anaLex->proximoPedaco();
 
     if (prox == Identificador){
-        Simbolo* simbolo;
+        Simbolo* simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
        this->tabela.encontrar(anaLex->getLiteral(), simbolo);
         if(EhFuncao(*simbolo) && FuncaoRetornaInteiro(*simbolo)){
             CompFuncao();
@@ -559,7 +564,7 @@ void AnalisadorSintatico::CompDeclaracaoVariavel() throw(){
 }
 
 bool AnalisadorSintatico::EhIdDeVariavel(string nomeSimbolo){
-    Simbolo* simbolo;
+    Simbolo* simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
     bool ehVariavel = this->EhVariavel(*simbolo);
     return encontrou && ehVariavel;
@@ -620,7 +625,7 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw(){
     if (!EhIdDeVariavel(anaLex->getLiteral()))
         cout << '\n' <<"id de variavel invalido";
 
-    Simbolo* simbolo;
+    Simbolo* simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     if(!this->tabela.encontrar(anaLex->getLiteral(), simbolo))
         cout << '\n' <<"Variável não foi declarada";
 
@@ -634,6 +639,8 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw(){
             CompExpressaoLogica();
         }
     }
+
+    prox = anaLex->proximoPedaco();
 
     if(prox != PontoVirgula)
         cout << '\n' <<"Ponto e vírgula esperado !";
