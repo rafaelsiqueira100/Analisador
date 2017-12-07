@@ -3,10 +3,11 @@
 #include<exception>
 #include "AnalisadorSintatico.h"
 
-int main(){
-        AnalisadorSintatico a("teste2.txt");
-        a.CompInicioPrograma();
-        //AnalisadorLexico al()
+int main() {
+    AnalisadorSintatico a("teste3.txt");
+    a.CompInicioPrograma();
+
+    return 0;
 }
 
 

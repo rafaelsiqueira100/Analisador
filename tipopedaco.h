@@ -42,7 +42,7 @@ typedef enum
 	Procedimento,
 	Funcao,
 	Numero,
-    Identificador,//possível identificador(uma string alfanumérico)
+    Identificador,//possív el identificador(uma string alfanumérico)
     Desconhecido
 } TipoPedaco;
 

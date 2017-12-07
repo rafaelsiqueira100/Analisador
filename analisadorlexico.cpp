@@ -99,7 +99,12 @@ bool AnalisadorLexico::fimDaPalavra(char* palavraEmVetor, int tamanhoPalavra)
 	int indice;
     bool espacos = false;
     char proxChar = this->arquivo.get();
+
+    if (proxChar == EOF)
+        return true;
+
     this->arquivo.unget();
+
     while(isspace(proxChar)|| proxChar==EOF){
         proxChar = this->arquivo.get();
         numeroGets++;
@@ -179,6 +184,7 @@ string AnalisadorLexico::proximaPalavra()
             numeroGets++;
             palavraEmVetor[tamanhoPalavra++]=caracAtual;
     }
+
 verif:if (tamanhoPalavra>0) {
 		retorno = new string(palavraEmVetor, tamanhoPalavra);
         this->armazenarValor(*retorno);
