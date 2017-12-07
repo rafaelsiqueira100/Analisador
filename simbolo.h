@@ -21,11 +21,11 @@ public:
      Simbolo(string, int,  TipoRetorno);
      Simbolo();
     ~Simbolo();
-
-    string getNome();
-    int    getNivel();
+    Simbolo& operator=(const Simbolo& outro);
+    string getNome() const;
+    int    getNivel() const;
    // TipoSimbolo getTipo();
-    TipoRetorno getTipoRetorno();
+    TipoRetorno getTipoRetorno() const;
 };
 
 #endif // SIMBOLO_H_INCLUDED

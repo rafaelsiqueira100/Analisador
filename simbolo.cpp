@@ -11,6 +11,12 @@ Simbolo::Simbolo():
     nome(""),nivel(0),tipoRetorno(SimboloVacuo)
 {
 }
+Simbolo& Simbolo::operator=(const Simbolo& outro){
+this->nome = outro.getNome();
+this->nivel = outro.getNivel();
+this->tipoRetorno = outro.getTipoRetorno();
+return *this;
+}
 
 Simbolo::~Simbolo()
 {
@@ -18,12 +24,12 @@ Simbolo::~Simbolo()
     this->nivel = 0;
 }
 
-string Simbolo::getNome()
+string Simbolo::getNome() const
 {
     return this->nome;
 }
 
-int Simbolo::getNivel()
+int Simbolo::getNivel() const
 {
     return this->nivel;
 }
@@ -33,6 +39,6 @@ int Simbolo::getNivel()
     return this->tipo;
 }*/
 
-TipoRetorno Simbolo::getTipoRetorno(){
+TipoRetorno Simbolo::getTipoRetorno() const{
     return this->tipoRetorno;
 }

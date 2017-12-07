@@ -38,11 +38,12 @@ void TabelaDeSimbolos::eliminaNivel(int nivel){
 
 bool TabelaDeSimbolos::encontrar(string nomeSimbolo, Simbolo* retorno){
     list<Simbolo*>::iterator it;
+
     for (it=armazenador.begin(); it!=armazenador.end(); ++it){
         if (nomeSimbolo == (*(*it)).getNome()){
-            *retorno = *(*it);
+            retorno = new Simbolo(*(*it));
             return true;
-        }
+        }}
         return false;
-    }
+
 }

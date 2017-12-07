@@ -1,10 +1,7 @@
 #include <iostream>
 #include "AnalisadorSintatico.h"
 
-void AnalisadorSintatico::ExibeErro(void)
-{
-    cout << this->erro;
-}
+
 
 AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo):
     anaLex(new AnalisadorLexico(nomeArquivo)),
@@ -12,10 +9,8 @@ AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo):
     nomeFuncAtual(""),
     retornoFuncInt(false),
     jaRetornou(false),
-    erro("")
-{
-    set_terminate(ExibeErro);
-}
+    erro(""),
+{}
 
 
 AnalisadorSintatico::~AnalisadorSintatico()
@@ -23,13 +18,14 @@ AnalisadorSintatico::~AnalisadorSintatico()
     delete (this->anaLex);
 }
 
-void AnalisadorSintatico::CompProgramaPrincipal()throw(string){
+void AnalisadorSintatico::CompProgramaPrincipal() throw(){
+     if(this->erro.compare("")!=0)
+        return;
      TipoPedaco prox = anaLex->proximoPedaco();
      if(prox!=Programa)
      {
-         this->erro = "Programa esperado";
 
-         throw "Programa esperado";
+         cout << '\n' <<"Programa esperado";
      }
 
     prox = anaLex->proximoPedaco();
@@ -37,7 +33,7 @@ void AnalisadorSintatico::CompProgramaPrincipal()throw(string){
      {
          this->erro = "Identificador esperado";
 
-         throw "Identificador esperado";
+         cout << '\n' <<"Identificador esperado";
      }
 
     prox = anaLex->proximoPedaco();
@@ -45,13 +41,14 @@ void AnalisadorSintatico::CompProgramaPrincipal()throw(string){
     {
         this->erro = "Ponto e Vírgula esperado";
 
-        throw "Ponto e Vírgula esperado";
+        cout << '\n' <<"Ponto e Vírgula esperado";
     }
 
     prox = anaLex->verPedaco();
     while(prox==Variavel){
         CompDeclaracaoVariavel();
         prox = anaLex->verPedaco();
+
     }
     if(prox==Procedimento)
         CompProcedimento();
@@ -62,34 +59,38 @@ void AnalisadorSintatico::CompProgramaPrincipal()throw(string){
     {
         this->erro = "Início inesperado";
 
-        throw "Início inesperado";
+        cout << '\n' <<"Início inesperado";
     }
 
     CompComandoComposto();//COMPILA INÍCIO E FIM
 
 }
-void AnalisadorSintatico::CompInicioPrograma() throw(string){
+void AnalisadorSintatico::CompInicioPrograma() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     CompProgramaPrincipal();
     if(anaLex->proximoPedaco()!=Ponto)
     {
         this->erro = "Ponto esperado";
 
-        throw "Ponto esperado";
+        cout << '\n' <<"Ponto esperado";
     }
 }
-void AnalisadorSintatico::CompProcedimento()throw(string){
+void AnalisadorSintatico::CompProcedimento()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Procedimento){
         this->erro = "Procedimento esperado";
 
-        throw "Procedimento esperado";
+        cout << '\n' <<"Procedimento esperado";
     }
     prox = anaLex->proximoPedaco();
 
     if (prox != Identificador){
         this->erro = "Identificador esperado";
 
-        throw "Identificador esperado";
+        cout << '\n' <<"Identificador esperado";
     }
     string nomeProc = anaLex->getLiteral();
     std::list<Simbolo> listaParametros;
@@ -100,7 +101,7 @@ void AnalisadorSintatico::CompProcedimento()throw(string){
     if (prox != AbreParenteses){
         this->erro = "Abre Parênteses esperado";
 
-        throw "Abre Parênteses esperado";
+        cout << '\n' <<"Abre Parênteses esperado";
     }
 
     prox = anaLex->verPedaco();
@@ -121,7 +122,7 @@ void AnalisadorSintatico::CompProcedimento()throw(string){
         {
             this->erro = "Identificador esperado !";
 
-            throw "Identificador esperado !";
+            cout << '\n' <<"Identificador esperado !";
         }
 
         Simbolo param (anaLex->getLiteral(), this->nivelAtual, retornoParametro);
@@ -139,7 +140,7 @@ void AnalisadorSintatico::CompProcedimento()throw(string){
             default:
                 this->erro = "Vírgula ou Fecha Parênteses esperado!";
 
-                throw "Vírgula ou Fecha Parênteses esperado!";
+                cout << '\n' <<"Vírgula ou Fecha Parênteses esperado!";
         }
         prox = anaLex->verPedaco();
 
@@ -151,19 +152,24 @@ foraLoop:prox = anaLex->proximoPedaco();
         *(vetor+i) = listaParametros.front();
         listaParametros.pop_front();
         }
-    Metodo* procedimento = new Metodo( nomeProc, this->nivelAtual,vetor, tamanhoLista, SimboloVacuo );
+    Metodo* procedimento;
+    if(tamanhoLista!=0)
+    procedimento = new Metodo( nomeProc, this->nivelAtual,vetor, tamanhoLista, SimboloVacuo );
+    else
+    procedimento = new Metodo( nomeProc, this->nivelAtual,nullptr, tamanhoLista, SimboloVacuo );
+
     if(prox !=FechaParenteses)
     {
         this->erro = "Fecha Parênteses esperado !";
 
-        throw "Fecha Parênteses esperado !";
+        cout << '\n' <<"Fecha Parênteses esperado !";
     }
 
     prox = anaLex->proximoPedaco();
     if (prox != PontoVirgula){
         this->erro = "Ponto e virgula esperado";
 
-        throw "Ponto e virgula esperado";
+        cout << '\n' <<"Ponto e virgula esperado";
     }
 
 	this->tabela.guarde(procedimento);
@@ -179,16 +185,18 @@ foraLoop:prox = anaLex->proximoPedaco();
         CompFuncao();
     prox = anaLex->verPedaco();
     if(prox!=Comeco)
-        throw "Início esperado !";
+        cout << '\n' <<"Início esperado !";
     CompComandoComposto();
 
     /*prox = anaLex->proximoPedaco();
     if (prox != PontoVirgula){
-        throw "ponto e virgula esperado";
+        cout << '\n' <<"ponto e virgula esperado";
     }*/
 }
 // E função??
-void AnalisadorSintatico::CompComando()throw(string){
+void AnalisadorSintatico::CompComando()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->verPedaco();
     if (prox == Identificador){
         string nomeId = anaLex->getLiteral();
@@ -201,7 +209,7 @@ void AnalisadorSintatico::CompComando()throw(string){
             {
                 this->erro = "Ponto e vírgula esperado";
 
-                throw "Ponto e vírgula esperado";
+                cout << '\n' <<"Ponto e vírgula esperado";
             }
         }
         else if(EhIdDeFuncao(nomeId)){
@@ -210,7 +218,7 @@ void AnalisadorSintatico::CompComando()throw(string){
             {
                 this->erro = "Ponto e vírgula esperado";
 
-                throw "Ponto e vírgula esperado";
+                cout << '\n' <<"Ponto e vírgula esperado";
             }
         }
 
@@ -234,12 +242,14 @@ void AnalisadorSintatico::CompComando()throw(string){
 
     }
 }
-void AnalisadorSintatico::CompPegue()throw(string){
+void AnalisadorSintatico::CompPegue()throw(){
+	if(this->erro.compare("")!=0)
+        return;
 	TipoPedaco prox = anaLex->proximoPedaco();
 	if (prox != Pegue) {
         this->erro = "Except esperado !";
 
-		throw "Except esperado !";
+		cout << '\n' <<"Except esperado !";
 	}
 
 	prox = anaLex->verPedaco();
@@ -250,12 +260,14 @@ void AnalisadorSintatico::CompPegue()throw(string){
 		CompComando();
 	}
 }
-void AnalisadorSintatico::CompTente()throw(string) {
+void AnalisadorSintatico::CompTente()throw() {
+	if(this->erro.compare("")!=0)
+        return;
 	TipoPedaco prox = anaLex->proximoPedaco();
 	if (prox != Tente) {
-        this->erro = throw "Try esperado !";
+        this->erro = "Try esperado !";
 
-		throw "Try esperado !";
+		cout << '\n' <<"Try esperado !";
 	}
 	prox = anaLex->verPedaco();
 	if (prox == Comeco) {
@@ -265,12 +277,14 @@ void AnalisadorSintatico::CompTente()throw(string) {
 		CompComando();
 	}
 }
-void AnalisadorSintatico::CompSe()throw(string){
+void AnalisadorSintatico::CompSe()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Se){
         this->erro = "if esperado";
 
-        throw "if esperado";
+        cout << '\n' <<"if esperado";
     }
 
     CompExpressaoLogica();
@@ -279,7 +293,7 @@ void AnalisadorSintatico::CompSe()throw(string){
     if (prox != Entao){
         this->erro = "Then esperado";
 
-        throw "Then esperado";
+        cout << '\n' <<"Then esperado";
     }
 
     prox = anaLex->verPedaco();
@@ -303,12 +317,14 @@ void AnalisadorSintatico::CompSe()throw(string){
     /*prox = anaLex->proximoPedaco();
     if (prox == PontoVirgula){prox = anaLex->proximoPedaco();
     if(prox !=FechaParenteses)
-            throw "Fecha Parênteses esperado !";
-        throw "Ponto e virgula esperado";
+            cout << '\n' <<"Fecha Parênteses esperado !";
+        cout << '\n' <<"Ponto e virgula esperado";
     }*/
 }
 
-void AnalisadorSintatico::CompExpressaoAritimetica(){
+void AnalisadorSintatico::CompExpressaoAritimetica() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     CompTermo();
 
     TipoPedaco prox;
@@ -320,7 +336,9 @@ void AnalisadorSintatico::CompExpressaoAritimetica(){
     CompFator();
 }
 
-void AnalisadorSintatico::CompTermo(){
+void AnalisadorSintatico::CompTermo()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     CompFator();
 
     TipoPedaco prox;
@@ -331,7 +349,9 @@ void AnalisadorSintatico::CompTermo(){
     }
 }
 
-void AnalisadorSintatico::CompFator()throw(string){
+void AnalisadorSintatico::CompFator()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
 
     if (prox == Identificador){
@@ -343,7 +363,7 @@ void AnalisadorSintatico::CompFator()throw(string){
         else if ((!EhVariavel(*simbolo)) || (!EhInteiro(*simbolo))){
             this->erro = "O simbolo não é variavel nem numero";
 
-            throw "O simbolo não é variavel nem numero";
+            cout << '\n' <<"O simbolo não é variavel nem numero";
         }
     }
     else {
@@ -354,31 +374,35 @@ void AnalisadorSintatico::CompFator()throw(string){
             if (prox == FechaParenteses){
                 this->erro = "Fecha parenteses esperado";
 
-                throw "Fecha parenteses esperado";
+                cout << '\n' <<"Fecha parenteses esperado";
             }
         }
         else if (prox != Numero){
             this->erro = "Numero esperado";
 
-            throw "Numero esperado";
+            cout << '\n' <<"Numero esperado";
         }
     }
 
 
 }
 
-void AnalisadorSintatico::CompExpressaoRelacional()throw(string){
+void AnalisadorSintatico::CompExpressaoRelacional()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
     if (! EhOperadorRelacional(prox)){
         this->erro = "Operador relacional esperado";
 
-        throw "Operador relacional esperado";
+        cout << '\n' <<"Operador relacional esperado";
     }
 
     CompExpressaoAritimetica();
 }
 
-void AnalisadorSintatico::CompExpressaoLogica(){
+void AnalisadorSintatico::CompExpressaoLogica() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->verPedaco();
 
    /* if(prox == AbreParenteses){
@@ -386,13 +410,13 @@ void AnalisadorSintatico::CompExpressaoLogica(){
         CompExpressaoLogica();
         prox = anaLex->proximoPedaco();
         if(prox!=FechaParenteses)
-            throw ") esperado !";
+            cout << '\n' <<") esperado !";
         prox = anaLex->verPedaco();
     }
 
 
     if(prox!= Ou && prox!=E && !Eh)
-            throw "Operador relacional ou lógico esperado !";
+            cout << '\n' <<"Operador relacional ou lógico esperado !";
     */CompTermoRelacional();
 
     prox = anaLex->verPedaco();
@@ -403,7 +427,9 @@ void AnalisadorSintatico::CompExpressaoLogica(){
     }
 }
 
-void AnalisadorSintatico::CompTermoRelacional(){
+void AnalisadorSintatico::CompTermoRelacional()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     //CompTermoRelacional();
 
     TipoPedaco prox;
@@ -413,7 +439,9 @@ void AnalisadorSintatico::CompTermoRelacional(){
     }
 }
 
-void AnalisadorSintatico::CompFatorRelacional() throw(string){
+void AnalisadorSintatico::CompFatorRelacional() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
 
     if (prox == Negacao){
@@ -440,24 +468,26 @@ void AnalisadorSintatico::CompFatorRelacional() throw(string){
             if (prox != FechaParenteses){
                 this->erro = "Fecha parenteses esperado";
 
-                throw "Fecha parenteses esperado";
+                cout << '\n' <<"Fecha parenteses esperado";
             }
         }
         else if (!EhValorLogico(prox)){
             this->erro = "Valor logico esperado";
 
-            throw "Valor logico esperado";
+            cout << '\n' <<"Valor logico esperado";
         }
     }
 }
 
-void AnalisadorSintatico::CompComandoComposto() throw(string){
+void AnalisadorSintatico::CompComandoComposto() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
     if(prox!= Comeco)
     {
         this->erro = "Início esperado";
 
-        throw "Início esperado";
+        cout << '\n' <<"Início esperado";
     }
 
     this->nivelAtual++;
@@ -466,47 +496,66 @@ void AnalisadorSintatico::CompComandoComposto() throw(string){
         prox = anaLex->proximoPedaco();
     }while(prox!=Fim && anaLex->temMaisPedacos());
     if(prox!=Fim)
-        throw "Fim esperado";
+        cout << '\n' <<"Fim esperado";
 
     this->tabela.eliminaNivel(this->nivelAtual);
     this->nivelAtual--;
 }
-void AnalisadorSintatico::CompDeclaracaoVariavel() throw(string){
+void AnalisadorSintatico::CompDeclaracaoVariavel() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoRetorno tipoVar(SimboloVacuo);
     string id("");
+    list<string> lista;
     TipoPedaco prox = anaLex->proximoPedaco();
     if(prox!=Variavel)
-        throw "Variável esperado";
+        cout << '\n' <<"Variável esperado";
     prox = anaLex->proximoPedaco();
     if(prox!= Identificador)
-        throw "Identificador esperado";
+        cout << '\n' <<"Identificador esperado";
     id = anaLex->getLiteral();
-    while(anaLex->verPedaco()!=DoisPontos && anaLex->temMaisPedacos()){
+    lista.push_back(id);
+    prox = anaLex->verPedaco();
+    while(prox!=DoisPontos && anaLex->temMaisPedacos()){
+
         prox = anaLex->proximoPedaco();
-        if(prox!=Virgula)
-            throw "Vírgula esperado";
+        if(prox!=Virgula )
+            cout << '\n' <<"Vírgula esperado";
         prox = anaLex->proximoPedaco();
         if(prox!=Identificador)
-            throw "Identificador esperado";
+            cout << '\n' <<"Identificador esperado";
+        id = anaLex->getLiteral();
+        lista.push_back(id);
+        prox = anaLex->verPedaco();
 
     }
+
     if(anaLex->proximoPedaco()!=DoisPontos)
-        throw "Dois Pontos esperado";
-    prox = anaLex->proximoPedaco();
+        cout << '\n' <<"Dois Pontos esperado";
+    prox = anaLex->verPedaco();
     if(prox==Logico || prox == Inteiro){
         prox = anaLex->proximoPedaco();
         if(prox==Inteiro)
             tipoVar=SimboloInteiro;
         else
             tipoVar =SimboloLogico;
+        prox = anaLex->proximoPedaco();
         if(prox!=PontoVirgula)
-            throw "Ponto e Vírgula esperado";
-
-        Simbolo* novaVar = new Simbolo(id, this->nivelAtual, tipoVar);
-        this->tabela.guarde(novaVar);
+            cout << '\n' <<"Ponto e Vírgula esperado";
+        int i(0);
+        Simbolo* novaVar = new Simbolo();
+        int tamanhoLista(lista.size());
+        for(;i<tamanhoLista;i++){
+            id = *(lista.begin());
+            delete novaVar;
+            novaVar = new Simbolo(id, this->nivelAtual,tipoVar);
+            this->tabela.guarde(novaVar);
+            lista.pop_front();
+        }
+        lista.erase(lista.begin(), lista.end());
         return;
     }//não é uma constante literal
-    throw "Tipo Primitivo esperado";
+    cout << '\n' <<"Tipo Primitivo esperado";
 }
 
 bool AnalisadorSintatico::EhIdDeVariavel(string nomeSimbolo){
@@ -561,17 +610,19 @@ bool AnalisadorSintatico::EhValorLogico(TipoPedaco tipo){
 bool AnalisadorSintatico::EhBool(Simbolo simbolo){
     return simbolo.getTipoRetorno()== SimboloLogico;
 }
-void AnalisadorSintatico::CompChamadaDeVariavel() throw(string){
+void AnalisadorSintatico::CompChamadaDeVariavel() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Identificador)
-        throw "Identificador esperado";
+        cout << '\n' <<"Identificador esperado";
 
     if (!EhIdDeVariavel(anaLex->getLiteral()))
-        throw "id de variavel invalido";
+        cout << '\n' <<"id de variavel invalido";
 
     Simbolo* simbolo;
     if(!this->tabela.encontrar(anaLex->getLiteral(), simbolo))
-        throw "Variável não foi declarada";
+        cout << '\n' <<"Variável não foi declarada";
 
     prox = anaLex->proximoPedaco();
 
@@ -585,17 +636,19 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw(string){
     }
 
     if(prox != PontoVirgula)
-        throw "Ponto e vírgula esperado !";
+        cout << '\n' <<"Ponto e vírgula esperado !";
 }
-void AnalisadorSintatico::CompChamadaDeProcedimento() throw(string){
+void AnalisadorSintatico::CompChamadaDeProcedimento() throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Identificador)
-        throw "Identificador esperado";
+        cout << '\n' <<"Identificador esperado";
 
     if (!EhIdDeProcedimento(anaLex->getLiteral()))
-        throw "Identificador de procedimento esperado";
+        cout << '\n' <<"Identificador de procedimento esperado";
     if(anaLex->proximoPedaco()!=AbreParenteses)
-        throw "Abre parênteses esperado";
+        cout << '\n' <<"Abre parênteses esperado";
 
     Simbolo* simbolo;
     this->tabela.encontrar(anaLex->getLiteral(), simbolo);
@@ -616,49 +669,51 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw(string){
 				if (prox == Numero)
 					goto verif;
 				else//tbm pode ser expressão booleana
-					throw "Inteiro esperado!";
+					cout << '\n' <<"Inteiro esperado!";
 			}
 			else {
 				if (prox == Verdadeiro || prox == Falso)
 					goto verif;
 				else//tbm pode ser expressão aritmética
-					throw "Booleano esperado!";
+					cout << '\n' <<"Booleano esperado!";
 			}
 		}
 
 		nomeParReal = anaLex->getLiteral();
 		if (!this->tabela.encontrar(nomeParReal, parReal))
-			throw "Identificador não declarada !";
+			cout << '\n' <<"Identificador não declarada !";
 		//achou o parâmetro real na tabela de símbolos
 		if ((*parReal).getTipoRetorno() != parFormal.getTipoRetorno())
-			throw "Tipo do parâmetro real é diferente do parâmetro formal";
+			cout << '\n' <<"Tipo do parâmetro real é diferente do parâmetro formal";
 		if (EhIdDeFuncao(nomeParReal))
 			CompChamadaDeFuncao();
 		if(EhIdDeProcedimento(nomeParReal))
 			CompChamadaDeProcedimento();
 verif:	    anaLex->proximoPedaco();
 		if (anaLex->verPedaco() != Virgula && i < qtosParametros - 1)
-			throw "Vírgula esperada !";
+			cout << '\n' <<"Vírgula esperada !";
 	}
 
     if(anaLex->proximoPedaco()!=FechaParenteses)
-        throw "Fecha parênteses esperado !";
+        cout << '\n' <<"Fecha parênteses esperado !";
 
 }
-void AnalisadorSintatico::CompChamadaDeFuncao(){
+void AnalisadorSintatico::CompChamadaDeFuncao()throw(){
+	if(this->erro.compare("")!=0)
+        return;
 	TipoPedaco prox = anaLex->proximoPedaco();
 	string nomeId("");
 	if (prox != Identificador)
-		throw "Identificador esperado";
+		cout << '\n' <<"Identificador esperado";
     string nomeFuncEncontrado(anaLex->getLiteral());
 	if (!EhIdDeFuncao(nomeFuncEncontrado))
-		throw "Identificador de função esperado";
+		cout << '\n' <<"Identificador de função esperado";
         if((this->nomeFuncAtual).compare(nomeFuncEncontrado)==0){
             prox = anaLex->proximoPedaco();
             //POR ENQUANTO NÃO TEM RECURSÃO
 
             if(prox != Atribuicao)
-                throw ":= esperado!";
+                cout << '\n' <<":= esperado!";
             prox= anaLex->verPedaco();
             if(this->retornoFuncInt){
                 switch(prox){
@@ -673,11 +728,11 @@ void AnalisadorSintatico::CompChamadaDeFuncao(){
                                         this->anaLex->proximoPedaco();
                                 }
                                 else{
-                                    throw "Inteiro esperado, mas Booleano encontrado !";
+                                    cout << '\n' <<"Inteiro esperado, mas Booleano encontrado !";
                                 }
                         }
                         else
-                            throw "Identificador não declarado!";
+                            cout << '\n' <<"Identificador não declarado!";
 
                     break;
                     case Numero://por enquanto não
@@ -699,11 +754,11 @@ void AnalisadorSintatico::CompChamadaDeFuncao(){
                                         this->anaLex->proximoPedaco();
                                 }
                                 else{
-                                    throw "Inteiro esperado, mas Booleano encontrado !";
+                                    cout << '\n' <<"Inteiro esperado, mas Booleano encontrado !";
                                 }
                         }
                         else
-                            throw "Identificador não declarado!";
+                            cout << '\n' <<"Identificador não declarado!";
 
                     break;
                     case Verdadeiro:
@@ -715,12 +770,12 @@ void AnalisadorSintatico::CompChamadaDeFuncao(){
             }//FIM DO IF(FUNCAORETONAINT)
             prox = anaLex->proximoPedaco();
             if(prox != PontoVirgula)
-                throw "; esperado !";
+                cout << '\n' <<"; esperado !";
             return;
             }//FIM DO IF NOME DA FUNÇÃO É IGUAL AO ENCONTRADO
 
 	if (anaLex->proximoPedaco() != AbreParenteses)
-		throw "Abre parênteses esperado";
+		cout << '\n' <<"Abre parênteses esperado";
 
 	Simbolo* simbolo;
 	this->tabela.encontrar(anaLex->getLiteral(), simbolo);
@@ -741,46 +796,48 @@ void AnalisadorSintatico::CompChamadaDeFuncao(){
 				if (prox == Numero)
 					goto verif;
 				else//tbm pode ser expressão booleana
-					throw "Inteiro esperado!";
+					cout << '\n' <<"Inteiro esperado!";
 			}
 			else {
 				if (prox == Verdadeiro || prox == Falso)
 					goto verif;
 				else//tbm pode ser expressão aritmética
-					throw "Booleano esperado!";
+					cout << '\n' <<"Booleano esperado!";
 			}
 		}
 
 		nomeParReal = anaLex->getLiteral();
 		if (!this->tabela.encontrar(nomeParReal, parReal))
-			throw "Identificador não declarada !";
+			cout << '\n' <<"Identificador não declarada !";
 		//achou o parâmetro real na tabela de símbolos
 		if ((*parReal).getTipoRetorno() != parFormal.getTipoRetorno())
-			throw "Tipo do parâmetro real é diferente do parâmetro formal";
+			cout << '\n' <<"Tipo do parâmetro real é diferente do parâmetro formal";
 		if (EhIdDeFuncao(nomeParReal))
 			CompChamadaDeFuncao();
 		if (EhIdDeProcedimento(nomeParReal))
 			CompChamadaDeProcedimento();
 	verif:	    anaLex->proximoPedaco();
 		if (anaLex->verPedaco()!= Virgula && i < qtosParametros - 1)
-			throw "Vírgula esperada !";
+			cout << '\n' <<"Vírgula esperada !";
 	}
 
 	if (anaLex->proximoPedaco() != FechaParenteses)
-		throw "Fecha parênteses esperado !";
+		cout << '\n' <<"Fecha parênteses esperado !";
 
 }
-void AnalisadorSintatico::CompEnquanto(){
+void AnalisadorSintatico::CompEnquanto()throw(){
+    if(this->erro.compare("")!=0)
+        return;
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Enquanto){
-        throw "Enquanto esperado";
+        cout << '\n' <<"Enquanto esperado";
     }
 
     CompExpressaoLogica();
 
     prox = anaLex->proximoPedaco();
     if (prox == Faca){
-        throw "Do esperado";
+        cout << '\n' <<"Do esperado";
     }
 
     prox = anaLex->verPedaco();
@@ -793,15 +850,17 @@ void AnalisadorSintatico::CompEnquanto(){
 }
 //sintaxe do nossa declaração de função repetição de 0 a n
 //function + identificador+ (           + [<parãmetros>] + )+ : boolean/integer + begin + ..
-void AnalisadorSintatico::CompFuncao(){
+void AnalisadorSintatico::CompFuncao()throw(){
+     if(this->erro.compare("")!=0)
+        return;
      TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Funcao){
-        throw "Função esperada";
+        cout << '\n' <<"Função esperada";
     }
 
     prox = anaLex->proximoPedaco();
     if (prox != Identificador){
-        throw "Identificador esperado";
+        cout << '\n' <<"Identificador esperado";
     }
 
     string nomeFunc = anaLex->getLiteral();
@@ -813,7 +872,7 @@ void AnalisadorSintatico::CompFuncao(){
 
     prox = anaLex->proximoPedaco();
     if (prox != AbreParenteses){
-        throw "Abre Parênteses esperado";
+        cout << '\n' <<"Abre Parênteses esperado";
     }
 
     prox = anaLex->verPedaco();
@@ -836,7 +895,7 @@ void AnalisadorSintatico::CompFuncao(){
         prox = anaLex->proximoPedaco();
 
         if(prox != Identificador)
-            throw "Identificador esperado !";
+            cout << '\n' <<"Identificador esperado !";
         Simbolo param(anaLex->getLiteral(), this->nivelAtual, retornoParametro);
         listaParametros.push_back(param);
 		tamanhoLista++;
@@ -849,20 +908,20 @@ void AnalisadorSintatico::CompFuncao(){
             anaLex->proximoPedaco();
             break;
             default:
-                throw "Vírgula ou Fecha Parênteses esperado!";
+                cout << '\n' <<"Vírgula ou Fecha Parênteses esperado!";
         }
         prox = anaLex->verPedaco();
 
     }//fim do while
 foraLoop:prox = anaLex->proximoPedaco();
 	 if(prox !=FechaParenteses)
-            throw "Fecha Parênteses esperado !";
+            cout << '\n' <<"Fecha Parênteses esperado !";
     prox = anaLex->proximoPedaco();
     if(prox !=DoisPontos)
-            throw "Dois Pontos esperado !";
+            cout << '\n' <<"Dois Pontos esperado !";
     prox = anaLex->proximoPedaco();
     if(!(prox==Inteiro || prox==Logico))
-            throw "Tipo de retorno esperado !";
+            cout << '\n' <<"Tipo de retorno esperado !";
 
 
     TipoRetorno retorno;
@@ -887,7 +946,7 @@ foraLoop:prox = anaLex->proximoPedaco();
     Metodo* funcao = new Metodo(nomeFunc, this->nivelAtual, vetor, tamanhoLista, retorno);
 	prox = anaLex->proximoPedaco();
 	if (prox != PontoVirgula) {
-		throw "ponto e virgula esperado";
+		cout << '\n' <<"ponto e virgula esperado";
 	}
 	this->tabela.guarde(funcao);
     prox = anaLex->verPedaco();
@@ -907,10 +966,10 @@ foraLoop:prox = anaLex->proximoPedaco();
     this->jaRetornou = false;
     prox = anaLex->verPedaco();
     if(prox!=Comeco)
-        throw "Início esperado";
+        cout << '\n' <<"Início esperado";
     CompComandoComposto();
     if(!jaRetornou)
-        throw "Função não retorna nenhum valor!";
+        cout << '\n' <<"Função não retorna nenhum valor!";
     this->nomeFuncAtual = "";
     this->jaRetornou = false;
 }

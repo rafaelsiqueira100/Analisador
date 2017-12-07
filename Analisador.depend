@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1512586491 source:c:\users\rafae\downloads\analisador\main.cpp
+1512647524 source:c:\users\rafae\downloads\analisador\main.cpp
 	<iostream>
 	"AnalisadorLexico.h"
+	<exception>
 	"AnalisadorSintatico.h"
 
 1512524159 c:\users\rafae\downloads\analisador\analisadorlexico.h
@@ -15,7 +16,7 @@
 
 1512524159 c:\users\rafae\downloads\analisador\tipopedaco.h
 
-1512587664 c:\users\rafae\downloads\analisador\analisadorsintatico.h
+1512647657 c:\users\rafae\downloads\analisador\analisadorsintatico.h
 	"TabelaDeSimbolos.h"
 	"analisadorlexico.h"
 	"tipopedaco.h"
@@ -23,13 +24,14 @@
 	"metodo.h"
 	<typeindex>
 	<typeinfo>
+	<exception>
 
 1512582616 c:\users\rafae\downloads\analisador\tabeladesimbolos.h
 	"simbolo.h"
 	<list>
 	<string.h>
 
-1512582610 c:\users\rafae\downloads\analisador\simbolo.h
+1512649021 c:\users\rafae\downloads\analisador\simbolo.h
 	<string>
 
 1512582674 c:\users\rafae\downloads\analisador\metodo.h
@@ -38,17 +40,18 @@
 1512524159 source:c:\users\rafae\downloads\analisador\analisadorlexico.cpp
 	"analisadorlexico.h"
 
-1512558121 source:c:\users\rafae\downloads\analisador\analisadorsintatico.cpp
+1512648452 source:c:\users\rafae\downloads\analisador\analisadorsintatico.cpp
+	<iostream>
 	"AnalisadorSintatico.h"
 
 1512582683 source:c:\users\rafae\downloads\analisador\metodo.cpp
 	"metodo.h"
 	"simbolo.h"
 
-1512582692 source:c:\users\rafae\downloads\analisador\simbolo.cpp
+1512649066 source:c:\users\rafae\downloads\analisador\simbolo.cpp
 	"simbolo.h"
 
-1512524159 source:c:\users\rafae\downloads\analisador\tabeladesimbolos.cpp
+1512650093 source:c:\users\rafae\downloads\analisador\tabeladesimbolos.cpp
 	"TabelaDeSimbolos.h"
 	"simbolo.h"
 	<list>

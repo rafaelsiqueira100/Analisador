@@ -7,7 +7,7 @@
 #include "metodo.h"
 #include <typeindex>
 #include <typeinfo>
-
+#include <exception>
 using namespace std;
 
 class AnalisadorSintatico
@@ -21,23 +21,23 @@ class AnalisadorSintatico
         bool jaRetornou;
         string erro;
     public:
-        AnalisadorSintatico() ;
+        AnalisadorSintatico();
         AnalisadorSintatico(string);
         ~AnalisadorSintatico();
-        void CompComandoComposto() throw(string);
-        void CompProcedimento() throw(string);
-        void CompComando() throw(string);
-        void CompSe() throw(string);
-        void CompExpressaoAritimetica();
-        void CompTermo();
-        void CompExpressaoRelacional() throw(string);
-        void CompFator() throw(string);
-        void CompProgramaPrincipal() throw(string);
-        void CompExpressaoLogica();
-        void CompTermoRelacional();
-        void CompFatorRelacional() throw (string);
-        void CompDeclaracaoVariavel() throw(string);
-        void CompInicioPrograma() throw(string);
+        void CompComandoComposto() throw();
+        void CompProcedimento() throw();
+        void CompComando() throw() ;
+        void CompSe() throw() ;
+        void CompExpressaoAritimetica() throw() ;
+        void CompTermo() throw();
+        void CompExpressaoRelacional() throw() ;
+        void CompFator() throw();
+        void CompProgramaPrincipal() throw() ;
+        void CompExpressaoLogica() throw();
+        void CompTermoRelacional() throw();
+        void CompFatorRelacional() throw();
+        void CompDeclaracaoVariavel() throw();
+        void CompInicioPrograma() throw() ;
         bool EhIdDeVariavel(string);
         bool EhIdDeProcedimento(string);
         bool EhIdDeFuncao(string);
@@ -52,14 +52,15 @@ class AnalisadorSintatico
         bool EhOperadorRelacional(TipoPedaco);
         bool EhBool(Simbolo);
         bool EhValorLogico(TipoPedaco);
-        void CompChamadaDeVariavel()throw(string);
-        void CompChamadaDeProcedimento() throw(string);
-        void CompChamadaDeFuncao();
-        void CompEnquanto();
-        void CompFuncao();
-		void CompTente() throw(string);
-		void CompPegue() throw(string);
-        void ExibeErro();
+        void CompChamadaDeVariavel() throw();
+        void CompChamadaDeProcedimento() throw();
+        void CompChamadaDeFuncao() throw();
+        void CompEnquanto() throw();
+        void CompFuncao() throw();
+		void CompTente() throw() ;
+		void CompPegue() throw() ;
+        //string GetErro() const throw() ;
+        //void ExibeErro()  ;
 };
 
 #endif // ANALISADORSINTATICO_H_INCLUDED
