@@ -1,20 +1,16 @@
 #include "simbolo.h"
 
-
-
-Simbolo::Simbolo(string nome, int nivel, TipoRetorno tipoRetorno):
-    nome(nome),nivel(nivel),tipoRetorno(tipoRetorno)
+Simbolo::Simbolo(string nome, int nivel, TipoRetorno tipoRetorno) : nome(nome), nivel(nivel), tipoRetorno(tipoRetorno)
 {
 }
 
-Simbolo::Simbolo():
-    nome(""),nivel(0),tipoRetorno(SimboloVacuo)
+Simbolo::Simbolo() : nome(""), nivel(0), tipoRetorno(SimboloVacuo)
 {
 }
 
 Simbolo::~Simbolo()
 {
-    this->nome  = "";
+    this->nome = "";
     this->nivel = 0;
 }
 
@@ -33,6 +29,7 @@ int Simbolo::getNivel() const
     return this->tipo;
 }*/
 
-TipoRetorno Simbolo::getTipoRetorno() const{
+TipoRetorno Simbolo::getTipoRetorno() const
+{
     return this->tipoRetorno;
 }

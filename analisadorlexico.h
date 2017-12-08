@@ -17,27 +17,28 @@ using namespace std;
 //não implica um perigo(desalocação automática quando se acaba o escopo)
 class AnalisadorLexico
 {
-private:
-    static const string* palavrasChave;
-    bool   armazenarValor(string);
-    bool   fimDaPalavra(char* , int );
+  private:
+    static const string *palavrasChave;
+    bool armazenarValor(string);
+    bool fimDaPalavra(char *, int);
     string proximaPalavra();
     static string paraMinusculas(string);
     bool valorNumeroValido;
     string valorLiteral;
-    int    valorNumerico;
-    bool doisCharLidos ;
+    int valorNumerico;
+    bool doisCharLidos;
     ifstream arquivo;
     int numeroGets;
-public:
-     AnalisadorLexico(string);
+
+  public:
+    AnalisadorLexico(string);
     ~AnalisadorLexico();
     static string nomeTipo(TipoPedaco);
     TipoPedaco proximoPedaco();
     TipoPedaco verPedaco();
-    char       temMaisPedacos();
-    string     getLiteral();
-    int        getNumero();
+    char temMaisPedacos();
+    string getLiteral();
+    int getNumero();
 };
 
 #endif // ANALISADORLEXICO_H_INCLUDED

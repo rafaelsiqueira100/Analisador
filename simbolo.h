@@ -4,26 +4,26 @@
 #include <string>
 
 using namespace std;
-typedef enum
-{
+typedef enum {
     SimboloInteiro,
     SimboloLogico,
     SimboloVacuo
 } TipoRetorno;
 class Simbolo
 {
-private:
-   string nome;
-   int    nivel;
-   //TipoSimbolo tipo;
-   TipoRetorno tipoRetorno;
-public:
-     Simbolo(string, int,  TipoRetorno);
-     Simbolo();
+  private:
+    string nome;
+    int nivel;
+    //TipoSimbolo tipo;
+    TipoRetorno tipoRetorno;
+
+  public:
+    Simbolo(string, int, TipoRetorno);
+    Simbolo();
     ~Simbolo();
     string getNome() const;
-    int    getNivel() const;
-   // TipoSimbolo getTipo();
+    int getNivel() const;
+    // TipoSimbolo getTipo();
     TipoRetorno getTipoRetorno() const;
 };
 

@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -38,11 +40,13 @@
 		<Unit filename="TabelaDeSimbolos.h" />
 		<Unit filename="analisadorlexico.cpp" />
 		<Unit filename="analisadorlexico.h" />
+		<Unit filename="include/Variavel.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="metodo.cpp" />
 		<Unit filename="metodo.h" />
 		<Unit filename="simbolo.cpp" />
 		<Unit filename="simbolo.h" />
+		<Unit filename="src/Variavel.cpp" />
 		<Unit filename="tipopedaco.h" />
 		<Extensions>
 			<code_completion />

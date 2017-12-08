@@ -1,22 +1,20 @@
 #include "metodo.h"
 #include "simbolo.h"
 
-
-Metodo::Metodo(string nome, int nivel, Simbolo* parametros, int quantosParametros,  TipoRetorno tipoRetorno)throw()
-: Simbolo(nome, nivel, tipoRetorno)
+Metodo::Metodo(string nome, int nivel, Simbolo *parametros, int quantosParametros, TipoRetorno tipoRetorno) throw()
+    : Simbolo(nome, nivel, tipoRetorno)
 {
-    this->parametros        = parametros;
+    this->parametros = parametros;
     this->quantosParametros = quantosParametros;
 }
 
-Metodo::~Metodo() { }
+Metodo::~Metodo() {}
 
-Simbolo Metodo::getParametro(int indice) {
-	return *(parametros + indice);
+Simbolo Metodo::getParametro(int indice)
+{
+    return *(parametros + indice);
 }
-int Metodo::getQuantosParametros(){
-	return this->quantosParametros;
+int Metodo::getQuantosParametros()
+{
+    return this->quantosParametros;
 }
-
-
-
