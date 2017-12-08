@@ -5,7 +5,7 @@ procedure proc1();
 begin 
 b:=b+1; 
 end 
-function f1(Integer x):Integer
+function f1(Integer x):Integer;
 begin
 x:= x+1;
 f1:=x;

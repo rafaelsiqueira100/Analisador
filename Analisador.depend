@@ -56,3 +56,117 @@
 	"simbolo.h"
 	<list>
 
+1512632678 source:z:\ensino técnico\tópicos em orientação a objetos\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1512632678 z:\ensino técnico\tópicos em orientação a objetos\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+
+1512632678 z:\ensino técnico\tópicos em orientação a objetos\analisador\tipopedaco.h
+
+1512659340 source:z:\ensino técnico\tópicos em orientação a objetos\analisador\analisadorsintatico.cpp
+	<iostream>
+	"AnalisadorSintatico.h"
+
+1512658658 z:\ensino técnico\tópicos em orientação a objetos\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+	<exception>
+
+1512632678 z:\ensino técnico\tópicos em orientação a objetos\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512632678 z:\ensino técnico\tópicos em orientação a objetos\analisador\simbolo.h
+	<string>
+
+1512632678 z:\ensino técnico\tópicos em orientação a objetos\analisador\metodo.h
+	"simbolo.h"
+
+1512658551 source:z:\ensino técnico\tópicos em orientação a objetos\analisador\main.cpp
+	<iostream>
+	"AnalisadorLexico.h"
+	<exception>
+	"AnalisadorSintatico.h"
+
+1512632678 source:z:\ensino técnico\tópicos em orientação a objetos\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+
+1512632678 source:z:\ensino técnico\tópicos em orientação a objetos\analisador\simbolo.cpp
+	"simbolo.h"
+
+1512632678 source:z:\ensino técnico\tópicos em orientação a objetos\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1512666338 source:c:\users\u16189\downloads\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1512662572 c:\users\u16189\downloads\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+
+1512661877 c:\users\u16189\downloads\analisador\tipopedaco.h
+
+1512670464 source:c:\users\u16189\downloads\analisador\analisadorsintatico.cpp
+	<iostream>
+	"AnalisadorSintatico.h"
+
+1512658658 c:\users\u16189\downloads\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+	<exception>
+
+1512632678 c:\users\u16189\downloads\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512632678 c:\users\u16189\downloads\analisador\simbolo.h
+	<string>
+
+1512632678 c:\users\u16189\downloads\analisador\metodo.h
+	"simbolo.h"
+
+1512665815 source:c:\users\u16189\downloads\analisador\main.cpp
+	<iostream>
+	"AnalisadorLexico.h"
+	<exception>
+	"AnalisadorSintatico.h"
+
+1512632678 source:c:\users\u16189\downloads\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+
+1512632678 source:c:\users\u16189\downloads\analisador\simbolo.cpp
+	"simbolo.h"
+
+1512632678 source:c:\users\u16189\downloads\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
