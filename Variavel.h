@@ -2,12 +2,11 @@
 #define VARIAVEL_H
 #include "simbolo.h"
 using namespace std;
-class Variavel : public Simbolo
+class Var : public Simbolo
 {
 public:
-     Variavel(string, int, TipoRetorno)throw();
-     Variavel();
-
+     Var(string, int, TipoRetorno)throw();
+     Var();
 };
 
 #endif // VARIAVEL_H

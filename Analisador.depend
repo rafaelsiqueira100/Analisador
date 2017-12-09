@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1512759669 source:c:\users\work\desktop\analisador\analisadorlexico.cpp
+1512848992 source:g:\novo\analisador\analisadorlexico.cpp
 	"analisadorlexico.h"
 
-1512759651 c:\users\work\desktop\analisador\analisadorlexico.h
+1512848992 g:\novo\analisador\analisadorlexico.h
 	"tipopedaco.h"
 	<string.h>
 	<stdio.h>
@@ -11,12 +11,64 @@
 	<ctype.h>
 	<fstream>
 
-1512754528 c:\users\work\desktop\analisador\tipopedaco.h
+1512848994 g:\novo\analisador\tipopedaco.h
 
-1512843767 source:c:\users\rafae\downloads\analisador\analisadorlexico.cpp
+1512849246 source:g:\novo\analisador\analisadorsintatico.cpp
+	<iostream>
+	"AnalisadorSintatico.h"
+	"Variavel.h"
+
+1512849046 g:\novo\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+	<exception>
+	"Variavel.h"
+
+1512848992 g:\novo\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512848994 g:\novo\analisador\simbolo.h
+	<string>
+
+1512848994 g:\novo\analisador\metodo.h
+	"simbolo.h"
+
+1512849194 g:\novo\analisador\variavel.h
+	"simbolo.h"
+
+1512848994 source:g:\novo\analisador\main.cpp
+	<iostream>
+	"AnalisadorLexico.h"
+	<exception>
+	"AnalisadorSintatico.h"
+
+1512848994 source:g:\novo\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+
+1512848994 source:g:\novo\analisador\simbolo.cpp
+	"simbolo.h"
+
+1512848992 source:g:\novo\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1512849200 source:g:\novo\analisador\variavel.cpp
+	"Variavel.h"
+	"simbolo.h"
+
+1512848992 source:g:\analisador\analisadorlexico.cpp
 	"analisadorlexico.h"
 
-1512843767 c:\users\rafae\downloads\analisador\analisadorlexico.h
+1512848992 g:\analisador\analisadorlexico.h
 	"tipopedaco.h"
 	<string.h>
 	<stdio.h>
@@ -25,5 +77,57 @@
 	<ctype.h>
 	<fstream>
 
-1512843767 c:\users\rafae\downloads\analisador\tipopedaco.h
+1512848994 g:\analisador\tipopedaco.h
+
+1512849246 source:g:\analisador\analisadorsintatico.cpp
+	<iostream>
+	"AnalisadorSintatico.h"
+	"Variavel.h"
+
+1512849046 g:\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+	<exception>
+	"Variavel.h"
+
+1512848992 g:\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	<list>
+	<string.h>
+
+1512848994 g:\analisador\simbolo.h
+	<string>
+
+1512848994 g:\analisador\metodo.h
+	"simbolo.h"
+
+1512849194 g:\analisador\variavel.h
+	"simbolo.h"
+
+1512848994 source:g:\analisador\main.cpp
+	<iostream>
+	"AnalisadorLexico.h"
+	<exception>
+	"AnalisadorSintatico.h"
+
+1512848994 source:g:\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+
+1512848994 source:g:\analisador\simbolo.cpp
+	"simbolo.h"
+
+1512848992 source:g:\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1512849200 source:g:\analisador\variavel.cpp
+	"Variavel.h"
+	"simbolo.h"
 

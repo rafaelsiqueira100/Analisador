@@ -54,7 +54,6 @@ class AnalisadorSintatico
     bool EhOperadorRelacional(TipoPedaco) throw();
     bool EhBool(Simbolo) throw();
     bool EhValorLogico(TipoPedaco) throw();
-    char EhExpressao(list*,list*)throw();
     void CompChamadaDeVariavel() throw();
     void CompChamadaDeProcedimento() throw();
     void CompChamadaDeFuncao() throw();
