@@ -38,6 +38,8 @@
 		<Unit filename="AnalisadorSintatico.h" />
 		<Unit filename="TabelaDeSimbolos.cpp" />
 		<Unit filename="TabelaDeSimbolos.h" />
+		<Unit filename="Variavel.cpp" />
+		<Unit filename="Variavel.h" />
 		<Unit filename="analisadorlexico.cpp" />
 		<Unit filename="analisadorlexico.h" />
 		<Unit filename="include/Variavel.h" />

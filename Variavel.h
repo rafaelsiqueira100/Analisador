@@ -7,7 +7,7 @@ class Variavel : public Simbolo
 public:
      Variavel(string, int, TipoRetorno)throw();
      Variavel();
-    ~Variavel();
+
 };
 
 #endif // VARIAVEL_H

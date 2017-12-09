@@ -39,6 +39,7 @@ class AnalisadorLexico
     char temMaisPedacos();
     string getLiteral();
     int getNumero();
+
 };
 
 #endif // ANALISADORLEXICO_H_INCLUDED

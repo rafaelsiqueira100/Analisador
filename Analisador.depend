@@ -13,3 +13,17 @@
 
 1512754528 c:\users\work\desktop\analisador\tipopedaco.h
 
+1512843767 source:c:\users\rafae\downloads\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1512843767 c:\users\rafae\downloads\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+
+1512843767 c:\users\rafae\downloads\analisador\tipopedaco.h
+
