@@ -65,7 +65,7 @@
 	"Variavel.h"
 	"simbolo.h"
 
-1512848992 source:g:\analisador\analisadorlexico.cpp
+1512854048 source:g:\analisador\analisadorlexico.cpp
 	"analisadorlexico.h"
 
 1512848992 g:\analisador\analisadorlexico.h
@@ -84,7 +84,7 @@
 	"AnalisadorSintatico.h"
 	"Variavel.h"
 
-1512849046 g:\analisador\analisadorsintatico.h
+1512856408 g:\analisador\analisadorsintatico.h
 	"TabelaDeSimbolos.h"
 	"analisadorlexico.h"
 	"tipopedaco.h"
@@ -109,7 +109,7 @@
 1512849194 g:\analisador\variavel.h
 	"simbolo.h"
 
-1512848994 source:g:\analisador\main.cpp
+1512855814 source:g:\analisador\main.cpp
 	<iostream>
 	"AnalisadorLexico.h"
 	<exception>

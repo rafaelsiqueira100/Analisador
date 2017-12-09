@@ -195,7 +195,6 @@ string AnalisadorLexico::proximaPalavra()
 
     while ((!this->fimDaPalavra(palavraEmVetor, tamanhoPalavra)) && caracAtual != EOF)
     {
-
         caracAtual = this->arquivo.get();
         numeroGets++;
         palavraEmVetor[tamanhoPalavra++] = caracAtual;

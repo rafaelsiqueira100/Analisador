@@ -1,16 +1,30 @@
 program p1;
 
+
+
 var y : Boolean;
+
 var z : Integer;
 
+
+
 procedure proc1();
+
 var x : Integer;
+
 begin
+    
     x := x + 1;
+
 end
 
-begin    
+
+
+begin
+
     proc1(z);
 
+
     y := z; 
+
 end.

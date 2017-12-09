@@ -8,7 +8,7 @@
 #include <typeindex>
 #include <typeinfo>
 #include <exception>
-#include "Variavel.h";
+#include "Variavel.h"
 using namespace std;
 
 class AnalisadorSintatico
