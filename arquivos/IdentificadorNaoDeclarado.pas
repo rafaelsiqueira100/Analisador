@@ -1,10 +1,10 @@
 Program Prog1;
     Var a, b: Integer;
 
-    Procedure Proc1 (b: Boolean);
+    Procedure Proc1 (Boolean b);
         Var a: Boolean;
 
-        Function Func1 (Var a: Integer): Integer;
+        Function Func1 (Integer a): Integer;
             Var b, d: Integer;
         Begin
             b := 2*a-1;

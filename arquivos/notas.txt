@@ -1,0 +1,3 @@
+em todos os arquivos, onde está /Integer a/ era para ser /Var a : Integer/
+
+em IdentificadorComecandoComDigito.pas, o erro foi removido por estar crashando o programa. Lembrar de colocar o erro de novo depois na declaração da variavel inteira "a" declarada em "Proc1"
