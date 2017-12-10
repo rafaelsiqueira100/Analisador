@@ -714,7 +714,7 @@ void AnalisadorSintatico::CompExpressaoLogica() throw()
                 prox = anaLex->verPedaco();
             }
             else{
-                this->erro = "Operador lógico esperado!";
+                this->erro = "Operador logico esperado!";
                 cout << '\n'<< this->erro;
                 return;
             }
@@ -850,14 +850,14 @@ bool AnalisadorSintatico::EhIdDeVariavel(string nomeSimbolo) throw()
 }
 bool AnalisadorSintatico::EhIdDeProcedimento(string nomeSimbolo) throw()
 {
-    Simbolo *simbolo;
+    Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
     bool ehProcedimento = typeid(*simbolo) == typeid(Metodo);
     return encontrou && ehProcedimento;
 }
 bool AnalisadorSintatico::EhIdDeFuncao(string nomeSimbolo) throw()
 {
-    Simbolo *simbolo;
+    Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
 
     return encontrou && EhFuncao(*simbolo);
@@ -908,10 +908,16 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
 {
     if (this->erro.compare("") != 0)
         return;
-    TipoPedaco prox = anaLex->proximoPedaco();
+    TipoPedaco prox = anaLex->verPedaco();
     if (prox != Identificador)
+    {
         cout << '\n'
              << "Identificador esperado";
+    }
+    else
+    {
+        prox = anaLex->proximoPedaco();
+    }
 
     if (!EhIdDeVariavel(anaLex->getLiteral()))
         cout << '\n'
@@ -960,7 +966,7 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
         cout << '\n'
              << "Abre parenteses esperado";
 
-    Simbolo *simbolo;
+    Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     this->tabela.encontrar(anaLex->getLiteral(), simbolo);
     int qtosParametros = ((Metodo *)simbolo)->getQuantosParametros();
     Simbolo parFormal;
@@ -1117,7 +1123,7 @@ void AnalisadorSintatico::CompChamadaDeFuncao() throw()
         cout << '\n'
              << "Abre parenteses esperado";
 
-    Simbolo *simbolo;
+    Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     this->tabela.encontrar(anaLex->getLiteral(), simbolo);
     int qtosParametros = ((Metodo *)simbolo)->getQuantosParametros();
     Simbolo parFormal;
