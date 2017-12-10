@@ -447,7 +447,7 @@ void AnalisadorSintatico::CompOperandoInteiro()throw(){
     while(prox == AbreParenteses || prox == Subtracao){
         if(prox == AbreParenteses)
             numParenteses++;
-        this->anaLex.proximoPedaco();
+        this->anaLex->proximoPedaco();
         prox = anaLex->verPedaco();
     }
 
@@ -462,8 +462,8 @@ void AnalisadorSintatico::CompOperandoInteiro()throw(){
                 return;
     }
     if(prox == Identificador){
-        string id = this->anaLex.getLiteral();
-        if(!EhBool(id)){
+        string id = this->anaLex->getLiteral();
+        if(!EhIdDeBool(id)){
             if(EhIdDeVariavel(id)){
                 CompChamadaDeVariavel();
             }
@@ -495,7 +495,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
     while(prox == AbreParenteses || prox == Negacao){
         if(prox == AbreParenteses)
             numParenteses++;
-        this->anaLex.proximoPedaco();
+        this->anaLex->proximoPedaco();
         prox = anaLex->verPedaco();
     }
 
@@ -508,7 +508,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 while(prox == AbreParenteses || prox == Negacao){
                     if(prox == AbreParenteses)
                         numParenteses++;
-                    this->anaLex.proximoPedaco();
+                    this->anaLex->proximoPedaco();
                     prox = anaLex->verPedaco();
                 }
                 CompOperandoBooleano();
@@ -519,7 +519,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                         return;
                     }
                     numParenteses--;
-                    this->anaLex.proximoPedaco();
+                    this->anaLex->proximoPedaco();
                     prox = anaLex->verPedaco();
                 }
                 if(numParenteses>parentesesNivel&& parentesesNivel==0){
@@ -531,12 +531,13 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
             }//fim do if prox==comparacao || prox == diferente
 
             }
-            if(EhOperadorLogico(prox){
+            if(EhOperadorLogico(prox))
+            {
                 anaLex->proximoPedaco();
                 CompExpressaoLogica();
             }
     }
-    if(prox == Identificador|| prox==Numero){
+    if (prox == Identificador|| prox==Numero){
             if(prox==Identificador)
         string id = this->anaLex.getLiteral();
         if(prox==Numero || (prox==Identificador && (!EhBool(id)))){//com certeza é expressão relacional
@@ -586,7 +587,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
             prox = anaLex->verPedaco();
             while(prox==FechaParenteses){
                 if(numParenteses==0){
-                    this->erro = "Parênteses desbalanceados!";
+                    this->erro = "Parenteses desbalanceados!";
                     cout << '\n' << this->erro;
                     return;
                 }
@@ -601,7 +602,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 CompExpressaoLogica();
             }
             if(numParenteses>parentesesNivel&& parentesesNivel==0){
-                this->erro = "Parênteses desbalanceados!";
+                this->erro = "Parenteses desbalanceados!";
                 cout << '\n' << this->erro;
                 return;
             }
@@ -627,7 +628,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 CompOperandoBooleano();
                 while(prox==FechaParenteses){
                     if(numParenteses==0){
-                        this->erro = "Parênteses desbalanceados!";
+                        this->erro = "Parenteses desbalanceados!";
                         cout << '\n' << this->erro;
                         return;
                     }
@@ -636,7 +637,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                     prox = anaLex->verPedaco();
                 }
                 if(numParenteses>parentesesNivel&& parentesesNivel==0){
-                    this->erro = "Parênteses desbalanceados!";
+                    this->erro = "Parenteses desbalanceados!";
                     cout << '\n' << this->erro;
                     return;
                 }
@@ -798,6 +799,14 @@ void AnalisadorSintatico::CompDeclaracaoVariavel() throw()
     } //nao e uma constante literal
     cout << '\n'
          << "Tipo Primitivo esperado";
+}
+
+bool AnalisadorSintatico::EhIdDeBool(string nomeSimbolo) throw()
+{
+    Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
+    bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
+    bool ehVariavel = this->EhBool(*simbolo);
+    return encontrou && ehVariavel;
 }
 
 bool AnalisadorSintatico::EhIdDeVariavel(string nomeSimbolo) throw()

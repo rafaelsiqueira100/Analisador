@@ -38,6 +38,7 @@ class AnalisadorSintatico
     void CompOperandoBooleano() throw();
     void CompDeclaracaoVariavel() throw();
     void CompInicioPrograma() throw();
+    bool EhIdDeBool(string) throw();
     bool EhIdDeVariavel(string) throw();
     bool EhIdDeProcedimento(string) throw();
     bool EhIdDeFuncao(string) throw();

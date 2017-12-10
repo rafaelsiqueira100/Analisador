@@ -65,10 +65,10 @@
 	"Variavel.h"
 	"simbolo.h"
 
-1512854048 source:g:\analisador\analisadorlexico.cpp
+1512933108 source:g:\analisador\analisadorlexico.cpp
 	"analisadorlexico.h"
 
-1512848992 g:\analisador\analisadorlexico.h
+1512933108 g:\analisador\analisadorlexico.h
 	"tipopedaco.h"
 	<string.h>
 	<stdio.h>
@@ -77,14 +77,14 @@
 	<ctype.h>
 	<fstream>
 
-1512848994 g:\analisador\tipopedaco.h
+1512933110 g:\analisador\tipopedaco.h
 
 1512849246 source:g:\analisador\analisadorsintatico.cpp
 	<iostream>
 	"AnalisadorSintatico.h"
 	"Variavel.h"
 
-1512856408 g:\analisador\analisadorsintatico.h
+1512933758 g:\analisador\analisadorsintatico.h
 	"TabelaDeSimbolos.h"
 	"analisadorlexico.h"
 	"tipopedaco.h"
@@ -95,39 +95,39 @@
 	<exception>
 	"Variavel.h"
 
-1512848992 g:\analisador\tabeladesimbolos.h
+1512933108 g:\analisador\tabeladesimbolos.h
 	"simbolo.h"
 	<list>
 	<string.h>
 
-1512848994 g:\analisador\simbolo.h
+1512933110 g:\analisador\simbolo.h
 	<string>
 
-1512848994 g:\analisador\metodo.h
+1512933110 g:\analisador\metodo.h
 	"simbolo.h"
 
-1512849194 g:\analisador\variavel.h
+1512933108 g:\analisador\variavel.h
 	"simbolo.h"
 
-1512855814 source:g:\analisador\main.cpp
+1512933110 source:g:\analisador\main.cpp
 	<iostream>
 	"AnalisadorLexico.h"
 	<exception>
 	"AnalisadorSintatico.h"
 
-1512848994 source:g:\analisador\metodo.cpp
+1512933110 source:g:\analisador\metodo.cpp
 	"metodo.h"
 	"simbolo.h"
 
-1512848994 source:g:\analisador\simbolo.cpp
+1512933110 source:g:\analisador\simbolo.cpp
 	"simbolo.h"
 
-1512848992 source:g:\analisador\tabeladesimbolos.cpp
+1512933108 source:g:\analisador\tabeladesimbolos.cpp
 	"TabelaDeSimbolos.h"
 	"simbolo.h"
 	<list>
 
-1512849200 source:g:\analisador\variavel.cpp
+1512933108 source:g:\analisador\variavel.cpp
 	"Variavel.h"
 	"simbolo.h"
 
