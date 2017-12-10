@@ -21,6 +21,7 @@ class AnalisadorSintatico
     bool retornoFuncInt;
     bool jaRetornou;
     string erro;
+    int numParenteses;
 
   public:
     AnalisadorSintatico();
@@ -31,21 +32,17 @@ class AnalisadorSintatico
     void CompComando() throw();
     void CompSe() throw();
     void CompExpressaoAritimetica() throw();
-    void CompTermo() throw();
-    void CompExpressaoRelacional() throw();
-    void CompFator() throw();
     void CompProgramaPrincipal() throw();
     void CompExpressaoLogica() throw();
-    void CompTermoRelacional() throw();
-    void CompFatorRelacional() throw();
+    void CompOperandoInteiro() throw();
+    void CompOperandoBooleano() throw();
     void CompDeclaracaoVariavel() throw();
     void CompInicioPrograma() throw();
     bool EhIdDeVariavel(string) throw();
     bool EhIdDeProcedimento(string) throw();
     bool EhIdDeFuncao(string) throw();
-    bool EhMaisOuMenos(TipoPedaco) throw();
-    bool EhVezesOuDividir(TipoPedaco) throw();
-    bool EhVezesOuDividirOuResto(TipoPedaco) throw();
+    bool EhOperadorAritmetico(TipoPedaco) throw();
+    bool EhOperadorLogico(TipoPedaco) throw();
     bool EhFuncao(Simbolo) throw();
     bool FuncaoRetornaInteiro(Simbolo) throw();
     bool FuncaoRetornaBool(Simbolo) throw();

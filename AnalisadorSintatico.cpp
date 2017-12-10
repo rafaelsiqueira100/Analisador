@@ -7,7 +7,8 @@ AnalisadorSintatico::AnalisadorSintatico(string nomeArquivo) : anaLex(new Analis
                                                                nomeFuncAtual(""),
                                                                retornoFuncInt(false),
                                                                jaRetornou(false),
-                                                               erro("")
+                                                               erro(""),
+                                                               numParenteses(0)
 {
 }
 
@@ -387,191 +388,324 @@ void AnalisadorSintatico::CompExpressaoAritimetica() throw()
 {
     if (this->erro.compare("") != 0)
         return;
-
-    CompTermo();
-
-    TipoPedaco prox;
-
-    while (EhMaisOuMenos(anaLex->verPedaco()))
-    {
-        prox = anaLex->proximoPedaco();
+    int parentesesNivel = numParenteses;
+    TipoPedaco prox = anaLex->verPedaco();
+    while(prox == AbreParenteses || prox==Subtracao){
+            if(prox==AbreParenteses)
+                numParenteses++;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
     }
-
-    CompFator();
-}
-
-void AnalisadorSintatico::CompTermo() throw()
-{
-    if (this->erro.compare("") != 0)
-        return;
-    CompFator();
-
-    TipoPedaco prox;
-    while (EhVezesOuDividirOuResto(anaLex->verPedaco()))
-    {
-        prox = anaLex->proximoPedaco();
-
-        CompFator();
-    }
-}
-
-void AnalisadorSintatico::CompFator() throw()
-{
-    if (this->erro.compare("") != 0)
-        return;
-    TipoPedaco prox = anaLex->proximoPedaco();
-
-    if (prox == Identificador)
-    {
-        Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
-        string nome = anaLex->getLiteral();
-        this->tabela.encontrar(anaLex->getLiteral(), simbolo);
-        if (EhFuncao(*simbolo) && FuncaoRetornaInteiro(*simbolo))
-        {
-            CompFuncao();
-        }
-        else if ((!EhVariavel(*simbolo)) || (!EhInteiro(*simbolo)))
-        {
-            this->erro = "O simbolo nao e variavel nem numero";
-
-            cout << '\n'
-                 << "O simbolo nao e variavel nem numero";
-        }
-    }
-    else
-    {
-        if (prox == AbreParenteses)
-        {
-            CompExpressaoAritimetica();
-
-            prox = anaLex->proximoPedaco();
-            if (prox == FechaParenteses)
-            {
-                this->erro = "Fecha parenteses esperado";
-
-                cout << '\n'
-                     << "Fecha parenteses esperado";
+        CompOperandoInteiro();
+        prox = anaLex->verPedaco();
+        while(prox == FechaParenteses){
+            if(numParenteses==0){
+                this->erro = "Parênteses desbalanceados!";
+                cout << '/n'<< this->erro;
+                return;
             }
+            numParenteses--;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
         }
-        else if (prox != Numero)
-        {
-            this->erro = "Numero esperado";
-
-            cout << '\n'
-                 << "Numero esperado";
+        while(numParenteses>parentesesNivel || EhOperadorAritmetico(prox)){
+            if(EhOperadorAritmetico(prox)){
+                anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
+            }
+            else{
+                this->erro = "Operador aritmético esperado!";
+                cout << '\n'<< this->erro;
+                return;
+            }
+        while(prox == AbreParenteses || prox==Subtracao){
+            if(prox==AbreParenteses)
+                numParenteses++;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
+        }
+        if(prox== Numero || prox == Identificador)
+        CompOperandoInteiro();
+        prox = anaLex->verPedaco();
+        while(prox == FechaParenteses){
+            if(numParenteses==0){
+                this->erro = "Parênteses desbalanceados!";
+                cout << '/n'<< this->erro;
+                return;
+            }
+            numParenteses--;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
         }
     }
 }
-
-void AnalisadorSintatico::CompExpressaoRelacional() throw()
-{
-    if (this->erro.compare("") != 0)
-        return;
-    TipoPedaco prox = anaLex->proximoPedaco();
-    if (!EhOperadorRelacional(prox))
-    {
-        this->erro = "Operador relacional esperado";
-
-        cout << '\n'
-             << "Operador relacional esperado";
-    }
-
-    CompExpressaoAritimetica();
-}
-
-void AnalisadorSintatico::CompExpressaoLogica() throw()
-{
+void AnalisadorSintatico::CompOperandoInteiro()throw(){
     if (this->erro.compare("") != 0)
         return;
     TipoPedaco prox = anaLex->verPedaco();
 
-    /* if(prox == AbreParenteses){
-        anaLex->proximoPedaco();
-        CompExpressaoLogica();
-        prox = anaLex->proximoPedaco();
-        if(prox!=FechaParenteses)
-            cout << '\n' <<") esperado !";
+    while(prox == AbreParenteses || prox == Subtracao){
+        if(prox == AbreParenteses)
+            numParenteses++;
+        this->anaLex.proximoPedaco();
         prox = anaLex->verPedaco();
     }
 
-
-    if(prox!= Ou && prox!=E && !Eh)
-            cout << '\n' <<"Operador relacional ou logico esperado !";
-    */ CompTermoRelacional();
-
-    prox = anaLex->verPedaco();
-    while (prox == Ou)
-    {
+    if(prox == Numero){
         anaLex->proximoPedaco();
-        CompTermoRelacional();
+        prox = anaLex->verPedaco();
+            if(EhOperadorAritmetico(prox)){
+                anaLex->proximoPedaco();
+                CompExpressaoAritimetica();
+            }
+            else
+                return;
+    }
+    if(prox == Identificador){
+        string id = this->anaLex.getLiteral();
+        if(!EhBool(id)){
+            if(EhIdDeVariavel(id)){
+                CompChamadaDeVariavel();
+            }
+            if(EhIdDeFuncao(id)){
+                CompChamadaDeFuncao();
+            }
+            prox = anaLex->verPedaco();
+            if(EhOperadorAritmetico(prox)){
+                anaLex->proximoPedaco();
+                CompExpressaoAritimetica();
+            }
+            else
+                return;
+        }
+        else{
+            this->erro = "Inteiro esperado !";
+            cout << '\n' << this->erro;
+            return;
+        }
+    }
+}
+void AnalisadorSintatico::CompOperandoBooleano()throw(){
+    bool operandoBool = false;//suboperando bool
+    bool primeiraVez = true;
+    int parentesesNivel = numParenteses;
+    if (this->erro.compare("") != 0)
+        return;
+    TipoPedaco prox = anaLex->verPedaco();
+    while(prox == AbreParenteses || prox == Negacao){
+        if(prox == AbreParenteses)
+            numParenteses++;
+        this->anaLex.proximoPedaco();
         prox = anaLex->verPedaco();
     }
-}
 
-void AnalisadorSintatico::CompTermoRelacional() throw()
-{
-    if (this->erro.compare("") != 0)
-        return;
-    //CompTermoRelacional();
+    if(prox == Verdadeiro || prox == Falso){
+        anaLex->proximoPedaco();
+        prox = anaLex->verPedaco();
+            if(prox==Comparacao || prox == Diferente){
+                anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
+                while(prox == AbreParenteses || prox == Negacao){
+                    if(prox == AbreParenteses)
+                        numParenteses++;
+                    this->anaLex.proximoPedaco();
+                    prox = anaLex->verPedaco();
+                }
+                CompOperandoBooleano();
+                while(prox==FechaParenteses){
+                    if(numParenteses==0){
+                        this->erro = "Parênteses desbalanceados!";
+                        cout << '\n' << this->erro;
+                        return;
+                    }
+                    numParenteses--;
+                    this->anaLex.proximoPedaco();
+                    prox = anaLex->verPedaco();
+                }
+                if(numParenteses>parentesesNivel&& parentesesNivel==0){
+                    this->erro = "Parênteses desbalanceados!";
+                    cout << '\n' << this->erro;
+                    return;
+                }
 
-    TipoPedaco prox;
-    while (anaLex->verPedaco() == E)
-    {
-        prox = anaLex->proximoPedaco();
-        CompFatorRelacional();
+            }//fim do if prox==comparacao || prox == diferente
+
+            }
+            if(EhOperadorLogico(prox){
+                anaLex->proximoPedaco();
+                CompExpressaoLogica();
+            }
     }
-}
+    if(prox == Identificador|| prox==Numero){
+            if(prox==Identificador)
+        string id = this->anaLex.getLiteral();
+        if(prox==Numero || (prox==Identificador && (!EhBool(id)))){//com certeza é expressão relacional
+            if(prox==Identificador){
+            if(EhIdDeVariavel(id)){
+                CompChamadaDeVariavel();
+            }
+            if(EhIdDeFuncao(id)){
+                CompChamadaDeFuncao();
+            }
+            }
+            else{
+                anaLex->proximoPedaco();
+            }
 
-void AnalisadorSintatico::CompFatorRelacional() throw()
-{
-    if (this->erro.compare("") != 0)
-        return;
-    TipoPedaco prox = anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
+            while(EhOperadorAritmetico(prox)){
+                anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
+                if(prox == Identificador || prox == Numero)
+                    CompOperandoInteiro();
+                prox = anaLex->verPedaco();
+                else{
+                    this->erro = "Inteiro esperado!";
+                    cout << '\n' << this->erro;
+                    return;
+                }
 
-    if (prox == Negacao)
-    {
-        prox = anaLex->proximoPedaco();
-    }
+            }
+            if(EhOperadorRelacional(prox)){
+                anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
+            }
+            else{
+                this->erro = "Inteiro esperado!";
+                cout << '\n' << this->erro;
+                return;
+            }
 
-    if (prox == Identificador)
-    {
-        Simbolo *simbolo;
-        this->tabela.encontrar(anaLex->getLiteral(), simbolo);
-        if (EhFuncao(*simbolo) && FuncaoRetornaBool(*simbolo))
-        {
-            CompChamadaDeFuncao();
+            while(prox == AbreParenteses || prox == Subtracao){
+                if(prox == AbreParenteses)
+                    numParenteses++;
+                this->anaLex.proximoPedaco();
+                prox = anaLex->verPedaco();
+            }
+            CompOperandoInteiro();
+            prox = anaLex->verPedaco();
+            while(prox==FechaParenteses){
+                if(numParenteses==0){
+                    this->erro = "Parênteses desbalanceados!";
+                    cout << '\n' << this->erro;
+                    return;
+                }
+                numParenteses--;
+                this->anaLex.proximoPedaco();
+                prox = anaLex->verPedaco();
+            }
+            if(EhOperadorLogico(prox)){
+                anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
+                if(prox == AbreParenteses ||prox == Identificador || prox == Numero ||prox == Verdadeiro|| prox == Falso || prox==Subtracao || prox == Negacao)
+                CompExpressaoLogica();
+            }
+            if(numParenteses>parentesesNivel&& parentesesNivel==0){
+                this->erro = "Parênteses desbalanceados!";
+                cout << '\n' << this->erro;
+                return;
+            }
+
         }
-        else if ((!EhVariavel(*simbolo)) && (!EhBool(*simbolo)))
-        {
-            CompExpressaoRelacional();
-        }
-    }
-    else
-    {
-        if (prox == AbreParenteses)
-        {
-            CompExpressaoLogica();
+        else{//só operadores booleanos
+            if(EhIdDeVariavel(id)){
+                CompDeclaracaoVariavel();
+            }
+            if(EhIdDeFuncao(id)){
+                CompChamadaDeFuncao();
+            }
+            prox = anaLex->verPedaco();
+            if(prox==Comparacao || prox == Diferente){
+                anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
+                while(prox == AbreParenteses || prox == Negacao){
+                    if(prox == AbreParenteses)
+                        numParenteses++;
+                    this->anaLex.proximoPedaco();
+                    prox = anaLex->verPedaco();
+                }
+                CompOperandoBooleano();
+                while(prox==FechaParenteses){
+                    if(numParenteses==0){
+                        this->erro = "Parênteses desbalanceados!";
+                        cout << '\n' << this->erro;
+                        return;
+                    }
+                    numParenteses--;
+                    this->anaLex.proximoPedaco();
+                    prox = anaLex->verPedaco();
+                }
+                if(numParenteses>parentesesNivel&& parentesesNivel==0){
+                    this->erro = "Parênteses desbalanceados!";
+                    cout << '\n' << this->erro;
+                    return;
+                }
 
-            prox = anaLex->proximoPedaco();
+            }//fim do if(prox==comparacao || prox == diferente)
 
-            if (prox != FechaParenteses)
-            {
-                this->erro = "Fecha parenteses esperado";
-
-                cout << '\n'
-                     << "Fecha parenteses esperado";
+            if(EhOperadorLogico(prox){
+                anaLex->proximoPedaco();
+                CompExpressaoLogica();
             }
         }
-        else if (!EhValorLogico(prox))
-        {
-            this->erro = "Valor logico esperado";
-
-            cout << '\n'
-                 << "Valor logico esperado";
         }
     }
 }
-
+void AnalisadorSintatico::CompExpressaoLogica() throw()
+{
+    if (this->erro.compare("") != 0)
+        return;
+    int parentesesNivel = numParenteses;
+    TipoPedaco prox = anaLex->verPedaco();
+    while(prox == AbreParenteses || prox==Negacao){
+            if(prox==AbreParenteses)
+                numParenteses++;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
+    }
+        CompOperandoBooleano();
+        prox = anaLex->verPedaco();
+        while(prox == FechaParenteses){
+            if(numParenteses==0){
+                this->erro = "Parênteses desbalanceados!";
+                cout << '/n'<< this->erro;
+                return;
+            }
+            numParenteses--;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
+        }
+        while(numParenteses>parentesesNivel){
+            if(EhOperadorLogico(prox)){
+                anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
+            }
+            else{
+                this->erro = "Operador lógico esperado!";
+                cout << '\n'<< this->erro;
+                return;
+            }
+        while(prox == AbreParenteses || prox==Negacao){
+            if(prox==AbreParenteses)
+                numParenteses++;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
+        }
+        if(prox==Identificador || prox == Numero || prox == Verdadeiro || prox == Falso)
+        CompOperandoBooleano();
+        prox = anaLex->verPedaco();
+        while(prox == FechaParenteses){
+            if(numParenteses==0){
+                this->erro = "Parênteses desbalanceados!";
+                cout << '/n'<< this->erro;
+                return;
+            }
+            numParenteses--;
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
+        }
+    }
+}
 void AnalisadorSintatico::CompComandoComposto() throw()
 {
     if (this->erro.compare("") != 0)
@@ -688,17 +822,14 @@ bool AnalisadorSintatico::EhIdDeFuncao(string nomeSimbolo) throw()
     return encontrou && EhFuncao(*simbolo);
 }
 
-bool AnalisadorSintatico::EhMaisOuMenos(TipoPedaco tipo) throw()
+bool AnalisadorSintatico::EhOperadorAritmetico(TipoPedaco tipo) throw()
 {
-    return (tipo == Soma) || (tipo == Subtracao);
+    return (tipo == Soma) || (tipo == Subtracao) ||
+    (tipo == Multiplicacao) || (tipo == Divisao) ||(tipo == Resto);
 }
-bool AnalisadorSintatico::EhVezesOuDividir(TipoPedaco tipo) throw()
+bool AnalisadorSintatico::EhOperadorLogico(TipoPedaco tipo)throw()
 {
-    return (tipo == Multiplicacao) || (tipo == Divisao);
-}
-bool AnalisadorSintatico::EhVezesOuDividirOuResto(TipoPedaco tipo) throw()
-{
-    return EhVezesOuDividir(tipo) || (tipo == Resto);
+    return (tipo == E) || (tipo == Ou);
 }
 bool AnalisadorSintatico::EhFuncao(Simbolo simbolo) throw()
 {
@@ -750,11 +881,12 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
         cout << '\n'
              << "Variavel nao foi declarada";
 
-    prox = anaLex->proximoPedaco();
+    prox = anaLex->verPedaco();
 
     string nome = anaLex->getLiteral();
     if (prox == Atribuicao)
     {
+        anaLex->proximoPedaco();
         if (simbolo->getTipoRetorno() == SimboloInteiro)
         {
             CompExpressaoAritimetica();
@@ -765,11 +897,11 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
         }
     }
 
-    prox = anaLex->proximoPedaco();
+    /*prox = anaLex->proximoPedaco();
 
     if (prox != PontoVirgula)
         cout << '\n'
-             << "Ponto e virgula esperado !";
+             << "Ponto e virgula esperado !";*/
 }
 void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
 {
