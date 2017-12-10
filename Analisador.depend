@@ -79,7 +79,7 @@
 
 1512933110 g:\analisador\tipopedaco.h
 
-1512849246 source:g:\analisador\analisadorsintatico.cpp
+1512935288 source:g:\analisador\analisadorsintatico.cpp
 	<iostream>
 	"AnalisadorSintatico.h"
 	"Variavel.h"

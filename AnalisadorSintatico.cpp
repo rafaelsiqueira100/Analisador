@@ -502,156 +502,188 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
     if(prox == Verdadeiro || prox == Falso){
         anaLex->proximoPedaco();
         prox = anaLex->verPedaco();
-            if(prox==Comparacao || prox == Diferente){
-                anaLex->proximoPedaco();
+
+        if(prox==Comparacao || prox == Diferente){
+            anaLex->proximoPedaco();
+            prox = anaLex->verPedaco();
+            while(prox == AbreParenteses || prox == Negacao){
+                if(prox == AbreParenteses)
+                    numParenteses++;
+                this->anaLex->proximoPedaco();
                 prox = anaLex->verPedaco();
-                while(prox == AbreParenteses || prox == Negacao){
-                    if(prox == AbreParenteses)
-                        numParenteses++;
-                    this->anaLex->proximoPedaco();
-                    prox = anaLex->verPedaco();
-                }
-                CompOperandoBooleano();
-                while(prox==FechaParenteses){
-                    if(numParenteses==0){
-                        this->erro = "Parênteses desbalanceados!";
-                        cout << '\n' << this->erro;
-                        return;
-                    }
-                    numParenteses--;
-                    this->anaLex->proximoPedaco();
-                    prox = anaLex->verPedaco();
-                }
-                if(numParenteses>parentesesNivel&& parentesesNivel==0){
+            }
+            CompOperandoBooleano();
+            while(prox==FechaParenteses){
+                if(numParenteses==0){
                     this->erro = "Parênteses desbalanceados!";
                     cout << '\n' << this->erro;
                     return;
                 }
-
-            }//fim do if prox==comparacao || prox == diferente
-
+                numParenteses--;
+                this->anaLex->proximoPedaco();
+                prox = anaLex->verPedaco();
             }
-            if(EhOperadorLogico(prox))
-            {
-                anaLex->proximoPedaco();
-                CompExpressaoLogica();
+            if(numParenteses>parentesesNivel&& parentesesNivel==0){
+                this->erro = "Parênteses desbalanceados!";
+                cout << '\n' << this->erro;
+                return;
             }
+
+        }//fim do if prox==comparacao || prox == diferente
     }
-    if (prox == Identificador|| prox==Numero){
-            if(prox==Identificador)
-        string id = this->anaLex.getLiteral();
-        if(prox==Numero || (prox==Identificador && (!EhBool(id)))){//com certeza é expressão relacional
+
+    if(EhOperadorLogico(prox))
+    {
+        anaLex->proximoPedaco();
+        CompExpressaoLogica();
+    }
+
+    if (prox == Identificador || prox==Numero)
+    {
+        string id ("");
+
+        if (prox==Identificador)
+            string id = this->anaLex->getLiteral();
+
+        if (prox==Numero || (prox==Identificador && (!this->EhIdDeBool(id))))
+        {//com certeza é expressão relacional
             if(prox==Identificador){
-            if(EhIdDeVariavel(id)){
-                CompChamadaDeVariavel();
+                if(EhIdDeVariavel(id))
+                {
+                    CompChamadaDeVariavel();
+                }
+
+                if(EhIdDeFuncao(id))
+                {
+                    CompChamadaDeFuncao();
+                }
             }
-            if(EhIdDeFuncao(id)){
-                CompChamadaDeFuncao();
-            }
-            }
-            else{
+            else
+            {
                 anaLex->proximoPedaco();
             }
 
             prox = anaLex->verPedaco();
-            while(EhOperadorAritmetico(prox)){
+            while(EhOperadorAritmetico(prox))
+            {
                 anaLex->proximoPedaco();
                 prox = anaLex->verPedaco();
                 if(prox == Identificador || prox == Numero)
+                {
                     CompOperandoInteiro();
-                prox = anaLex->verPedaco();
-                else{
+                    prox = anaLex->verPedaco();
+                }
+                else
+                {
                     this->erro = "Inteiro esperado!";
                     cout << '\n' << this->erro;
                     return;
                 }
-
             }
-            if(EhOperadorRelacional(prox)){
+
+            if(EhOperadorRelacional(prox))
+            {
                 anaLex->proximoPedaco();
                 prox = anaLex->verPedaco();
             }
-            else{
+            else
+            {
                 this->erro = "Inteiro esperado!";
                 cout << '\n' << this->erro;
                 return;
             }
 
-            while(prox == AbreParenteses || prox == Subtracao){
+            while(prox == AbreParenteses || prox == Subtracao)
+            {
                 if(prox == AbreParenteses)
                     numParenteses++;
-                this->anaLex.proximoPedaco();
+                this->anaLex->proximoPedaco();
                 prox = anaLex->verPedaco();
             }
+
             CompOperandoInteiro();
+
             prox = anaLex->verPedaco();
-            while(prox==FechaParenteses){
-                if(numParenteses==0){
+            while(prox==FechaParenteses)
+            {
+                if(numParenteses==0)
+                {
                     this->erro = "Parenteses desbalanceados!";
                     cout << '\n' << this->erro;
                     return;
                 }
                 numParenteses--;
-                this->anaLex.proximoPedaco();
+                this->anaLex->proximoPedaco();
                 prox = anaLex->verPedaco();
             }
-            if(EhOperadorLogico(prox)){
+
+            if(EhOperadorLogico(prox))
+            {
                 anaLex->proximoPedaco();
                 prox = anaLex->verPedaco();
                 if(prox == AbreParenteses ||prox == Identificador || prox == Numero ||prox == Verdadeiro|| prox == Falso || prox==Subtracao || prox == Negacao)
                 CompExpressaoLogica();
             }
-            if(numParenteses>parentesesNivel&& parentesesNivel==0){
+
+            if(numParenteses>parentesesNivel&& parentesesNivel==0)
+            {
                 this->erro = "Parenteses desbalanceados!";
                 cout << '\n' << this->erro;
                 return;
             }
 
         }
-        else{//só operadores booleanos
-            if(EhIdDeVariavel(id)){
+        else
+        {//só operadores booleanos
+            if(EhIdDeVariavel(id))
+            {
                 CompDeclaracaoVariavel();
             }
-            if(EhIdDeFuncao(id)){
+            if(EhIdDeFuncao(id))
+            {
                 CompChamadaDeFuncao();
             }
             prox = anaLex->verPedaco();
-            if(prox==Comparacao || prox == Diferente){
+            if(prox==Comparacao || prox == Diferente)
+            {
                 anaLex->proximoPedaco();
                 prox = anaLex->verPedaco();
                 while(prox == AbreParenteses || prox == Negacao){
                     if(prox == AbreParenteses)
                         numParenteses++;
-                    this->anaLex.proximoPedaco();
+                    this->anaLex->proximoPedaco();
                     prox = anaLex->verPedaco();
                 }
                 CompOperandoBooleano();
-                while(prox==FechaParenteses){
+                while(prox==FechaParenteses)
+                {
                     if(numParenteses==0){
                         this->erro = "Parenteses desbalanceados!";
                         cout << '\n' << this->erro;
                         return;
                     }
                     numParenteses--;
-                    this->anaLex.proximoPedaco();
+                    this->anaLex->proximoPedaco();
                     prox = anaLex->verPedaco();
                 }
-                if(numParenteses>parentesesNivel&& parentesesNivel==0){
+
+                if(numParenteses>parentesesNivel&& parentesesNivel==0)
+                {
                     this->erro = "Parenteses desbalanceados!";
                     cout << '\n' << this->erro;
                     return;
                 }
-
             }//fim do if(prox==comparacao || prox == diferente)
 
-            if(EhOperadorLogico(prox){
+            if (EhOperadorLogico(prox))
+            {
                 anaLex->proximoPedaco();
                 CompExpressaoLogica();
             }
         }
-        }
     }
 }
+
 void AnalisadorSintatico::CompExpressaoLogica() throw()
 {
     if (this->erro.compare("") != 0)
