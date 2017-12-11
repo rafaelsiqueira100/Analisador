@@ -29,7 +29,8 @@ class AnalisadorLexico
     bool doisCharLidos;
     ifstream arquivo;
     int numeroGets;
-
+    int linhaAtual;
+    int entersChamada;
   public:
     AnalisadorLexico(string);
     ~AnalisadorLexico();
@@ -39,7 +40,7 @@ class AnalisadorLexico
     char temMaisPedacos();
     string getLiteral();
     int getNumero();
-
+    int getLinhaAtual();
 };
 
 #endif // ANALISADORLEXICO_H_INCLUDED

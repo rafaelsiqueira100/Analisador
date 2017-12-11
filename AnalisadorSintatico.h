@@ -17,6 +17,7 @@ class AnalisadorSintatico
     TabelaDeSimbolos tabela;
     AnalisadorLexico *anaLex;
     int nivelAtual;
+    int nivelDeComandoComposto;
     string nomeFuncAtual;
     bool retornoFuncInt;
     bool jaRetornou;

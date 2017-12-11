@@ -48,7 +48,9 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
                                                          valorNumeroValido(false),
                                                          numeroGets(0),
                                                          valorNumerico(0),
-                                                         valorLiteral("")
+                                                         valorLiteral(""),
+                                                         linhaAtual(1),
+                                                         entersChamada(0)
 {
     this->arquivo.open(nomeArquivo.c_str());
 }
@@ -56,6 +58,9 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
 AnalisadorLexico::~AnalisadorLexico()
 {
     this->arquivo.close();
+}
+int AnalisadorLexico::getLinhaAtual(){
+    return this->linhaAtual;
 }
 
 bool AnalisadorLexico::armazenarValor(string palavraLida)
@@ -109,6 +114,10 @@ bool AnalisadorLexico::fimDaPalavra(char *palavraEmVetor, int tamanhoPalavra)
 
     while (isspace(proxChar) || proxChar == EOF)
     {
+        if(proxChar=='\n'){
+            this->linhaAtual++;
+            this->entersChamada++;
+        }
         proxChar = this->arquivo.get();
         numeroGets++;
         espacos = true;
@@ -229,11 +238,13 @@ string AnalisadorLexico::paraMinusculas(string palavra)
 TipoPedaco AnalisadorLexico::verPedaco()
 {
     numeroGets = 0;
+    this->entersChamada=0;
     TipoPedaco retorno = proximoPedaco();
     int i;
     for (i = 0; i < this->numeroGets; i++)
         this->arquivo.unget();
     numeroGets = 0;
+    this->linhaAtual -=entersChamada;
     /*string palavraLida;
         int lengthPalavraLida = 0;
         char* palavra;

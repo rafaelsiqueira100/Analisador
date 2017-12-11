@@ -29,6 +29,7 @@ void TabelaDeSimbolos::eliminaNivel(int nivel){
         list<Simbolo*>::iterator it;
 
         for(it=armazenador.begin(); it!=armazenador.end(); ++it){
+
             int nivelAtual = (*it)->getNivel();
 
             if(nivelAtual >= nivel){

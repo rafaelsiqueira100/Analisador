@@ -4,7 +4,7 @@ Program Prog1;
     Procedure Proc1 (Boolean b);
         Var a, c: Boolean;
 
-        Function Func1 (Integer a): Integer; 
+        Function Func1 (Integer a): Integer;
             Var b, d: Integer;
         Begin
             b := 2*a-1;
@@ -13,10 +13,10 @@ Program Prog1;
             Begin
                 d := b;
                 b := 2*d-1;
-            End;
+            End
 
             Func1 := (b+d)/2;
-        End;
+        End
     Begin
         If (Func1(5)/2 >7)
         Then Begin
@@ -26,13 +26,13 @@ Program Prog1;
         Else Begin
             a := not b;
             c := false;
-        End;
+        End
 
         If (a and b or c) Then
             Write ('COTUCA')
         Else
             Write ('UNICAMP');
-    End;
+    End
 Begin
     a := 5;
     b := 7;
@@ -42,7 +42,7 @@ Begin
         Proc1(a<b);
         a := a+2;
         b := 2*b;
-    End;
+    End
 
     Write (a);
     Write (b);
