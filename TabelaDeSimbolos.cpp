@@ -27,13 +27,13 @@ void TabelaDeSimbolos::guarde(Simbolo* aGuardar){
 void TabelaDeSimbolos::eliminaNivel(int nivel){
     if(!armazenador.empty()){
         list<Simbolo*>::iterator it;
-
-        for(it=armazenador.begin(); it!=armazenador.end(); ++it){
+loop:   for(it=armazenador.begin(); it!=armazenador.end(); ++it){
 
             int nivelAtual = (*it)->getNivel();
 
             if(nivelAtual >= nivel){
                 armazenador.erase(it);
+                goto loop;
             }
         }
     }
