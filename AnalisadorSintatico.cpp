@@ -175,11 +175,11 @@ void AnalisadorSintatico::CompProcedimento() throw()
         listaParametros.pop_front();
     }
     this->nivelAtual--;
-    Metodo *procedimento;
+    Simbolo *procedimento;
     if (tamanhoLista != 0)
-        procedimento = new Metodo(nomeProc, this->nivelAtual, vetor, tamanhoLista, SimboloVacuo);
+        procedimento = new Simbolo(nomeProc, this->nivelAtual, vetor, tamanhoLista, SimboloVacuo);
     else
-        procedimento = new Metodo(nomeProc, this->nivelAtual, nullptr, tamanhoLista, SimboloVacuo);
+        procedimento = new Simbolo(nomeProc, this->nivelAtual, nullptr, tamanhoLista, SimboloVacuo);
 
     if (prox != FechaParenteses)
     {
@@ -351,7 +351,7 @@ void AnalisadorSintatico::CompSe() throw()
              << "if esperado";
     }
 
-    CompExpressaoLogica();
+    CompOperandoBooleano();
 
     prox = anaLex->proximoPedaco();
     if (prox != Entao)
@@ -373,7 +373,8 @@ void AnalisadorSintatico::CompSe() throw()
     }
     if (anaLex->verPedaco() == Senao)
     {
-        anaLex->proximoPedaco();
+        anaLex->proximoPedaco();//consome senão
+        prox = anaLex->verPedaco();
         if (prox == Comeco)
         {
             CompComandoComposto();
@@ -753,7 +754,6 @@ void AnalisadorSintatico::CompComandoComposto() throw()
         return;
 
     this->nivelDeComandoComposto++;
-
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Comeco)
     {
@@ -764,19 +764,25 @@ void AnalisadorSintatico::CompComandoComposto() throw()
     }
 
     this->nivelAtual++;
+    //bool primeiraVez = true;
     do
     {
         CompComando();
 
-        if (this->nivelDeComandoComposto <= 1)
+      /*if (this->nivelDeComandoComposto <=1 && !primeiraVez)
             prox = anaLex->proximoPedaco();
-        else
+        else*/
             prox = anaLex->verPedaco();
+        //primeiraVez = false;
     } while (prox != Fim && anaLex->temMaisPedacos());
-    if (prox != Fim)
+    if (prox != Fim){
+        this->erro ="Fim esperado";
         cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Fim esperado";
-
+             << this->erro;
+        return;
+    }
+    else
+        anaLex->proximoPedaco();
     this->tabela.eliminaNivel(this->nivelAtual);
     this->nivelAtual--;
 
@@ -838,9 +844,9 @@ void AnalisadorSintatico::CompDeclaracaoVariavel() throw()
             id = *(lista.begin());
             Simbolo*simb=new Simbolo(id, this->nivelAtual, tipoVar);
 
-            Var* variavel = new Var(id, this->nivelAtual, tipoVar);
+            //Var* variavel = new Var(id, this->nivelAtual, tipoVar);
 
-            this->tabela.guarde(variavel);
+            this->tabela.guarde(simb);
             lista.pop_front();
         }
         lista.erase(lista.begin(), lista.end());
@@ -862,22 +868,37 @@ bool AnalisadorSintatico::EhIdDeVariavel(string nomeSimbolo) throw()
 {
     Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
-    bool ehVariavel = this->EhVariavel(*simbolo);
-    return encontrou && ehVariavel;
+    bool ehVariavel = this->EhVariavel(simbolo);
+    return encontrou && ehVariavel ;
 }
 bool AnalisadorSintatico::EhIdDeProcedimento(string nomeSimbolo) throw()
 {
     Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
-    bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
-    bool ehProcedimento = typeid(*simbolo) == typeid(Metodo);
-    return encontrou && ehProcedimento;
+    bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);;
+    return encontrou && EhMetodo(simbolo) && simbolo->getTipoRetorno()==SimboloVacuo;
+}
+bool AnalisadorSintatico::EhMetodo(Simbolo* simbolo)throw()
+{
+    /*try{
+        simbolo->teste();
+        return true;
+    }
+    catch(exception){
+        return false;
+    }*/
+    /*string s;
+    s = typeid(*simbolo).name();*/
+    return simbolo->getTipoSimbolo() == TipoMetodo;
+
+        //(s.compare("Metodo")==0);
+   //     !simbolo->teste();
 }
 bool AnalisadorSintatico::EhIdDeFuncao(string nomeSimbolo) throw()
 {
     Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
 
-    return encontrou && EhFuncao(*simbolo);
+    return encontrou && EhFuncao(simbolo);
 }
 
 bool AnalisadorSintatico::EhOperadorAritmetico(TipoPedaco tipo) throw()
@@ -889,21 +910,21 @@ bool AnalisadorSintatico::EhOperadorLogico(TipoPedaco tipo)throw()
 {
     return (tipo == E) || (tipo == Ou);
 }
-bool AnalisadorSintatico::EhFuncao(Simbolo simbolo) throw()
+bool AnalisadorSintatico::EhFuncao(Simbolo* simbolo) throw()
 {
-    return typeid(simbolo) == typeid(Metodo) && (simbolo.getTipoRetorno() != SimboloVacuo);
+    return EhMetodo(simbolo) && (simbolo->getTipoRetorno() != SimboloVacuo);
 }
-bool AnalisadorSintatico::FuncaoRetornaInteiro(Simbolo simbolo) throw()
+bool AnalisadorSintatico::FuncaoRetornaInteiro(Simbolo* simbolo) throw()
 {
-    return simbolo.getTipoRetorno() == SimboloInteiro && typeid(simbolo) == typeid(Metodo);
+    return simbolo->getTipoRetorno() == SimboloInteiro && EhMetodo(simbolo);
 }
-bool AnalisadorSintatico::FuncaoRetornaBool(Simbolo simbolo) throw()
+bool AnalisadorSintatico::FuncaoRetornaBool(Simbolo* simbolo) throw()
 {
-    return simbolo.getTipoRetorno() == SimboloLogico && typeid(simbolo) == typeid(Metodo);
+    return simbolo->getTipoRetorno() == SimboloLogico && EhMetodo(simbolo);
 }
-bool AnalisadorSintatico::EhVariavel(Simbolo simbolo) throw()
+bool AnalisadorSintatico::EhVariavel(Simbolo* simbolo) throw()
 {
-    return typeid(simbolo) != typeid(Variavel);
+    return !EhMetodo(simbolo);
 }
 bool AnalisadorSintatico::EhInteiro(Simbolo simbolo) throw()
 {
@@ -991,7 +1012,7 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
 
     Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     this->tabela.encontrar(anaLex->getLiteral(), simbolo);
-    int qtosParametros = ((Metodo *)simbolo)->getQuantosParametros();
+    int qtosParametros = (simbolo)->getQuantosParametros();
     Simbolo parFormal;
     //Simbolo *parReal;
     //string nomeParReal;
@@ -1001,7 +1022,7 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
     {
         if (i > 0)
             anaLex->proximoPedaco(); //virgula
-        parFormal = ((Metodo *)simbolo)->getParametro(i);
+        parFormal = (simbolo)->getParametro(i);
         prox = anaLex->verPedaco();
         if (prox != Identificador)
         {
@@ -1155,7 +1176,7 @@ void AnalisadorSintatico::CompChamadaDeFuncao() throw()
 
     Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     this->tabela.encontrar(anaLex->getLiteral(), simbolo);
-    int qtosParametros = ((Metodo *)simbolo)->getQuantosParametros();
+    int qtosParametros = (simbolo)->getQuantosParametros();
     Simbolo parFormal;
     /*Simbolo *parReal;
     string nomeParReal;*/
@@ -1165,7 +1186,7 @@ void AnalisadorSintatico::CompChamadaDeFuncao() throw()
     {
         if (i > 0)
             anaLex->proximoPedaco(); //virgula
-        parFormal = ((Metodo *)simbolo)->getParametro(i);
+        parFormal = (simbolo)->getParametro(i);
         prox = anaLex->verPedaco();
         if (prox != Identificador)
         {
@@ -1355,7 +1376,8 @@ foraLoop:
         listaParametros.pop_front();
     }
     this->nivelAtual--;
-    Metodo *funcao = new Metodo(nomeFunc, this->nivelAtual, vetor, tamanhoLista, retorno);
+
+    Simbolo *funcao = new Simbolo(nomeFunc, this->nivelAtual, vetor, tamanhoLista, retorno);
 
     prox = anaLex->proximoPedaco();
     if (prox != PontoVirgula)

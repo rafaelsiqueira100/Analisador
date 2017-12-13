@@ -2,97 +2,54 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="TabelaDeSimbolos.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="simbolo.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="986" topLine="19" />
+			<Cursor1 position="1028" topLine="7" />
 		</Cursor>
 	</File>
-	<File name="AnalisadorSintatico.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="simbolo.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2398" topLine="77" />
+			<Cursor1 position="605" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="803" topLine="4" />
+			<Cursor1 position="803" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="analisadorlexico.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5794" topLine="237" />
+			<Cursor1 position="6662" topLine="261" />
 		</Cursor>
 	</File>
-	<File name="AnalisadorSintatico.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="metodo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="477" topLine="0" />
+			<Cursor1 position="517" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="TabelaDeSimbolos.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1840" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="metodo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="116" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="AnalisadorSintatico.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="27860" topLine="838" />
+		</Cursor>
+	</File>
+	<File name="AnalisadorSintatico.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1563" topLine="29" />
+		</Cursor>
+	</File>
+	<File name="TabelaDeSimbolos.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="115" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
-[Editor_0]
-CursorCol=18
-CursorRow=5
-TopLine=1
-LeftChar=1
-[Editors]
-Order=0,9,3,10,7,5,6,12,13,8,1,11,4
-Focused=0
-[Editor_1]
-CursorCol=17
-CursorRow=26
-TopLine=1
-LeftChar=1
-[Editor_3]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1
-[Editor_4]
-CursorCol=1
-CursorRow=7
-TopLine=1
-LeftChar=1
-[Editor_5]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1
-[Editor_6]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1
-[Editor_7]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1
-[Editor_8]
-CursorCol=14
-CursorRow=18
-TopLine=223
-LeftChar=1
-[Editor_9]
-CursorCol=61
-CursorRow=1172
-TopLine=1149
-LeftChar=1
-[Editor_10]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1
-[Editor_11]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1
-[Editor_12]
-CursorCol=1
-CursorRow=1
-TopLine=6
-LeftChar=1
-[Editor_13]
-CursorCol=1
-CursorRow=1
-TopLine=1
-LeftChar=1

@@ -23,6 +23,25 @@ void TabelaDeSimbolos::guarde(Simbolo* aGuardar){
 
     armazenador.insert(armazenador.end(), aGuardar);
 }
+/*void TabelaDeSimbolos::guardeMetodo(Metodo* aGuardar){
+    int nivel = aGuardar->getNivel();
+
+    list<Simbolo*>::iterator it;
+    if(armazenador.empty()){
+        armazenador.push_front(aGuardar);
+        return;
+    }
+
+    for(it=armazenador.begin(); it!=armazenador.end(); ++it){
+        if((*(*it)).getNivel() > nivel){
+            --it;
+            armazenador.insert(it, aGuardar);
+            return;
+        }
+    }
+
+    armazenador.insert(armazenador.end(), aGuardar);
+}*/
 
 void TabelaDeSimbolos::eliminaNivel(int nivel){
     if(!armazenador.empty()){
