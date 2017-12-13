@@ -763,6 +763,8 @@ void AnalisadorSintatico::CompComandoComposto() throw()
              << "Inicio esperado";
     }
 
+	int repeticao = 0;
+
     this->nivelAtual++;
     //bool primeiraVez = true;
     do
@@ -773,6 +775,14 @@ void AnalisadorSintatico::CompComandoComposto() throw()
             prox = anaLex->proximoPedaco();
         else*/
             prox = anaLex->verPedaco();
+            
+        repeticao++;
+        
+        if (repeticao > 100)
+        	do
+        	{
+        		prox = anaLex->proximoPedaco();
+			} while (prox != Fim && anaLex->temMaisPedacos());
         //primeiraVez = false;
     } while (prox != Fim && anaLex->temMaisPedacos());
     if (prox != Fim){
