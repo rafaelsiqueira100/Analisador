@@ -971,7 +971,8 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
     string nome = anaLex->getLiteral();
     if (prox == Atribuicao)
     {
-        anaLex->proximoPedaco();
+        prox = anaLex->proximoPedaco();
+        
         if (simbolo->getTipoRetorno() == SimboloInteiro)
         {
             CompOperandoInteiro();

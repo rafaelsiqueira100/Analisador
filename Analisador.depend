@@ -67,3 +67,63 @@
 	"Variavel.h"
 	"simbolo.h"
 
+1513121156 source:e:\analisador\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1513121156 e:\analisador\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+
+1513121158 e:\analisador\tipopedaco.h
+
+1513122508 source:e:\analisador\main.cpp
+	<iostream>
+	"AnalisadorLexico.h"
+	<exception>
+	"AnalisadorSintatico.h"
+	<string>
+
+1513184430 e:\analisador\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+	<exception>
+	"Variavel.h"
+
+1513184430 e:\analisador\tabeladesimbolos.h
+	"simbolo.h"
+	"metodo.h"
+	<list>
+	<string.h>
+
+1513184520 e:\analisador\simbolo.h
+	<string>
+
+1513121158 e:\analisador\metodo.h
+	"simbolo.h"
+
+1513121156 e:\analisador\variavel.h
+	"simbolo.h"
+
+1513121158 source:e:\analisador\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+
+1513184430 source:e:\analisador\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1513121156 source:e:\analisador\variavel.cpp
+	"Variavel.h"
+	"simbolo.h"
+

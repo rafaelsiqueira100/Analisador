@@ -19,7 +19,7 @@ Simbolo::Simbolo() : nome(""), nivel(0), tipoRetorno(SimboloVacuo), tipoSimbolo(
 Simbolo::~Simbolo()
 {
 }
-Simbolo::Simbolo(Simbolo simbolo)throw() : nome(simbolo.nome), nivel(simbolo.nivel), tipoRetorno(simbolo.tipoRetorno), tipoSimbolo(simbolo.tipoSimbolo),
+Simbolo::Simbolo(const Simbolo& simbolo)throw() : nome(simbolo.nome), nivel(simbolo.nivel), tipoRetorno(simbolo.tipoRetorno), tipoSimbolo(simbolo.tipoSimbolo),
 quantosParametros(simbolo.quantosParametros), parametros(new Simbolo[simbolo.quantosParametros]){
     for(int i=0;i<simbolo.quantosParametros;i++)
         *(parametros+i) = *(simbolo.parametros+i);
@@ -67,5 +67,5 @@ TipoRetorno Simbolo::getTipoRetorno() const
 }
 TipoSimbolo Simbolo::getTipoSimbolo() const
 {
-    return this->getTipoSimbolo();
+    return this->tipoSimbolo;
 }

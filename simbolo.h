@@ -28,7 +28,7 @@ class Simbolo
     Simbolo(string, int, Simbolo*, int, TipoRetorno)throw();
     Simbolo(string, int, TipoRetorno);
     Simbolo();
-    Simbolo(Simbolo)throw();
+    Simbolo(const Simbolo&)throw();
     void operator=(const Simbolo&) throw();
     ~Simbolo();
     string getNome() const;
