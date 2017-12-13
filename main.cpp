@@ -2,6 +2,7 @@
 #include "AnalisadorLexico.h"
 #include <exception>
 #include "AnalisadorSintatico.h"
+#include <string>
 
 int main()
 {

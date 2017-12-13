@@ -409,7 +409,7 @@ void AnalisadorSintatico::CompExpressaoAritimetica() throw()
         while(prox == FechaParenteses){
             if(numParenteses==0){
                 this->erro = "Parênteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '/n'<< this->erro;
+                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -438,7 +438,7 @@ void AnalisadorSintatico::CompExpressaoAritimetica() throw()
         while(prox == FechaParenteses){
             if(numParenteses==0){
                 this->erro = "Parênteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '/n'<< this->erro;
+                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -709,7 +709,7 @@ void AnalisadorSintatico::CompExpressaoLogica() throw()
         while(prox == FechaParenteses){
             if(numParenteses==0){
                 this->erro = "Parênteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '/n'<< this->erro;
+                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -738,7 +738,7 @@ void AnalisadorSintatico::CompExpressaoLogica() throw()
         while(prox == FechaParenteses){
             if(numParenteses==0){
                 this->erro = "Parênteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '/n'<< this->erro;
+                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -1005,7 +1005,7 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
         prox = anaLex->verPedaco();
         if (prox != Identificador)
         {
-            if (parFormal.getTipoRetorno() == Inteiro)
+            if (parFormal.getTipoRetorno() == SimboloInteiro)
             {
                /* if (prox == Numero)
                     goto verif;
@@ -1169,7 +1169,7 @@ void AnalisadorSintatico::CompChamadaDeFuncao() throw()
         prox = anaLex->verPedaco();
         if (prox != Identificador)
         {
-            if (parFormal.getTipoRetorno() == Inteiro)
+            if (parFormal.getTipoRetorno() == SimboloInteiro)
             {
                 /*if (prox == Numero)
                     goto verif;

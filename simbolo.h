@@ -4,11 +4,13 @@
 #include <string>
 
 using namespace std;
+
 typedef enum {
     SimboloInteiro,
     SimboloLogico,
     SimboloVacuo
 } TipoRetorno;
+
 class Simbolo
 {
   private:
