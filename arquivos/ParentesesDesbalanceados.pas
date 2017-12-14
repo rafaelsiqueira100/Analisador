@@ -13,10 +13,10 @@ Program Prog1;
             Begin
                 d := b;
                 b := 2*d-1;
-            End;
+            End
 
             Func1 := (b+d)/2;
-        End;
+        End
     Begin
         If (Func1(5)/2 >7)
         Then Begin
@@ -26,23 +26,23 @@ Program Prog1;
         Else Begin
             a := not b;
             c := false;
-        End;
+        End
 
         If (a and b or c) Then
             Write ('COTUCA')
         Else
             Write ('UNICAMP');
-    End;
+    End
 Begin
     a := 5;
     b := 7;
 
-    While (a<b || (a>500 && b>700) Do
+    While (a<b or (a>500 and b>700) Do
     Begin
         Proc1(a<b);
         a := a+2;
         b := 2*b;
-    End;
+    End
 
     Write (a);
     Write (b);

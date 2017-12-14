@@ -37,7 +37,7 @@ Begin
     a := 5;
     b := 7;
 
-    While (a<b || (a>500 && b>700)) Do
+    While (a<b or (a>500 and b>700)) Do
     Begin
         Proc1(a<b);
         a := a+2;
