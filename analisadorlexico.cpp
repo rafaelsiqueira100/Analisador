@@ -58,16 +58,15 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
     TipoPedaco prox= Comeco;
     TipoPedaco ant ;
     while(!acabouLeitura()){
+        if(ant == Fim)
+            int a = 2;
+        if(ant == Fim && prox == Ponto)
+            goto fora;
         ant = prox;
         prox = this->consuma();
         listaPedacos.push_back(prox);
         listaLinhas.push_back(this->getLinhaAtual());
         listaPalavras.push_back(this->getLiteral());
-        if(ant == Fim)
-            int a = 2;
-        if(ant == Fim && prox == Ponto)
-            goto fora;
-
     }
 fora:this->arquivo.close();
     this->tamanhoVetor = listaPedacos.size();
@@ -95,10 +94,14 @@ int AnalisadorLexico::getLinhaAtual()
     if(this->tamanhoVetor==0)
     return this->linhaAtual;
     else{
-        if(consumiu)
-            return *(vetorLinhas + indiceAtual -1);
+        if(temMaisPedacos()){
+            if(consumiu)
+                return *(vetorLinhas + indiceAtual -1);
+            else
+                return *(vetorLinhas + indiceAtual);
+        }
         else
-            return *(vetorLinhas + indiceAtual);
+            return 0;
     }
 }
 
@@ -142,6 +145,10 @@ bool AnalisadorLexico::fimDaPalavra(char *palavraEmVetor, int tamanhoPalavra)
         }
         proxChar = this->arquivo.get();
         espacos = true;
+        if(proxChar==EOF){
+            return true;
+        }
+
     }
     if (espacos)
     {
@@ -229,7 +236,9 @@ string AnalisadorLexico::proximaPalavra()
 
         palavraEmVetor[tamanhoPalavra++] = caracAtual;
     }
-
+    if(caracAtual==EOF){
+        int b=3;
+    }
 verif:
     if (tamanhoPalavra > 0)
     {
@@ -430,10 +439,14 @@ string AnalisadorLexico::getLiteral()
    if(this->tamanhoVetor==0)
     return this->valorLiteral;
     else{
-            if(!consumiu)
-                return *(vetorPalavras+indiceAtual);
+            if(temMaisPedacos()){
+                if(!consumiu)
+                    return *(vetorPalavras+indiceAtual);
+                else
+                    return *(vetorPalavras+indiceAtual-1);
+            }
             else
-                return *(vetorPalavras+indiceAtual-1);
+                return "";
     }
 
 }
@@ -442,11 +455,20 @@ bool AnalisadorLexico::temMaisPedacos(){
     return (this->indiceAtual<this->tamanhoVetor);
 }
 TipoPedaco AnalisadorLexico::proximoPedaco(){
+    if(temMaisPedacos()){
     this->indiceAtual++;
     consumiu = true;
-    return *(this->vetorPedacos +indiceAtual -1 );
+    return *(this->vetorPedacos +indiceAtual -1 );}
+    else{
+        return Desconhecido;
+    }
 }
 TipoPedaco AnalisadorLexico::verPedaco(){
-    consumiu = false;
-    return *(this->vetorPedacos +indiceAtual);
+    if(temMaisPedacos()){
+        consumiu = false;
+        return *(this->vetorPedacos +indiceAtual);
+    }
+    else
+        return Desconhecido;
+
 }
