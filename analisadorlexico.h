@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <fstream>
+#include <list>
 using namespace std;
 
 #define NUM_PALAVRAS_CHAVE 38
@@ -19,27 +20,30 @@ class AnalisadorLexico
 {
   private:
     static const string *palavrasChave;
+    string* vetorPalavras;
+    TipoPedaco* vetorPedacos;
+    int* vetorLinhas;
     bool armazenarValor(string);
     bool fimDaPalavra(char *, int);
     string proximaPalavra();
     static string paraMinusculas(string);
-    bool valorNumeroValido;
     string valorLiteral;
-    int valorNumerico;
     bool doisCharLidos;
     ifstream arquivo;
-    int numeroGets;
+    int indiceAtual;
+    int tamanhoVetor;
     int linhaAtual;
-    int entersChamada;
+    TipoPedaco consuma();
+    bool acabouLeitura();
+    bool consumiu;
   public:
     AnalisadorLexico(string);
     ~AnalisadorLexico();
     static string nomeTipo(TipoPedaco);
     TipoPedaco proximoPedaco();
     TipoPedaco verPedaco();
-    char temMaisPedacos();
+    bool temMaisPedacos();
     string getLiteral();
-    int getNumero();
     int getLinhaAtual();
 };
 

@@ -45,54 +45,76 @@ const string *AnalisadorLexico::palavrasChave(palavras_chave);
 
 AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
                                                          doisCharLidos(false),
-                                                         valorNumeroValido(false),
-                                                         numeroGets(0),
-                                                         valorNumerico(0),
                                                          valorLiteral(""),
                                                          linhaAtual(1),
-                                                         entersChamada(0)
+                                                         tamanhoVetor(0),
+                                                         indiceAtual(0),
+                                                         consumiu(false)
 {
     this->arquivo.open(nomeArquivo.c_str());
+    std::list<TipoPedaco> listaPedacos;
+    std::list<int> listaLinhas;
+    std::list<string> listaPalavras;
+    TipoPedaco prox= Comeco;
+    TipoPedaco ant ;
+    while(!acabouLeitura()){
+        ant = prox;
+        prox = this->consuma();
+        listaPedacos.push_back(prox);
+        listaLinhas.push_back(this->getLinhaAtual());
+        listaPalavras.push_back(this->getLiteral());
+        if(ant == Fim)
+            int a = 2;
+        if(ant == Fim && prox == Ponto)
+            goto fora;
+
+    }
+fora:this->arquivo.close();
+    this->tamanhoVetor = listaPedacos.size();
+    this->vetorPalavras = new string [this->tamanhoVetor];
+    this->vetorLinhas = (int*)malloc(this->tamanhoVetor*sizeof(int));
+    this->vetorPedacos = (TipoPedaco*)malloc(this->tamanhoVetor*sizeof(TipoPedaco));
+    for(int i=0;i<this->tamanhoVetor;i++){
+        *(vetorPalavras+i) = *(listaPalavras.begin());
+        *(vetorLinhas+i) = *(listaLinhas.begin());
+        *(vetorPedacos+i) = *(listaPedacos.begin());
+        listaPalavras.pop_front();
+        listaPedacos.pop_front();
+        listaLinhas.pop_front();
+    }
 }
 
 AnalisadorLexico::~AnalisadorLexico()
 {
-    this->arquivo.close();
+    delete this->vetorPalavras;
+    free(this->vetorLinhas);
+    free(this->vetorPedacos);
 }
-int AnalisadorLexico::getLinhaAtual(){
+int AnalisadorLexico::getLinhaAtual()
+{
+    if(this->tamanhoVetor==0)
     return this->linhaAtual;
+    else{
+        if(consumiu)
+            return *(vetorLinhas + indiceAtual -1);
+        else
+            return *(vetorLinhas + indiceAtual);
+    }
 }
 
 bool AnalisadorLexico::armazenarValor(string palavraLida)
 {
     int i;
-    bool ehNumero = true;
-
-    if (isalpha(palavraLida.at(0)))
-    {
-        this->valorNumeroValido = false;
+    if(isalnum(*(palavraLida.c_str()))){
         this->valorLiteral = palavraLida;
         return true;
     }
-
-    for (i = 0; i < palavraLida.size(); i++)
-        if (!isdigit(palavraLida.at(i)))
-            ehNumero = false;
-
-    if (ehNumero)
-    {
-        this->valorNumeroValido = true;
-        this->valorNumerico = atoi(palavraLida.c_str());
-        this->valorLiteral = "";
-        return true;
-    }
-    char primeiro;
     for (i = 4; i < NUM_PALAVRAS_CHAVE; i++)
     {
         if (palavraLida.compare(palavrasChave[i]) == 0)
         {
             this->valorLiteral = palavraLida;
-            this->valorNumeroValido = false;
+
             return true;
         }
     }
@@ -107,8 +129,9 @@ bool AnalisadorLexico::fimDaPalavra(char *palavraEmVetor, int tamanhoPalavra)
     bool espacos = false;
     char proxChar = this->arquivo.get();
 
-    if (proxChar == EOF)
+    if (proxChar == EOF){
         return true;
+    }
 
     this->arquivo.unget();
 
@@ -116,16 +139,14 @@ bool AnalisadorLexico::fimDaPalavra(char *palavraEmVetor, int tamanhoPalavra)
     {
         if(proxChar=='\n'){
             this->linhaAtual++;
-            this->entersChamada++;
         }
         proxChar = this->arquivo.get();
-        numeroGets++;
         espacos = true;
     }
     if (espacos)
     {
         this->arquivo.unget(); //  da pr�xima palavra
-        numeroGets--;
+
         return true;
     }
     if (tamanhoPalavra == 0)
@@ -205,7 +226,7 @@ string AnalisadorLexico::proximaPalavra()
     while ((!this->fimDaPalavra(palavraEmVetor, tamanhoPalavra)) && caracAtual != EOF)
     {
         caracAtual = this->arquivo.get();
-        numeroGets++;
+
         palavraEmVetor[tamanhoPalavra++] = caracAtual;
     }
 
@@ -235,64 +256,7 @@ string AnalisadorLexico::paraMinusculas(string palavra)
     return "";
 
 } //1234
-TipoPedaco AnalisadorLexico::verPedaco()
-{
-    numeroGets = 0;
-    this->entersChamada=0;
-    TipoPedaco retorno = proximoPedaco();
-    int i;
-    for (i = 0; i < this->numeroGets; i++)
-        this->arquivo.unget();
-    numeroGets = 0;
-    this->linhaAtual -=entersChamada;
-    /*string palavraLida;
-        int lengthPalavraLida = 0;
-        char* palavra;
-        if(this->valorNumeroValido){
-            int numero = this->valorNumerico;
-
-            itoa(numero, palavra, 10);
-            while(numero>=10){
-                numero = (numero-(numero%10))/10;
-                lengthPalavraLida++;
-            }
-            lengthPalavraLida++;
-        }
-        else{
-            palavraLida = this->getLiteral();
-            lengthPalavraLida = palavraLida.length();
-            palavra = (char*)palavraLida.c_str();
-        }
-        char anterior;
-        this->arquivo.unget();
-        anterior = this->arquivo.get();
-        while(isspace(anterior)|| anterior==EOF){
-        this->arquivo.unget();
-        this->arquivo.unget();
-        anterior = this->arquivo.get();
-        }//anterior n�o � espa�o
-        int  i;
-
-            for(i=0;i<lengthPalavraLida ;i++){
-                /*if(palavra[lengthPalavraLida-i-1]!= anterior){
-                    int j, k;
-                    for(j=0;j<lengthPalavraLida && palavra[j]!=anterior;j++);
-                    //j � a posi��o de anterior no vetor palavra
-                    for(k=0;k<j;k++){
-                        this->arquivo.unget();
-                    }
-                    return retorno;
-                }
-
-                this->arquivo.unget();
-                this->arquivo.unget();
-                anterior = this->arquivo.get();
-            }
-            */
-    return retorno;
-}
-
-TipoPedaco AnalisadorLexico::proximoPedaco()
+TipoPedaco AnalisadorLexico::consuma()
 {
     string retorno = AnalisadorLexico::paraMinusculas(this->proximaPalavra());
     if (retorno != "")
@@ -307,9 +271,7 @@ TipoPedaco AnalisadorLexico::proximoPedaco()
             if (pedaco.compare(palavraChave) == 0)
                 return TipoPedaco(i);
         }
-        int numero;
-        sscanf(pedaco.c_str(), "%i", &numero);
-        if ((this->valorNumerico == numero) && this->valorNumeroValido)
+        if (isdigit(pedaco.at(0)))
         {
             return Numero;
         }
@@ -318,22 +280,18 @@ TipoPedaco AnalisadorLexico::proximoPedaco()
     }
     //jogar exce��o
     this->valorLiteral = "";
-    this->valorNumeroValido = false;
+
     return Desconhecido;
 }
 
-char AnalisadorLexico::temMaisPedacos()
+bool AnalisadorLexico::acabouLeitura()
 {
-    char atual = this->arquivo.get();
-    numeroGets++;
-    if (atual == EOF)
-        return false;
-    else
-    {
-        this->arquivo.unget();
-        numeroGets--;
+    char c = this->arquivo.get();
+    if(c==EOF)
         return true;
-    }
+    else
+        this->arquivo.unget();
+    return false;
 }
 
 string AnalisadorLexico::nomeTipo(TipoPedaco tp)
@@ -396,8 +354,12 @@ string AnalisadorLexico::nomeTipo(TipoPedaco tp)
         tipoPed = "Entao";
     case Resto:
         tipoPed = "Resto";
+        break;
     case Enquanto:
         tipoPed = "Enquanto";
+        break;
+    case Faca:
+        tipoPed = "Faca";
         break;
     case Senao:
         tipoPed = "Senao";
@@ -465,14 +427,26 @@ string AnalisadorLexico::nomeTipo(TipoPedaco tp)
 
 string AnalisadorLexico::getLiteral()
 {
-    //if(this->valorLiteral !="")
+   if(this->tamanhoVetor==0)
     return this->valorLiteral;
-    //throw exception
+    else{
+            if(!consumiu)
+                return *(vetorPalavras+indiceAtual);
+            else
+                return *(vetorPalavras+indiceAtual-1);
+    }
+
 }
 
-int AnalisadorLexico::getNumero()
-{
-    //if(this->valorNumeroValido)
-    return this->valorNumerico;
-    //throw exception
+bool AnalisadorLexico::temMaisPedacos(){
+    return (this->indiceAtual<this->tamanhoVetor);
+}
+TipoPedaco AnalisadorLexico::proximoPedaco(){
+    this->indiceAtual++;
+    consumiu = true;
+    return *(this->vetorPedacos +indiceAtual -1 );
+}
+TipoPedaco AnalisadorLexico::verPedaco(){
+    consumiu = false;
+    return *(this->vetorPedacos +indiceAtual);
 }

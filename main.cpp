@@ -27,8 +27,17 @@ int main()
     for (int i = 0; i < 14; i++){
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
-        AnalisadorSintatico a("arquivos/" + arquivos[i]);
-        a.CompInicioPrograma();
+        /*AnalisadorSintatico a("arquivos/" + arquivos[i]);
+        a.CompInicioPrograma();*/
+        AnalisadorLexico al("arquivos/" + arquivos[i]);
+        while(al.temMaisPedacos()){
+            cout << "Ver pedaco :" <<AnalisadorLexico::nomeTipo(al.verPedaco())<< endl;
+            cout << "Literal :" <<al.getLiteral()<< endl;
+            cout << "Linha atual :" <<al.getLinhaAtual()<< endl;
+            cout << "Proximo pedaco:" <<AnalisadorLexico::nomeTipo(al.proximoPedaco())<< endl;
+            cout << "Literal :" <<al.getLiteral()<< endl;
+            cout << "Linha atual :" <<al.getLinhaAtual()<< endl;
+        }
 
         cout << endl << endl ;
     }

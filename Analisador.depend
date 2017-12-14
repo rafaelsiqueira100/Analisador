@@ -129,3 +129,74 @@
 	"Variavel.h"
 	"simbolo.h"
 
+1513260371 source:c:\users\u16191\downloads\analisador-master\analisadorlexico.cpp
+	"analisadorlexico.h"
+
+1513258604 c:\users\u16191\downloads\analisador-master\analisadorlexico.h
+	"tipopedaco.h"
+	<string.h>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<ctype.h>
+	<fstream>
+	<list>
+
+1513232012 c:\users\u16191\downloads\analisador-master\tipopedaco.h
+
+1513232012 source:c:\users\u16191\downloads\analisador-master\analisadorsintatico.cpp
+	<iostream>
+	"AnalisadorSintatico.h"
+	"Variavel.h"
+
+1513232012 c:\users\u16191\downloads\analisador-master\analisadorsintatico.h
+	"TabelaDeSimbolos.h"
+	"analisadorlexico.h"
+	"tipopedaco.h"
+	"simbolo.h"
+	"metodo.h"
+	<typeindex>
+	<typeinfo>
+	<exception>
+	<string.h>
+	<string>
+	"Variavel.h"
+
+1513232012 c:\users\u16191\downloads\analisador-master\tabeladesimbolos.h
+	"simbolo.h"
+	"metodo.h"
+	<list>
+	<string>
+
+1513232012 c:\users\u16191\downloads\analisador-master\simbolo.h
+	<string>
+
+1513232012 c:\users\u16191\downloads\analisador-master\metodo.h
+	"simbolo.h"
+
+1513232012 c:\users\u16191\downloads\analisador-master\variavel.h
+	"simbolo.h"
+
+1513259830 source:c:\users\u16191\downloads\analisador-master\main.cpp
+	<iostream>
+	"AnalisadorLexico.h"
+	<exception>
+	"AnalisadorSintatico.h"
+	<string>
+
+1513232012 source:c:\users\u16191\downloads\analisador-master\metodo.cpp
+	"metodo.h"
+	"simbolo.h"
+
+1513232012 source:c:\users\u16191\downloads\analisador-master\simbolo.cpp
+	"simbolo.h"
+
+1513232012 source:c:\users\u16191\downloads\analisador-master\tabeladesimbolos.cpp
+	"TabelaDeSimbolos.h"
+	"simbolo.h"
+	<list>
+
+1513232012 source:c:\users\u16191\downloads\analisador-master\variavel.cpp
+	"Variavel.h"
+	"simbolo.h"
+
