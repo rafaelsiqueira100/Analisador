@@ -8,6 +8,8 @@
 #include <typeindex>
 #include <typeinfo>
 #include <exception>
+#include <string.h>
+#include <string>
 #include "Variavel.h"
 using namespace std;
 
@@ -56,7 +58,7 @@ class AnalisadorSintatico
     bool EhValorLogico(TipoPedaco) throw();
     void CompChamadaDeVariavel() throw();
     void CompChamadaDeProcedimento() throw();
-    void CompChamadaDeFuncao() throw();
+    void CompChamadaDeFuncao(string) throw();
     void CompEnquanto() throw();
     void CompFuncao() throw();
     void CompTente() throw();

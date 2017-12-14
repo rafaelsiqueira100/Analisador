@@ -3,7 +3,7 @@
 #include "simbolo.h"
 #include "metodo.h"
 #include <list>
-#include <string.h>
+#include <string>
 using namespace std;
 
 

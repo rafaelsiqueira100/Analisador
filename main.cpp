@@ -7,6 +7,7 @@
 int main()
 {
     string arquivos[] = {
+        "CertoSemWrite.pas",
         "Certo.pas",
         "ConflitoDeTipo1.pas",
         "ConflitoDeTipo2.pas",

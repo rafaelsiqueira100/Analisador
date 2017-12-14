@@ -1,12 +1,12 @@
 #include "simbolo.h"
 
-Simbolo::Simbolo(string nome, int nivel, TipoRetorno tipoRetorno) : nome(nome), nivel(nivel), tipoRetorno(tipoRetorno), tipoSimbolo(TipoVariavel),
+Simbolo::Simbolo(std::string nome, int nivel, TipoRetorno tipoRetorno) : nome(nome), nivel(nivel), tipoRetorno(tipoRetorno), tipoSimbolo(TipoVariavel),
 quantosParametros(0), parametros(nullptr)
 {
 }
 Simbolo::Simbolo(string nome, int nivel, Simbolo *parametros, int quantosParametros, TipoRetorno tipoRetorno) throw()
+    : nome(nome), nivel(nivel), tipoRetorno(tipoRetorno)
 {
-     Simbolo(nome, nivel, tipoRetorno);
      this->tipoSimbolo = TipoMetodo;
      this->quantosParametros = quantosParametros;
      this->parametros = parametros;
