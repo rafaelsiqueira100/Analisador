@@ -2,17 +2,16 @@
 #include "AnalisadorLexico.h"
 #include <exception>
 #include "AnalisadorSintatico.h"
-#include <string>
-
+//#include "stdafx.h"
 int main()
 {
     string arquivos[] = {
-        "CertoSemWrite.pas",
+		"CertoSemWrite.pas",
         "Certo.pas",
-        "ConflitoDeTipo1.pas",
-        "ConflitoDeTipo2.pas",
-        "ConflitoDeTipo3.pas",
-        "FaltaDeDo.pas",
+		"ConflitoDeTipo1.pas",
+		"ConflitoDeTipo2.pas",
+		"ConflitoDeTipo3.pas",
+		"FaltaDeDo.pas",
         "FaltaDePontoFinal.pas",
         "FaltaDeThen.pas",
         "FaltaPontoEVirgula1.pas",
@@ -27,17 +26,17 @@ int main()
     for (int i = 0; i < 14; i++){
     	if (i > 0)
     		cout << endl;
-    	
+
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
         AnalisadorSintatico a("arquivos/" + arquivos[i]);
-        
+
         a.CompInicioPrograma();
-        
-        
+
+
         cout << endl << endl << "Compilacao terminada";
-        
-        /*AnalisadorLexico al("arquivos/" + arquivos[i]);
+        /*
+        AnalisadorLexico al("arquivos/" + arquivos[i]);
         while(al.temMaisPedacos()){
             cout << "Ver pedaco :" <<AnalisadorLexico::nomeTipo(al.verPedaco())<< endl;
             cout << "Literal :" <<al.getLiteral()<< endl;
@@ -49,6 +48,7 @@ int main()
 
         cout << endl;
     }
-
+	char x;
+	cin >> x;
     return 0;
 }

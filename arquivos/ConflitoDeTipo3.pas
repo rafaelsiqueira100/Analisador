@@ -18,7 +18,7 @@ Program Prog1;
             Func1 := (b+d)/2;
         End
     Begin
-        If (Func1(a or b)/2 >7)
+        If (Func1(5)/2 >7)
         Then Begin
             a := true;
             c := not b;
@@ -29,7 +29,7 @@ Program Prog1;
         End
 
         If (a and b or c) Then
-            Write ('COTUCA')
+            Write ('COTUCA');
         Else
             Write ('UNICAMP');
     End

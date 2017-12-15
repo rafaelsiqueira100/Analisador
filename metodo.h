@@ -1,6 +1,6 @@
 #ifndef METODO_H_INCLUDED
 #define METODO_H_INCLUDED
-
+//#include "stdafx.h"
 #include "simbolo.h"
 
 class Metodo : public Simbolo

@@ -1,0 +1,5 @@
+﻿  AnalisadorSintatico.cpp
+c:\users\rafae\downloads\analisador\analisadorsintatico.cpp(240): warning C4101: 'paramAtual': variável local não referenciada
+c:\users\rafae\downloads\analisador\analisadorsintatico.cpp(1421): warning C4101: 'paramAtual': variável local não referenciada
+  Analisador.vcxproj -> C:\Users\rafae\Downloads\Analisador\Analisador\Debug\Analisador.exe
+  Analisador.vcxproj -> C:\Users\rafae\Downloads\Analisador\Analisador\Debug\Analisador.pdb (Partial PDB)

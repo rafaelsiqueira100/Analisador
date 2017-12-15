@@ -1,6 +1,7 @@
 #include "TabelaDeSimbolos.h"
 #include "simbolo.h"
-#include <list>
+//#include "stdafx.h"
+//#include <list>
 using namespace std;
 TabelaDeSimbolos::TabelaDeSimbolos():armazenador(){}
 

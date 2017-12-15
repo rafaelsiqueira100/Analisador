@@ -2,19 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Variavel.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="metodo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="116" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="AnalisadorSintatico.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1459" topLine="27" />
+			<Cursor1 position="27294" topLine="843" />
+		</Cursor>
+	</File>
+	<File name="analisadorlexico.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2623" topLine="87" />
 		</Cursor>
 	</File>
 	<File name="tipopedaco.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -22,9 +17,19 @@
 			<Cursor1 position="577" topLine="18" />
 		</Cursor>
 	</File>
+	<File name="metodo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="517" topLine="4" />
+		</Cursor>
+	</File>
 	<File name="AnalisadorSintatico.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="292" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="metodo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="116" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="TabelaDeSimbolos.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -32,34 +37,14 @@
 			<Cursor1 position="173" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="analisadorlexico.h" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Variavel.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1031" topLine="17" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="855" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="analisadorlexico.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1177" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="metodo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="517" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="simbolo.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="343" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="simbolo.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="605" topLine="12" />
+			<Cursor1 position="897" topLine="19" />
 		</Cursor>
 	</File>
 	<File name="TabelaDeSimbolos.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -67,37 +52,72 @@
 			<Cursor1 position="1172" topLine="29" />
 		</Cursor>
 	</File>
+	<File name="simbolo.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="343" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="analisadorlexico.h" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1385" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="simbolo.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="605" topLine="12" />
+		</Cursor>
+	</File>
 </CodeBlocks_layout_file>
 [Editors]
-Order=9,0,12,8
-Focused=9
+Focused=0
+Order=
 [Editor_0]
-CursorCol=32
-CursorRow=32
+Open=1
+Top=0
+CursorCol=18
+CursorRow=5
 TopLine=1
 LeftChar=1
 [Editor_1]
-CursorCol=1
-CursorRow=1
-TopLine=4
+Open=0
+Top=0
+[Editor_2]
+Open=0
+Top=0
+[Editor_3]
+Open=0
+Top=0
+[Editor_4]
+Open=0
+Top=0
+[Editor_5]
+Open=1
+Top=1
+CursorCol=8
+CursorRow=14
+TopLine=1
 LeftChar=1
 [Editor_6]
-CursorCol=9
-CursorRow=47
-TopLine=3
-LeftChar=1
+Open=0
+Top=0
+[Editor_7]
+Open=0
+Top=0
 [Editor_8]
-CursorCol=1
-CursorRow=439
-TopLine=427
-LeftChar=1
+Open=0
+Top=0
 [Editor_9]
-CursorCol=1
-CursorRow=658
-TopLine=621
-LeftChar=1
+Open=0
+Top=0
+[Editor_10]
+Open=0
+Top=0
+[Editor_11]
+Open=0
+Top=0
 [Editor_12]
-CursorCol=1
-CursorRow=45
-TopLine=14
-LeftChar=1
+Open=0
+Top=0
+[Editor_13]
+Open=0
+Top=0

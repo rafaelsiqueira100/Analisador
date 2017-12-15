@@ -5,13 +5,14 @@
 #include "tipopedaco.h"
 #include "simbolo.h"
 #include "metodo.h"
-#include <typeindex>
+//#include "stdafx.h"
+/*#include <typeindex>
 #include <typeinfo>
 #include <exception>
 #include <string.h>
-#include <string>
+#include <string>*/
 #include "Variavel.h"
-using namespace std;
+//using namespace std;
 
 class AnalisadorSintatico
 {
@@ -64,6 +65,7 @@ class AnalisadorSintatico
     void CompFuncao() throw();
     void CompTente() throw();
     void CompPegue() throw();
+	void CompEscreva() throw();
     //string GetErro() const throw() ;
     //void ExibeErro()  ;
 };

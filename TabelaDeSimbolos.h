@@ -2,6 +2,7 @@
 #define TABELADESIMBOLOS_H_INCLUDED
 #include "simbolo.h"
 #include "metodo.h"
+//#include "stdafx.h"
 #include <list>
 #include <string>
 using namespace std;

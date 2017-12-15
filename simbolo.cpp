@@ -1,5 +1,5 @@
 #include "simbolo.h"
-
+//#include "stdafx.h"
 Simbolo::Simbolo(std::string nome, int nivel, TipoRetorno tipoRetorno) : nome(nome), nivel(nivel), tipoRetorno(tipoRetorno), tipoSimbolo(TipoVariavel),
 quantosParametros(0), parametros(nullptr)
 {

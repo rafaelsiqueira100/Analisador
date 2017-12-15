@@ -1,6 +1,6 @@
 #ifndef SIMBOLO_H_INCLUDED
 #define SIMBOLO_H_INCLUDED
-
+//#include "stdafx.h"
 #include <string>
 
 using namespace std;

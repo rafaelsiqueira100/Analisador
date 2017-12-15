@@ -1,5 +1,6 @@
 #include "analisadorlexico.h"
-using namespace std;
+//using namespace std;
+//#include "stdafx.h"
 static const string palavras_chave[] =
     {
         "program",
@@ -31,15 +32,17 @@ static const string palavras_chave[] =
         ";",       //26
         ",",       //27
         ".",       //28
-        ":",       //29
-        "integer", //30
+		"'",
+        ":",       
+        "integer", 
         "boolean",
         "true",
         "false",
         "and",
         "or",
         "procedure",
-        "function"};
+        "function",
+		"write"};
 
 const string *AnalisadorLexico::palavrasChave(palavras_chave);
 
@@ -56,7 +59,7 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
     std::list<int> listaLinhas;
     std::list<string> listaPalavras;
     TipoPedaco prox= Comeco;
-    TipoPedaco ant ;
+    TipoPedaco ant = prox;
     while(!acabouLeitura()){
         if(ant == Fim)
             int a = 2;
@@ -228,7 +231,7 @@ string AnalisadorLexico::proximaPalavra()
     char palavraEmVetor[1024];
     char letra;
     int tamanhoPalavra = 0;
-    char caracAtual;
+    char caracAtual(0);
 
     while ((!this->fimDaPalavra(palavraEmVetor, tamanhoPalavra)) && caracAtual != EOF)
     {
