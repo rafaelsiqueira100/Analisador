@@ -448,7 +448,6 @@ string AnalisadorLexico::getLiteral()
             else
                 return "";
     }
-
 }
 
 bool AnalisadorLexico::temMaisPedacos(){
@@ -460,7 +459,7 @@ TipoPedaco AnalisadorLexico::proximoPedaco(){
     consumiu = true;
     return *(this->vetorPedacos +indiceAtual -1 );}
     else{
-        return Desconhecido;
+        return Nulo;
     }
 }
 TipoPedaco AnalisadorLexico::verPedaco(){
@@ -469,6 +468,6 @@ TipoPedaco AnalisadorLexico::verPedaco(){
         return *(this->vetorPedacos +indiceAtual);
     }
     else
-        return Desconhecido;
+        return Nulo;
 
 }

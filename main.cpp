@@ -25,10 +25,18 @@ int main()
     };
 
     for (int i = 0; i < 14; i++){
+    	if (i > 0)
+    		cout << endl;
+    	
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
         AnalisadorSintatico a("arquivos/" + arquivos[i]);
+        
         a.CompInicioPrograma();
+        
+        
+        cout << endl << endl << "Compilacao terminada";
+        
         /*AnalisadorLexico al("arquivos/" + arquivos[i]);
         while(al.temMaisPedacos()){
             cout << "Ver pedaco :" <<AnalisadorLexico::nomeTipo(al.verPedaco())<< endl;
@@ -39,7 +47,7 @@ int main()
             cout << "Linha atual :" <<al.getLinhaAtual()<< endl;
         }*/
 
-        cout << endl << endl ;
+        cout << endl;
     }
 
     return 0;

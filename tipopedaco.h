@@ -43,7 +43,8 @@ typedef enum
 	Funcao,
 	Numero,
     Identificador,//possív el identificador(uma string alfanumérico)
-    Desconhecido
+    Desconhecido,
+    Nulo
 } TipoPedaco;
 
 #endif // TIPOPEDACO_H_INCLUDED

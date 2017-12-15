@@ -23,6 +23,7 @@ class AnalisadorSintatico
     string nomeFuncAtual;
     bool retornoFuncInt;
     bool jaRetornou;
+    bool compilandoProcedimento;
     string erro;
     int numParenteses;
 
