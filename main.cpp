@@ -5,9 +5,10 @@
 //#include "stdafx.h"
 int main()
 {
-    string arquivos[] = {
-		"CertoSemWrite.pas",
+    string arquivos[] = {    	    			
+    	"CertoSemWrite.pas",
         "Certo.pas",
+    	"IdentificadorComecandoComDigito.pas",    	    	
 		"ConflitoDeTipo1.pas",
 		"ConflitoDeTipo2.pas",
 		"ConflitoDeTipo3.pas",
@@ -16,25 +17,23 @@ int main()
         "FaltaDeThen.pas",
         "FaltaPontoEVirgula1.pas",
         "FaltaPontoEVirgula2.pas",
-        "FaltaPontoEVirgula3.pas",
-        "IdentificadorComecandoComDigito.pas",
+        "FaltaPontoEVirgula3.pas",        
+        "ParentesesDesbalanceados.pas",        
         "IdentificadorNaoDeclarado.pas",
-        "ParentesesDesbalanceados.pas",
         "PontoEVirgulaAntesDeElse.pas"
     };
 
-    for (int i = 0; i < 14; i++){
-    	if (i > 0)
-    		cout << endl;
+    for (int i = 0; i < 15; i++){
+    	//if (i > 0)
+    	//	cout << endl;
+    		
+    	cout <<"=============================================================" << endl;
 
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
         AnalisadorSintatico a("arquivos/" + arquivos[i]);
 
         a.CompInicioPrograma();
-
-
-        cout << endl << endl << "Compilacao terminada";
         /*
         AnalisadorLexico al("arquivos/" + arquivos[i]);
         while(al.temMaisPedacos()){
@@ -45,10 +44,18 @@ int main()
             cout << "Literal :" <<al.getLiteral()<< endl;
             cout << "Linha atual :" <<al.getLinhaAtual()<< endl;
         }*/
+        
+        cout << endl << endl;
+        
+        if (a.NaoHaErro())
+        	cout << "Arquivo compilado com sucesso!";
+        else
+        	cout << "Erro detectado, compilacao interrompida";
+        
+        cout << endl <<  "=============================================================";
 
-        cout << endl;
+        cout << endl;               
     }
-	char x;
-	cin >> x;
+	
     return 0;
 }

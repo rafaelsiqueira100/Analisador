@@ -32,6 +32,7 @@ class AnalisadorSintatico
     AnalisadorSintatico();
     AnalisadorSintatico(string);
     ~AnalisadorSintatico();
+    bool NaoHaErro() throw();
     void CompComandoComposto() throw();
     void CompProcedimento() throw();
     void CompComando() throw();
@@ -41,6 +42,7 @@ class AnalisadorSintatico
     void CompExpressaoLogica() throw();
     void CompOperandoInteiro() throw();
     void CompOperandoBooleano() throw();
+    bool EhStringAlfabetico(const string&) throw();
     void CompDeclaracaoVariavel() throw();
     void CompInicioPrograma() throw();
     bool EhMetodo(Simbolo*)throw();

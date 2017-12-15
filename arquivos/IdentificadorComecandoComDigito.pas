@@ -2,7 +2,7 @@ Program Prog1;
     Var a, b: Integer;
 
     Procedure Proc1 (Boolean b);
-        Var a, c: Boolean;
+        Var 0123a, c: Boolean;
 
         Function Func1 (Integer a): Integer;
             Var b, d: Integer;
@@ -29,7 +29,7 @@ Program Prog1;
         End
 
         If (a and b or c) Then
-            Write ('COTUCA')
+            Write ('COTUCA');
         Else
             Write ('UNICAMP');
     End
