@@ -22,14 +22,14 @@ Program Prog1;
         Then Begin
             a := true;
             c := not b;
-        End
+        End;
         Else Begin
             a := not b;
             c := false;
         End
 
         If (a and b or c) Then
-            Write ('COTUCA')
+            Write ('COTUCA');
         Else
             Write ('UNICAMP');
     End

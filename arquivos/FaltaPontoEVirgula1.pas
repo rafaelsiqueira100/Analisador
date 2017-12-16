@@ -29,7 +29,7 @@ Program Prog1
         End
 
         If (a and b or c) Then
-            Write ('COTUCA')
+            Write ('COTUCA');
         Else
             Write ('UNICAMP');
     End

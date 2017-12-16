@@ -1,0 +1,6 @@
+﻿  analisadorlexico.cpp
+c:\users\rafae\downloads\analisador\analisadorlexico.cpp(77): warning C4267: '=': conversão de 'size_t' para 'int', possível perda de dados
+c:\users\rafae\downloads\analisador\analisadorlexico.cpp(260): warning C4102: 'verif': rótulo não referenciado
+c:\users\rafae\downloads\analisador\analisadorlexico.cpp(244): warning C4101: 'letra': variável local não referenciada
+  Analisador.vcxproj -> C:\Users\rafae\Downloads\Analisador\Analisador\x64\Debug\Analisador.exe
+  Analisador.vcxproj -> C:\Users\rafae\Downloads\Analisador\Analisador\x64\Debug\Analisador.pdb (Partial PDB)

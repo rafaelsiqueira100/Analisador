@@ -39,7 +39,7 @@ Begin
 
     While (a<b or (a>500 and b>700)) Do
     Begin
-        Proc1(a<b)
+        Proc1(a<b);
         a := a+2;
         b := 2*b;
     End

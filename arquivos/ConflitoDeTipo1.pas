@@ -42,7 +42,7 @@ Begin
         Proc1(a<b);
         a := a+2;
         b := 2*b;
-    End;
+    End
 
     Write (a);
     Write (b);
