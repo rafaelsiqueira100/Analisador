@@ -22,7 +22,7 @@ int main()
         "IdentificadorNaoDeclarado.pas",
         "PontoEVirgulaAntesDeElse.pas"
     };
-
+	const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos";
     for (int i = 0; i < 15; i++){
     	//if (i > 0)
     	//	cout << endl;
@@ -31,7 +31,7 @@ int main()
 
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
-        AnalisadorSintatico a("arquivos/" + arquivos[i]);
+        AnalisadorSintatico a(pasta+"/" + arquivos[i]);
 
         a.CompInicioPrograma();
         /*
@@ -56,6 +56,8 @@ int main()
 
         cout << endl;               
     }
+	char x;
+	cin >> x;
 	
     return 0;
 }
