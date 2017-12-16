@@ -22,10 +22,10 @@ class AnalisadorLexico
     static const string *palavrasChave;
     string* vetorPalavras;
     TipoPedaco* vetorPedacos;
-    int* vetorLinhas;
+    string* vetorLinhas;
     bool armazenarValor(string);
     bool fimDaPalavra(char *, int);
-    string proximaPalavra();
+    string proximaPalavra(bool);
     static string paraMinusculas(string);
     string valorLiteral;
     bool doisCharLidos;
@@ -33,7 +33,7 @@ class AnalisadorLexico
     int indiceAtual;
     int tamanhoVetor;
     int linhaAtual;
-    TipoPedaco consuma();
+    TipoPedaco consuma(bool);
     bool acabouLeitura();
     bool consumiu;
   public:
@@ -44,7 +44,7 @@ class AnalisadorLexico
     TipoPedaco verPedaco();
     bool temMaisPedacos();
     string getLiteral();
-    int getLinhaAtual();
+    string getLinhaAtual();
 };
 
 #endif // ANALISADORLEXICO_H_INCLUDED

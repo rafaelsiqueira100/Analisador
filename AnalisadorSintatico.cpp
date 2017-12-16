@@ -36,10 +36,10 @@ void AnalisadorSintatico::CompProgramaPrincipal() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Programa && this->NaoHaErro())
     {
-		this->erro = "Há erro";
+		this->erro = "Ha erro";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Programa esperado";
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Programa esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
     	return;
     }
@@ -47,20 +47,20 @@ void AnalisadorSintatico::CompProgramaPrincipal() throw()
     prox = anaLex->proximoPedaco();
     if (prox != Identificador && this->NaoHaErro())
     {
-        this->erro = "Identificador esperado";
+        this->erro = "Identificador esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador esperado";
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 
     prox = anaLex->proximoPedaco();
     if (prox != PontoVirgula && this->NaoHaErro())
     {
-        this->erro = "Ponto e Virgula esperado";
+        this->erro = "Ponto e Virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Ponto e Virgula esperado";
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Ponto e Virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 
@@ -81,9 +81,9 @@ void AnalisadorSintatico::CompProgramaPrincipal() throw()
     prox = anaLex->verPedaco();
     if (prox != Comeco && this->NaoHaErro())
     {
-        this->erro = "Inicio esperado";
+        this->erro = "Inicio esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
              << this->erro;
         return;
     }
@@ -99,10 +99,10 @@ void AnalisadorSintatico::CompInicioPrograma() throw()
     CompProgramaPrincipal();
     if (anaLex->proximoPedaco() != Ponto && this->NaoHaErro())
     {
-        this->erro = "Ponto esperado";
+        this->erro = "Ponto esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Ponto esperado";
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Ponto esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 }
@@ -113,20 +113,20 @@ void AnalisadorSintatico::CompProcedimento() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Procedimento && this->NaoHaErro())
     {
-        this->erro = "Procedimento esperado";
+        this->erro = "Procedimento esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Procedimento esperado";
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Procedimento esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
     prox = anaLex->proximoPedaco();
 
     if (prox != Identificador && this->NaoHaErro())
     {
-        this->erro = "Identificador esperado";
+        this->erro = "Identificador esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador esperado";
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
     string nomeProc = anaLex->getLiteral();
@@ -137,10 +137,10 @@ void AnalisadorSintatico::CompProcedimento() throw()
     prox = anaLex->proximoPedaco();
     if (prox != AbreParenteses && this->NaoHaErro())
     {
-        this->erro = "Abre Parenteses esperado";
+        this->erro = "Abre Parenteses esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Abre Parenteses esperado";
+         ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Abre Parenteses esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
             return;
     }
 
@@ -162,10 +162,10 @@ void AnalisadorSintatico::CompProcedimento() throw()
         prox = anaLex->proximoPedaco();
         if (prox != Identificador && this->NaoHaErro())
         {
-            this->erro = "Identificador esperado !";
+            this->erro = "Identificador esperado";
 
-            cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "Identificador esperado !";
+            cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "Identificador esperado"<<", mas "+this->anaLex->getLiteral()<<" encontrado!";
             return;
         }
         this->nivelAtual++;
@@ -185,10 +185,10 @@ void AnalisadorSintatico::CompProcedimento() throw()
         default:
         	if (this->NaoHaErro())
         	{
-        		this->erro = "Virgula ou Fecha Parenteses esperado!";
+        		this->erro = "Virgula ou Fecha Parenteses esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 
-	            cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-	                 << "Virgula ou Fecha Parenteses esperado!";
+	            cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+	                 << "Virgula ou Fecha Parenteses esperado" << ", mas " + this->anaLex->getLiteral() << " encontrado!";
 	                 
 	            return;
 			}            
@@ -212,20 +212,20 @@ void AnalisadorSintatico::CompProcedimento() throw()
 
     if (prox != FechaParenteses && this->NaoHaErro())
     {
-        this->erro = "Fecha Parenteses esperado !";
+        this->erro = "Fecha Parenteses esperado";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Fecha Parenteses esperado !";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Fecha Parenteses esperado" << ", mas " + this->anaLex->getLiteral() << " encontrado!";
         return;
     }
 
     prox = anaLex->proximoPedaco();
     if (prox != PontoVirgula && this->NaoHaErro())
     {
-        this->erro = "Ponto e virgula esperado";
+        this->erro = "Ponto e virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Ponto e virgula esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 
@@ -246,9 +246,9 @@ void AnalisadorSintatico::CompProcedimento() throw()
     prox = anaLex->verPedaco();
     if (prox != Comeco && this->NaoHaErro()) 
 	{
-        this->erro = "Inicio esperado !";
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << this->erro;
+        this->erro = "Inicio esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << this->erro << ", mas " + this->anaLex->getLiteral() << " encontrado!";
         return;
     }
     Simbolo *paramAtual;
@@ -279,10 +279,10 @@ void AnalisadorSintatico::CompComando() throw()
             CompChamadaDeProcedimento();
             if (anaLex->proximoPedaco() != PontoVirgula && this->NaoHaErro())
             {
-                this->erro = "Ponto e virgula esperado";
+                this->erro = "Ponto e virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                     << "Ponto e virgula esperado";
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                     << "Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
                 return;
             }
         }
@@ -294,10 +294,10 @@ void AnalisadorSintatico::CompComando() throw()
                     //chamadadefuncao nao consome ;
                 if (anaLex->proximoPedaco() != PontoVirgula && this->NaoHaErro())
                 {
-                    this->erro = "Ponto e virgula esperado";
+                    this->erro = "Ponto e virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-                    cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                         << "Ponto e virgula esperado";
+                    cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                         << "Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
                     return;
                 }
             }//se for uma chamada de atribuicao de retorno interno da
@@ -307,8 +307,9 @@ void AnalisadorSintatico::CompComando() throw()
         {
         	if (this->NaoHaErro())
         	{
-        		cout << '\n'<<"Linha atual :" << this->anaLex->getLinhaAtual() << '\n'
-                 << "Simbolo desconhecido: " << nomeId;
+				this->erro = "Simbolo desconhecido: ";
+				cout ;cout <<'\n'<<"Linha atual :" << this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << this->erro << nomeId;
                  
 	            anaLex->proximoPedaco();
 	                 
@@ -329,11 +330,15 @@ void AnalisadorSintatico::CompComando() throw()
         case Tente:
             CompTente();
             break;
-        case Pegue:
-            CompPegue();
 		case Escreva:
 			CompEscreva();
             break;
+		default:
+			if (this->NaoHaErro()) {
+				this->erro = this->anaLex->getLiteral() + " invalido para iniciar um comando!";
+				cout ;cout <<'\n' << "Linha atual:" << this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
+				return;
+			}
         }
     }
 }
@@ -344,10 +349,10 @@ void AnalisadorSintatico::CompPegue() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Pegue && this->NaoHaErro())
     {
-        this->erro = "Except esperado !";
+        this->erro = "Except esperado";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Except esperado !";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Except esperado" << ", mas " + this->anaLex->getLiteral() << " encontrado!";
         return;
     }
 
@@ -368,17 +373,17 @@ void AnalisadorSintatico::CompEscreva()throw()
 	TipoPedaco prox = anaLex->proximoPedaco();
 	if (prox != Escreva && this->NaoHaErro())
 	{
-		this->erro = "Write esperado !";
+		this->erro = "Write esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 
-		cout << '\n' << "Linha atual :" << this->anaLex->getLinhaAtual() << '\n'
-			<< "Write esperado !";
+		cout ;cout <<'\n' << "Linha atual :" << this->anaLex->getLinhaAtual() ;cout <<'\n'
+			<< "Write esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 		return;
 	}
 	prox = anaLex->proximoPedaco();
 	if (prox != AbreParenteses && this->NaoHaErro()) {
-		this->erro = "( esperado !";
+		this->erro = "( esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 
-		cout << '\n' << "Linha atual :" << this->anaLex->getLinhaAtual() << '\n'
+		cout ;cout <<'\n' << "Linha atual :" << this->anaLex->getLinhaAtual() ;cout <<'\n'
 			<< this->erro;
 		return;
 	}
@@ -391,9 +396,9 @@ void AnalisadorSintatico::CompEscreva()throw()
 			prox = anaLex->proximoPedaco();
 		} while (prox != Aspa && anaLex->temMaisPedacos() && this->NaoHaErro());
 		if (prox != Aspa) {
-			this->erro = "' esperado !";
+			this->erro = "' esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 
-			cout << '\n' << "Linha atual :" << this->anaLex->getLinhaAtual() << '\n'
+			cout ;cout <<'\n' << "Linha atual :" << this->anaLex->getLinhaAtual() ;cout <<'\n'
 				<< this->erro;
 			return;
 		}
@@ -404,17 +409,17 @@ void AnalisadorSintatico::CompEscreva()throw()
 	}
 	prox = anaLex->proximoPedaco();
 	if (prox != FechaParenteses && this->NaoHaErro()) {
-		this->erro = ") esperado !";
+		this->erro = ") esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 
-		cout << '\n' << "Linha atual :" << this->anaLex->getLinhaAtual() << '\n'
+		cout ;cout <<'\n' << "Linha atual :" << this->anaLex->getLinhaAtual() ;cout <<'\n'
 			<< this->erro;
 		return;
 	}
 	prox = anaLex->proximoPedaco();
 	if (prox != PontoVirgula && this->NaoHaErro()) {
-		this->erro = "Ponto e Virgula esperado !";
+		this->erro = "Ponto e Virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 
-		cout << '\n' << "Linha atual :" << this->anaLex->getLinhaAtual() << '\n'
+		cout ;cout <<'\n' << "Linha atual :" << this->anaLex->getLinhaAtual() ;cout <<'\n'
 			<< this->erro;
 		return;
 	}
@@ -426,10 +431,10 @@ void AnalisadorSintatico::CompTente() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Tente && this->NaoHaErro())
     {
-        this->erro = "Try esperado !";
+        this->erro = "Try esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Try esperado !";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Try esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
         return;
     }
     prox = anaLex->verPedaco();
@@ -441,6 +446,9 @@ void AnalisadorSintatico::CompTente() throw()
     {
         CompComando();
     }
+	prox = anaLex->verPedaco();
+	if (prox == Pegue)
+		CompPegue();
 }
 void AnalisadorSintatico::CompSe() throw()
 {
@@ -449,10 +457,10 @@ void AnalisadorSintatico::CompSe() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Se && this->NaoHaErro())
     {
-        this->erro = "if esperado";
+        this->erro = "If esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "if esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "if esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 
@@ -461,10 +469,10 @@ void AnalisadorSintatico::CompSe() throw()
     prox = anaLex->proximoPedaco();
     if (prox != Entao && this->NaoHaErro())
     {
-        this->erro = "Then esperado";
+        this->erro = "Then esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Then esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Then esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 
@@ -494,8 +502,8 @@ void AnalisadorSintatico::CompSe() throw()
     /*prox = anaLex->proximoPedaco();
     if (prox == PontoVirgula){prox = anaLex->proximoPedaco();
     if(prox !=FechaParenteses)
-            cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' <<"Fecha Parenteses esperado !";
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' <<"Ponto e virgula esperado";
+            cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' <<"Fecha Parenteses esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' <<"Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
     }*/
 }
 
@@ -515,8 +523,8 @@ void AnalisadorSintatico::CompExpressaoAritimetica() throw()
         prox = anaLex->verPedaco();
         while(prox == FechaParenteses){
             if(numParenteses==0 && this->NaoHaErro()){
-                this->erro = "ParÃªnteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
+                this->erro = "Parenteses desbalanceados!";
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -530,8 +538,8 @@ void AnalisadorSintatico::CompExpressaoAritimetica() throw()
             }
             else if (this->NaoHaErro())
 			{
-                this->erro = "Operador aritmÃ©tico esperado!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
+                this->erro = "Operador aritmético esperado, mas " + this->anaLex->getLiteral() + " encontrado!";
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'<< this->erro;
                 return;
             }
         while(prox == AbreParenteses || prox==Subtracao){
@@ -545,8 +553,8 @@ void AnalisadorSintatico::CompExpressaoAritimetica() throw()
         prox = anaLex->verPedaco();
         while(prox == FechaParenteses && this->NaoHaErro()){
             if(numParenteses==0){
-                this->erro = "ParÃªnteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
+                this->erro = "Parenteses desbalanceados!";
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -596,15 +604,15 @@ void AnalisadorSintatico::CompOperandoInteiro()throw(){
         }
         else if (this->NaoHaErro())
 		{
-            this->erro = "Identificador Inteiro esperado !";
-            cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+            this->erro = "Identificador Inteiro esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
+            cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
             return;
         }
     }
 	if (prox == Verdadeiro || prox == Falso && this->NaoHaErro()) {
 		anaLex->proximoPedaco();
 		this->erro = "Expressao que retorna inteiro esperado, mas "+anaLex->getLiteral()+" encontrado !";
-		cout << '\n' << "Linha atual :" << this->anaLex->getLinhaAtual() << '\n' << this->erro;
+		cout ;cout <<'\n' << "Linha atual :" << this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
 		return;
 	}
 }
@@ -647,7 +655,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 	if (this->NaoHaErro())
                 	{
                 		this->erro = "Parenteses desbalanceados!";
-	                    cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+	                    cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
 	                    return;
 					}                    
                 }
@@ -657,7 +665,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
             }
             if(numParenteses>parentesesNivel&& parentesesNivel==0 && this->NaoHaErro()){
                 this->erro = "Parenteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
                 return;
             }
 
@@ -707,8 +715,8 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 }
                 else if (this->NaoHaErro())
                 {
-                    this->erro = "Inteiro esperado!";
-                    cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+                    this->erro = "Inteiro esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
+                    cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
                     return;
                 }
             }
@@ -720,8 +728,8 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
             }
             else if (this->NaoHaErro())
             {
-                this->erro = "Operador Inteiro para comparacao esperado!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+                this->erro = "Operador Inteiro para comparacao esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
                 return;
             }
 
@@ -746,7 +754,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 	if (this->NaoHaErro())
                 	{
                 		this->erro = "Parenteses desbalanceados!";
-	                    cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+	                    cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
 	                    return;
 					}                    
                 }
@@ -766,7 +774,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
             if(numParenteses>parentesesNivel&& parentesesNivel==0 && this->NaoHaErro())
             {
                 this->erro = "Parenteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
                 return;
             }
 
@@ -802,7 +810,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 		if (this->NaoHaErro())
                 		{
                 			this->erro = "Parenteses desbalanceados!";
-	                        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+	                        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
 	                        return;
 						}                    	
                     }
@@ -814,7 +822,7 @@ void AnalisadorSintatico::CompOperandoBooleano()throw(){
                 if(numParenteses>parentesesNivel&& parentesesNivel==0 && this->NaoHaErro())
                 {
                     this->erro = "Parenteses desbalanceados!";
-                    cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n' << this->erro;
+                    cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n' << this->erro;
                     return;
                 }
             }//fim do if(prox==comparacao || prox == diferente)
@@ -844,8 +852,8 @@ void AnalisadorSintatico::CompExpressaoLogica() throw()
         prox = anaLex->verPedaco();
         while(prox == FechaParenteses){
             if(numParenteses==0 && this->NaoHaErro()){
-                this->erro = "ParÃªnteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
+                this->erro = "Parenteses desbalanceados!";
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -859,8 +867,8 @@ void AnalisadorSintatico::CompExpressaoLogica() throw()
             }
             else if (this->NaoHaErro())
 			{
-                this->erro = "Operador logico esperado!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
+                this->erro = "Operador logico esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'<< this->erro;
                 return;
             }
         while(prox == AbreParenteses || prox==Negacao){
@@ -875,7 +883,7 @@ void AnalisadorSintatico::CompExpressaoLogica() throw()
         while(prox == FechaParenteses){
             if(numParenteses==0 && this->NaoHaErro()){
                 this->erro = "ParÃªnteses desbalanceados!";
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'<< this->erro;
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'<< this->erro;
                 return;
             }
             numParenteses--;
@@ -908,8 +916,8 @@ void AnalisadorSintatico::CompComandoComposto() throw()
         //primeiraVez = false;
     } while (prox != Fim && anaLex->temMaisPedacos());
     if (prox != Fim && this->NaoHaErro()){
-        this->erro ="Fim esperado";
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
+        this->erro ="Fim esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
              << this->erro;
         return;
     }
@@ -940,10 +948,10 @@ void AnalisadorSintatico::CompDeclaracaoVariavel() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Variavel && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Variavel esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Variavel esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
     	return;
 	}
@@ -954,10 +962,10 @@ void AnalisadorSintatico::CompDeclaracaoVariavel() throw()
     
     if ((!this->EhStringAlfabetico(id)) && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador inicia nome com digito";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador inicia nome com digito:"<<id;
              
         anaLex->proximoPedaco(); //Consome a parte alfabética do identificador
              
@@ -966,10 +974,10 @@ void AnalisadorSintatico::CompDeclaracaoVariavel() throw()
         
     if (prox != Identificador && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
     	return;
 	}        
@@ -983,10 +991,10 @@ loop:
         prox = anaLex->proximoPedaco();
         if (prox != Virgula && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "Virgula esperada";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "Virgula esperada, mas "+this->anaLex->getLiteral()+" encontrado!";
             
 			return;
 		}            
@@ -997,9 +1005,9 @@ loop:
     
 	    if ((!this->EhStringAlfabetico(id)) && this->NaoHaErro())
 	    {
-	    	this->erro = "Há erro";
+	    	this->erro = "Ha erro";
 	    	
-	    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'	    	
+	    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'	    	
 	             << "Identificador inicia nome com digito";
 	             
 	    	anaLex->proximoPedaco(); //Consome a parte alfabética do identificador
@@ -1009,10 +1017,10 @@ loop:
 	             	                     
         if (prox != Identificador && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "Identificador esperado";  
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";  
 				 
 			return;                       
 		}            
@@ -1023,10 +1031,10 @@ loop:
 
     if (anaLex->proximoPedaco() != DoisPontos && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Dois Pontos esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Dois Pontos esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
 	}        
@@ -1043,10 +1051,10 @@ loop:
         
         if (prox != PontoVirgula && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "Ponto e Virgula esperado";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "Ponto e Virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
                  
             return;
 		}            
@@ -1070,10 +1078,10 @@ loop:
     
     if (this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     
-	    cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-	         << "Tipo Primitivo esperado";
+	    cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+	         << "Tipo Primitivo esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
 	}       
 }
 
@@ -1095,7 +1103,7 @@ bool AnalisadorSintatico::EhIdDeVariavel(string nomeSimbolo) throw()
 bool AnalisadorSintatico::EhIdDeProcedimento(string nomeSimbolo) throw()
 {
     Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
-    bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);;
+    bool encontrou = this->tabela.encontrar(nomeSimbolo, simbolo);
     return encontrou && EhMetodo(simbolo) && simbolo->getTipoRetorno()==SimboloVacuo;
 }
 bool AnalisadorSintatico::EhMetodo(Simbolo* simbolo)throw()
@@ -1170,10 +1178,10 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
     TipoPedaco prox = anaLex->verPedaco();
     if (prox != Identificador && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
     }
@@ -1184,10 +1192,10 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
 
     if ((!EhIdDeVariavel(anaLex->getLiteral())) && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "id de variavel invalido";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador de variavel invalido:"<<this->anaLex->getLiteral();
              
         return;
 	}        
@@ -1195,10 +1203,10 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
     Simbolo *simbolo = new Simbolo("", this->nivelAtual, SimboloVacuo);
     if ((!this->tabela.encontrar(anaLex->getLiteral(), simbolo)) && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Variavel nao foi declarada";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Variavel nao foi declarada:"<<this->anaLex->getLiteral();
              
         return;
 	}        
@@ -1223,10 +1231,10 @@ void AnalisadorSintatico::CompChamadaDeVariavel() throw()
 
         if (prox != PontoVirgula && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Ponto e virgula esperado !";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Ponto e virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
              
             return;
 		}        
@@ -1239,10 +1247,10 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Identificador && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
 	}        
@@ -1251,20 +1259,20 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
 
     if ((!EhIdDeProcedimento(nomeProc)) && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador de procedimento esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador de procedimento esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
 	}        
 
     if (anaLex->proximoPedaco() != AbreParenteses && this->NaoHaErro()) //Era proximoPedaco
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Abre parenteses esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Abre parenteses esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
 	}        
@@ -1292,8 +1300,8 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
            /* if (prox == Numero)
                 goto verif;
             else //tbm pode ser expressao booleana
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                     << "Inteiro esperado!";*/
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                     << "Inteiro esperado, mas "+this->anaLex->getLiteral()+" encontrado!";*/
                 CompOperandoInteiro();
         }
         else
@@ -1301,19 +1309,19 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
             /*if (prox == Verdadeiro || prox == Falso)
                 goto verif;
             else //tbm pode ser expressao aritmetica
-                cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                     << "Booleano esperado!";*/
+                cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                     << "Booleano esperado, mas "+this->anaLex->getLiteral()+" encontrado!";*/
                 CompOperandoBooleano();
         }
         //}
 
         /*nomeParReal = anaLex->getLiteral();
         if (!this->tabela.encontrar(nomeParReal, parReal))
-            cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
+            cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
                  << "Identificador nao declarada !";
         //achou o parametro real na tabela de simbolos
         if ((*parReal).getTipoRetorno() != parFormal.getTipoRetorno())
-            cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
+            cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
                  << "Tipo do parametro real e diferente do parametro formal";
         if (EhIdDeFuncao(nomeParReal))
             CompChamadaDeFuncao();
@@ -1323,10 +1331,10 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
 
         if (anaLex->verPedaco() != Virgula && i < qtosParametros - 1 && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "Virgula esperada !";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "Virgula esperada, mas "+this->anaLex->getLiteral()+" encontrado!";
                  
             return;
 		}            
@@ -1334,10 +1342,10 @@ void AnalisadorSintatico::CompChamadaDeProcedimento() throw()
 
     if (anaLex->proximoPedaco() != FechaParenteses && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Fecha parenteses esperado !";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Fecha parenteses esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
              
         return;
 	}        
@@ -1354,20 +1362,20 @@ void AnalisadorSintatico::CompChamadaDeFuncao(string nomeFuncEncontrado) throw()
     string nomeId("");
     if (prox != Identificador && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
 	}
         
     if ((!EhIdDeFuncao(nomeFuncEncontrado)) && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador de funcao esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador de funcao esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
 	}
@@ -1379,10 +1387,10 @@ void AnalisadorSintatico::CompChamadaDeFuncao(string nomeFuncEncontrado) throw()
 
         if (prox != Atribuicao && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << ":= esperado!";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << ":= esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
                  
             return;
 		}
@@ -1399,10 +1407,10 @@ void AnalisadorSintatico::CompChamadaDeFuncao(string nomeFuncEncontrado) throw()
         prox = anaLex->proximoPedaco();
         if (prox != PontoVirgula && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "; esperado !";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "; esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 		}
             
         this->jaRetornou=true;
@@ -1411,10 +1419,10 @@ void AnalisadorSintatico::CompChamadaDeFuncao(string nomeFuncEncontrado) throw()
 
     if (anaLex->proximoPedaco() != AbreParenteses && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Abre parenteses esperado";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Abre parenteses esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         
         return;
 	}        
@@ -1444,10 +1452,10 @@ void AnalisadorSintatico::CompChamadaDeFuncao(string nomeFuncEncontrado) throw()
        //anaLex->proximoPedaco();
         if (anaLex->verPedaco() != Virgula && i < qtosParametros - 1 && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "Virgula esperada !";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "Virgula esperada, mas "+this->anaLex->getLiteral()+" encontrado!";
                  
             return;
 		}            
@@ -1455,10 +1463,10 @@ void AnalisadorSintatico::CompChamadaDeFuncao(string nomeFuncEncontrado) throw()
 
     if (anaLex->proximoPedaco() != FechaParenteses && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Fecha parenteses esperado !";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Fecha parenteses esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
              
         return;
 	}        
@@ -1470,10 +1478,10 @@ void AnalisadorSintatico::CompEnquanto() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Enquanto && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Enquanto esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Enquanto esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
     }
@@ -1483,10 +1491,10 @@ void AnalisadorSintatico::CompEnquanto() throw()
     prox = anaLex->proximoPedaco();
     if (prox != Faca && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Do esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Do esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
     }
@@ -1510,10 +1518,10 @@ void AnalisadorSintatico::CompFuncao() throw()
     TipoPedaco prox = anaLex->proximoPedaco();
     if (prox != Funcao && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Funcao esperada";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Funcao esperada, mas "+this->anaLex->getLiteral()+" encontrado!";
              
         return;
     }
@@ -1521,10 +1529,10 @@ void AnalisadorSintatico::CompFuncao() throw()
     prox = anaLex->proximoPedaco();
     if (prox != Identificador && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Identificador esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Identificador esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
     }
@@ -1539,10 +1547,10 @@ void AnalisadorSintatico::CompFuncao() throw()
     prox = anaLex->proximoPedaco();
     if (prox != AbreParenteses && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Abre Parenteses esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Abre Parenteses esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
     }
@@ -1571,10 +1579,10 @@ void AnalisadorSintatico::CompFuncao() throw()
 
         if (prox != Identificador && this->NaoHaErro())
         {
-        	this->erro = "Há erro";
+        	this->erro = "Ha erro";
         	
-        	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-                 << "Identificador esperado !";
+        	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+                 << "Identificador esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
                  
             return;
 		}
@@ -1594,10 +1602,10 @@ void AnalisadorSintatico::CompFuncao() throw()
         default:
         	if (this->NaoHaErro())
         	{
-        		this->erro = "Há erro";
+        		this->erro = "Ha erro";
         	
-	            cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-	                 << "Virgula ou Fecha Parenteses esperado!";
+	            cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+	                 << "Virgula ou Fecha Parenteses esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
 	                 
 	            return;
 			}        	        	
@@ -1609,10 +1617,10 @@ foraLoop:
     prox = anaLex->proximoPedaco();
     if (prox != FechaParenteses && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Fecha Parenteses esperado !";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Fecha Parenteses esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
              
         return;
 	}
@@ -1620,10 +1628,10 @@ foraLoop:
     prox = anaLex->proximoPedaco();
     if (prox != DoisPontos && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Dois Pontos esperado !";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Dois Pontos esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
              
         return;
 	}
@@ -1631,10 +1639,10 @@ foraLoop:
     prox = anaLex->proximoPedaco();
     if ((!(prox == Inteiro || prox == Logico)) && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "Tipo de retorno esperado !";
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Tipo de retorno esperado, mas "+this->anaLex->getLiteral()+" encontrado!";
              
         return;
 	}
@@ -1666,10 +1674,10 @@ foraLoop:
     prox = anaLex->proximoPedaco();
     if (prox != PontoVirgula && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
-             << "ponto e virgula esperado";
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
+             << "Ponto e Virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
              
         return;
     }
@@ -1682,24 +1690,26 @@ foraLoop:
         prox = anaLex->verPedaco();
     }
 
-    if (prox == Procedimento)
+    while (prox == Procedimento)
     {
         this->nomeFuncAtual="";
         CompProcedimento();
+		prox = anaLex->verPedaco();
     }
-    if (prox == Funcao)
+    while (prox == Funcao)
     {
         this->nomeFuncAtual="";
         CompFuncao();
+		prox = anaLex->verPedaco();
     }
     this->nomeFuncAtual =nomeFunc;
     this->retornoFuncInt = retorno == SimboloInteiro;
     this->jaRetornou = false;
     prox = anaLex->verPedaco();
     if (prox != Comeco && this->NaoHaErro()){
-        this->erro = "Inicio esperado";
+        this->erro = "Inicio esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
         
-        cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
+        cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
              << this->erro;
         return;
     }
@@ -1714,9 +1724,9 @@ foraLoop:
 
     if ((!jaRetornou && (this->nomeFuncAtual!="")) && this->NaoHaErro())
     {
-    	this->erro = "Há erro";
+    	this->erro = "Ha erro";
     	
-    	cout << '\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() << '\n'
+    	cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
              << "Funcao nao retorna nenhum valor!";
              
         return;

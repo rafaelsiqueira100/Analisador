@@ -60,26 +60,31 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
     std::list<string> listaPalavras;
     TipoPedaco prox= Comeco;
     TipoPedaco ant = prox;
+	bool iniciando = true;
     while(!acabouLeitura()){
         if(ant == Fim)
             int a = 2;
         if(ant == Fim && prox == Ponto)
             goto fora;
         ant = prox;
-        prox = this->consuma();
+        prox = this->consuma(iniciando);
+		iniciando = false;
         listaPedacos.push_back(prox);
-        listaLinhas.push_back(this->getLinhaAtual());
+        listaLinhas.push_back(this->linhaAtual);
         listaPalavras.push_back(this->getLiteral());
     }
 fora:this->arquivo.close();
     this->tamanhoVetor = listaPedacos.size();
     this->vetorPalavras = new string [this->tamanhoVetor];
-    this->vetorLinhas = (int*)malloc(this->tamanhoVetor*sizeof(int));
+    this->vetorLinhas = new string[this->tamanhoVetor];
     this->vetorPedacos = (TipoPedaco*)malloc(this->tamanhoVetor*sizeof(TipoPedaco));
     for(int i=0;i<this->tamanhoVetor;i++){
         *(vetorPalavras+i) = *(listaPalavras.begin());
-        *(vetorLinhas+i) = *(listaLinhas.begin());
-        *(vetorPedacos+i) = *(listaPedacos.begin());
+		char*conversao = (char*)malloc(4 * sizeof(char));
+        _itoa_s(*(listaLinhas.begin()),conversao,4 ,10);
+		*(vetorLinhas + i) = conversao;
+		free(conversao);
+		*(vetorPedacos+i) = *(listaPedacos.begin());
         listaPalavras.pop_front();
         listaPedacos.pop_front();
         listaLinhas.pop_front();
@@ -92,11 +97,10 @@ AnalisadorLexico::~AnalisadorLexico()
     free(this->vetorLinhas);
     free(this->vetorPedacos);
 }
-int AnalisadorLexico::getLinhaAtual()
+string AnalisadorLexico::getLinhaAtual()
 {
-    if(this->tamanhoVetor==0)
-    return this->linhaAtual;
-    else{
+	string retorno;
+	
         if(temMaisPedacos()){
             if(consumiu)
                 return *(vetorLinhas + indiceAtual -1);
@@ -104,8 +108,8 @@ int AnalisadorLexico::getLinhaAtual()
                 return *(vetorLinhas + indiceAtual);
         }
         else
-            return 0;
-    }
+            return "Ultima linha";
+    
 }
 
 bool AnalisadorLexico::armazenarValor(string palavraLida)
@@ -224,24 +228,38 @@ bool AnalisadorLexico::fimDaPalavra(char *palavraEmVetor, int tamanhoPalavra)
     return true;
 }
 
-string AnalisadorLexico::proximaPalavra()
+string AnalisadorLexico::proximaPalavra(bool iniciando)
 {
+	static bool palavraTerminaLinha;
+	static int proxLinha;
     string *retorno;
-
+	if (iniciando) {
+		palavraTerminaLinha = false;
+		proxLinha = 0;
+	}
+	if (palavraTerminaLinha && !iniciando) {
+		linhaAtual = proxLinha;
+		palavraTerminaLinha = false;
+	}
     char palavraEmVetor[1024];
     char letra;
     int tamanhoPalavra = 0;
     char caracAtual(0);
-
+	int linhaAnterior = this->linhaAtual;
     while ((!this->fimDaPalavra(palavraEmVetor, tamanhoPalavra)) && caracAtual != EOF)
     {
         caracAtual = this->arquivo.get();
 
         palavraEmVetor[tamanhoPalavra++] = caracAtual;
     }
-    if(caracAtual==EOF){
-        int b=3;
-    }
+	if (this->linhaAtual - linhaAnterior > 1)
+		this->linhaAtual--;
+	if (linhaAtual != linhaAnterior && caracAtual!=EOF) {
+		palavraTerminaLinha = true;
+		proxLinha = this->linhaAtual;
+		this->linhaAtual = linhaAnterior;
+	}
+
 verif:
     if (tamanhoPalavra > 0)
     {
@@ -268,9 +286,9 @@ string AnalisadorLexico::paraMinusculas(string palavra)
     return "";
 
 } //1234
-TipoPedaco AnalisadorLexico::consuma()
+TipoPedaco AnalisadorLexico::consuma(bool iniciando)
 {
-    string retorno = AnalisadorLexico::paraMinusculas(this->proximaPalavra());
+    string retorno = AnalisadorLexico::paraMinusculas(this->proximaPalavra(iniciando));
     if (retorno != "")
     {
         string pedaco = (retorno);
@@ -449,7 +467,7 @@ string AnalisadorLexico::getLiteral()
                     return *(vetorPalavras+indiceAtual-1);
             }
             else
-                return "";
+                return "nada";
     }
 }
 
