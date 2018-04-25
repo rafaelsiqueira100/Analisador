@@ -17,7 +17,7 @@ Program Prog1;
 					f:= not false;
 				if not(not e && f) then 
 				begin
-					e:= !e;
+					e:= not e;
 					a:= 75;
 					b:= -(100 -a);
 				end
