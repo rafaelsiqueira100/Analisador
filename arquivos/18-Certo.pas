@@ -6,7 +6,28 @@ Program Prog1;
 
         Function Func1 (Integer a): Integer;
             Var b, d: Integer;
-			
+			Procedure PTesta(Integer a, Integer b);
+			Var e, f:Boolean;
+			Begin
+				e:= false;
+				f:= false;
+				if(a=b or a<>b and a>=(b+3*(5-2)/7))then 
+					e := not false;
+				else
+					f:= not false;
+				if not(not e && f) then 
+				begin
+					e:= !e;
+					a:= 75;
+					b:= -(100 -a);
+				end
+				else
+				begin
+					a:= - - a +(+ b +(- a));
+					b:= - - a;
+				end
+				Write(a*b*(a +( +b ) - - b) - a);
+			End
 			Procedure P2018 (Boolean a, Integer b, Boolean c, Boolean d);
 
 			Var e, f: Boolean;
@@ -28,16 +49,17 @@ Program Prog1;
 			Begin
 				e:= F2018(a and d, b or d)
 				f:= F2018(d or true and(false or (and or d)))
-				if(e and f)
+				if(e and f) then
 					g:= 1012;
 				else
 					g:= -900;
-				if(e or f)
+				if(e or f) then
 					h:= g+3*4+(5/2*7);
 				else
 					h:= g-3+5*((h*3)-(3*g)/4)/7
 				Write(g+h);
 			End
+			
         Begin
             b := 2*a-1;
 
