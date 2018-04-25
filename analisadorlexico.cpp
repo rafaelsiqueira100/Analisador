@@ -81,7 +81,7 @@ fora:this->arquivo.close();
     for(int i=0;i<this->tamanhoVetor;i++){
         *(vetorPalavras+i) = *(listaPalavras.begin());
 		char*conversao = (char*)malloc(4 * sizeof(char));
-        _itoa_s(*(listaLinhas.begin()),conversao,4 ,10);
+        _itoa_s(*(listaLinhas.begin()),conversao,4 ,10);//
 		*(vetorLinhas + i) = conversao;
 		free(conversao);
 		*(vetorPedacos+i) = *(listaPedacos.begin());

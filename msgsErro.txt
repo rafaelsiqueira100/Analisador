@@ -1,0 +1,128 @@
+tipos de mensagens de erro do programa
+codErro	esperado	encontrado	onde/quando
+CompProgramaPrincipal
+1	Program		outra coisa	início programa
+2	id		\\		após program
+3	;		\\		após id
+4	begin		\\		após ;
+
+CompInicioPrograma
+5	.		\\		após end final do programa
+
+CompProcedimento
+6	procedure	\\		após ler procedure
+7	id		\\		após procedure
+8	(		\\		após id
+9	id		\\		após definição de tipo de parâmetro
+10	, ou )		\\		após id de parâmetro
+11	)		\\		após todos os parâmetros
+12	;		\\		após )
+13	begin		\\		após ;
+
+CompComando
+14	;		\\		após um comando começado por procedimento
+15	;		\\		\\ função
+16	id conhecido	id sem tipo	início comando
+17	comando(if,...) pdç inválido	início comando
+
+CompPegue
+18	except		outra coisa	após comando try
+
+CompEscreva
+19	write		\\		após ler write
+20	(		\\		após write
+21	'		\\		após ler aspa após pedaços(string)
+22 	)		\\		após ler parâmetro do write
+23	;		\\		após comando write
+
+CompTente
+24	try		\\		após ler write
+
+CompSe
+25	if		\\		após ler if
+26	then		\\		após operando booleano
+
+CompExpressaoAritmetica
+27	outra coisa	)		após todos os parênteses terem sido fechados
+28	op aritmetico	outra coisa	após parênteses ou operando inteiro
+29	outra coisa	)		após todos os parênteses terem sido fechados
+
+CompOperandoInteiro
+30	id inteiro	id booleano	após (
+31	expressao int	true/false	após (
+
+CompOperandoBooleano
+32	outra coisa	)		após todos os parênteses terem sido fechados
+33	)		outra coisa	após certo nível onde a ( pendentes para fechar
+34	idInt/Numero	\\		após operando e op Arit de exp Relacional
+35	op Relacional	\\		após ler um operando int em exp Relacional
+36	outra coisa	)		após todos os parênteses terem sido fechados
+37	)		outra coisa	após certo nível onde a ( pendentes para fechar
+38	outra coisa	)		após todos os parênteses terem sido fechados
+39	)		outra coisa	após certo nível onde a ( pendentes para fechar
+
+CompExpressaoLogica
+40	outra coisa	)		após todos os parênteses terem sido fechados
+41	op Logico	outra coisa	após op Booleano em expressao logica
+42	outra coisa	)		após todos os parênteses terem sido fechados
+
+CompComandoComposto 
+
+43	end		fim de arquivo	após bloco composto
+
+CompDeclaracaoVariavel
+
+44	var		outra coisa	após ler var
+45	string pura albt\\		após var (vide função EhStringAlfabetico())
+46	identificador	\\		após ler var
+47	,		outra coisa - :	após ler id
+48	string pura albt outra coisa	após ,(StringAlfabetico())
+49	identificador	\\		após ler var
+50	:		\\		após id
+51	;		\\		após ler tipo de var
+52	integer/boolean	\\		após :
+
+CompChamadaDeVariavel
+
+53	id		\\		após ler id
+54	id do tipo var	\\		após ler id
+55	id conhecido	\\		após ler id
+56	;		\\		após ler operando de atribuição
+
+CompChamadaDeProc
+
+57	id		\\		após ler id
+58	id do tipo proc \\		após ler id
+59	(		\\		após id
+60	,		\\		após outro parâmetro do procedimento
+61	)		\\		após todos os parâmetros do procedimento
+
+CompChamadaDeFuncao
+
+62	id		\\		após ler id
+63	id do tipo func \\		após ler id
+64	atribuição	\\		após ler mesma função que é a função atual
+65	;		\\		após ler operando que foi atribuído
+66	(		\\		após id
+67	,		\\		após outro parâmetro da função
+68	)		\\		após todos os parâmetros da função
+
+CompEnquanto
+
+69	while		\\		após ler while
+70	do		\\		após operando booleano
+
+CompFuncao
+
+71	function	\\		após ler function
+72	id		\\		após function
+73	(		\\		após id
+74	id(param)	\\		após (
+75	) ou ,		\\		após parâmetro
+76	)		\\		após todos os parâmetros
+77	:		\\		após )
+78	integer/boolean	\\		após :
+79	;		\\		após declaração de função
+80	begin		\\		após ;
+81	retorno de função	\\	após final de função
+

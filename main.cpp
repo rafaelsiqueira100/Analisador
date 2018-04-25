@@ -6,24 +6,29 @@
 int main()
 {
     string arquivos[] = {    	    			
-    	"CertoSemWrite.pas",
-        "Certo.pas",
-    	"IdentificadorComecandoComDigito.pas",    	    	
-		"ConflitoDeTipo1.pas",
-		"ConflitoDeTipo2.pas",
-		"ConflitoDeTipo3.pas",
-		"FaltaDeDo.pas",
-        "FaltaDePontoFinal.pas",
-        "FaltaDeThen.pas",
-        "FaltaPontoEVirgula1.pas",
-        "FaltaPontoEVirgula2.pas",
-        "FaltaPontoEVirgula3.pas",        
-        "ParentesesDesbalanceados.pas",        
-        "IdentificadorNaoDeclarado.pas",
-        "PontoEVirgulaAntesDeElse.pas"
-    };
-	const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos";
-    for (int i = 0; i < 15; i++){
+    	"1-NaoComecaComProgram",
+        "2-ProgramaSemId",
+    	"3-ProgramaComecaSemBegin",    	    	
+		"4-ProcedimentoSemId",
+		"5-ProcSemParenteses",
+		"6-WriteSemParenteses",
+		"7-TrySemExcept",
+		"8-BeginSemEnd",
+		"9-SemIdAposVar",
+
+		"10-CharAposIdDecVar",
+
+		"11-AlfanumAposVirgulaDecVar",
+		"12-ComandoAposVirgulaDecVar",
+        "13-DecVarNaoIntNemBool",
+        "14-FuncSemId"
+		/*"15-Certo",
+		"16-Certo",
+		"17-Certo"*/
+	};
+	const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos/";
+	int qtos = 14;
+    for (int i = 0; i < qtos; i++){
     	//if (i > 0)
     	//	cout << endl;
     		
@@ -31,7 +36,7 @@ int main()
 
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
-        AnalisadorSintatico a(pasta+"/" + arquivos[i]);
+        AnalisadorSintatico a(pasta+"/" + arquivos[i]+ ".pas");
 
         a.CompInicioPrograma();
         /*
