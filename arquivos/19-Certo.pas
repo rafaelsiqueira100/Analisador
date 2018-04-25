@@ -4,7 +4,7 @@ Program Prog1;
     Procedure Proc1 (Boolean b);
         Var a, c: Boolean;
 
-        Function Func1 (Integer a): Integer;
+        Function Func1 (Integer a): Boolean;
             Var b, d: Integer;
 			
 			Procedure P2018 (Boolean a, Integer b, Boolean c, Boolean d);
@@ -46,9 +46,9 @@ Program Prog1;
                 d := b;
                 b := 2*d-1;
             End
-
-            Func1 := (b+d)/2;
-			P2018();
+		P2018();
+            Func1 := not --(b+d)/2 >-a+(b-d)/2/2;
+			
         End
     Begin
         If (Func1(5)/2 >7)
