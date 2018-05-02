@@ -472,7 +472,7 @@ void AnalisadorSintatico::CompSe() throw()
         this->erro = "(26)Then esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
         cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
-             << "Then esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
+             << "(26)Then esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 
