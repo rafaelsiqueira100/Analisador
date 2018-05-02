@@ -13,7 +13,7 @@ Program Prog1;
 			Var g,h : Integer;
 			Function F2404(Boolean a):Integer;
 				Begin
-					if(a <> a or true and ((a)or false)and(false)or true) or false)
+					if(a <> a or true and ((a or false)and(false)or true) or false)
 						F2404 := 1;
 					F2404 := -1;
 						
@@ -30,7 +30,7 @@ Program Prog1;
 						g:= -12;
 					i := e and (b or e);
 					h := g * 3 * (g+3);
-					F2018:= g > h && (not i) or false and true or false;
+					F2018:= g > h and (not i) or false and true or false;
 				End
 			Begin
 				e:= F2018(a and d, b or d)

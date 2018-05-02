@@ -6,8 +6,21 @@
 int main()
 {
     string arquivos[] = {    	    			
-    	"1-NaoComecaComProgram",
-        "2-ProgramaSemId",
+    	"26-SemIdAposTipoParamProc",
+		"27-SemVirgulaOu)AposIdParamProc",
+		"28-Sem)AposTodosParamProc",
+		"29-SemPontoVirgulaAposDecProc",
+		"30-ProcComecaSemBegin",
+		"31-SemPontoEVirgulaAposChamarProc",
+		"32-SemPontoEVirgulaAposChamarFunc",
+		"33-SemFechaParentesesAposParamWrite"
+		/*,
+		"16-Certo",
+		"17-Certo",
+		"18-Certo",
+		"19-Certo"*/
+		
+		/*"2-ProgramaSemId",
     	"3-ProgramaComecaSemBegin",    	    	
 		"4-ProcedimentoSemId",
 		"5-ProcSemParenteses",
@@ -21,13 +34,11 @@ int main()
 		"11-AlfanumAposVirgulaDecVar",
 		"12-ComandoAposVirgulaDecVar",
         "13-DecVarNaoIntNemBool",
-        "14-FuncSemId"
-		/*"15-Certo",
-		"16-Certo",
-		"17-Certo"*/
-	};
-	const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos/";
-	int qtos = 14;
+        "14-FuncSemId"*/
+		};
+	//const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos/";
+	const string pasta = "C:/Temp/Analisador-master/arquivos/";
+	int qtos =8;
     for (int i = 0; i < qtos; i++){
     	//if (i > 0)
     	//	cout << endl;

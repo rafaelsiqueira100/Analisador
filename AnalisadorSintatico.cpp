@@ -102,7 +102,7 @@ void AnalisadorSintatico::CompInicioPrograma() throw()
         this->erro = "(5)Ponto esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
          ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
-             << "Ponto esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
+             << "(5)Ponto esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
         return;
     }
 }
@@ -282,7 +282,7 @@ void AnalisadorSintatico::CompComando() throw()
                 this->erro = "(14)Ponto e virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
                 cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
-                     << "Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
+                     << "(14)Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
                 return;
             }
         }
@@ -297,7 +297,7 @@ void AnalisadorSintatico::CompComando() throw()
                     this->erro = "(15)Ponto e virgula esperado, mas "+this->anaLex->getLiteral()+" encontrado !";
 
                     cout ;cout <<'\n'<<"Linha atual :"<< this->anaLex->getLinhaAtual() ;cout <<'\n'
-                         << "Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
+                         << "(15)Ponto e virgula esperado"<<", mas "<<this->anaLex->getLiteral()<<" encontrado !";
                     return;
                 }
             }//se for uma chamada de atribuicao de retorno interno da

@@ -1,3 +1,6 @@
-﻿  main.cpp
-  Analisador.vcxproj -> C:\Users\rafae\Downloads\Analisador\Analisador\x64\Debug\Analisador.exe
-  Analisador.vcxproj -> C:\Users\rafae\Downloads\Analisador\Analisador\x64\Debug\Analisador.pdb (Partial PDB)
+﻿  AnalisadorSintatico.cpp
+c:\temp\analisador-master\analisadorsintatico.cpp(254): warning C4101: 'paramAtual': variável local não referenciada
+c:\temp\analisador-master\analisadorsintatico.cpp(1064): warning C4267: 'inicializando': conversão de 'size_t' para 'int', possível perda de dados
+c:\temp\analisador-master\analisadorsintatico.cpp(1716): warning C4101: 'paramAtual': variável local não referenciada
+  Analisador.vcxproj -> C:\Temp\Analisador-master\Analisador\x64\Debug\Analisador.exe
+  Analisador.vcxproj -> C:\Temp\Analisador-master\Analisador\x64\Debug\Analisador.pdb (Partial PDB)

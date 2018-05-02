@@ -23,7 +23,7 @@ Program Prog1;
 						g:= -12;
 					i := e and (b or e);
 					h := g * 3 * (g+3);
-					return g > h && (not i) or false and true or false;
+					F2018:= g > h and (not i) or false and true or false;
 				End
 			Begin
 				e:= F2018(a and d, b or d)
@@ -77,7 +77,7 @@ Begin
         b := 2*b;
     End
 
-    Write ('!@#$%จ&*()นฒณฃขฌงงงชชบบบ`{}^:><?ฐ|\[ด~]=-098675421.44335"JJUBU IIJ___JIJIJO++{`}^:>><็็็วววว???"');
+    Write (' !@#$%จ&*()นฒณฃขฌงงงชชบบบ`{}^:><?ฐ|\[ด~]=-098675421.44335"JJUBU IIJ___JIJIJO++{`}^:>><็็็วววว???" ');
     Write ('NULL');
 	Write('');
 End.
