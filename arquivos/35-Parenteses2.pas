@@ -25,7 +25,7 @@ Program Prog1;
         End
         Else Begin
             a := not b;
-            c := (false==false;
+            c := (false=false;
         End
 
         If (a and b or c) Then

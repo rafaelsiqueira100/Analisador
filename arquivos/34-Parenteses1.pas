@@ -9,7 +9,7 @@ Program Prog1;
         Begin
             b := 2*a-1;
 
-            While true==true) Do
+            While true=true) Do
             Begin
                 d := b;
                 b := 2*d-1;
