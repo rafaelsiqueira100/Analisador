@@ -12,7 +12,7 @@ Program Prog1;
             While (b>0) Do
             Begin
                 d := b;
-                b := a+(2*d-1);
+                b := 2*d-1;
             End
 
             Func1 := (b+d)/2;
@@ -23,12 +23,13 @@ Program Prog1;
             a := true;
             c := not b;
         End
+		000OOOOEYEYDD77DYDY
         Else Begin
             a := not b;
             c := false;
         End
-																																						
-			If	(						a and	b			c		)			Then
+		244FDDD
+        If (a and b or c) Then
             Write ('COTUCA');
         Else
             Write ('UNICAMP');
