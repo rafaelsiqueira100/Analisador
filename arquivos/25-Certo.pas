@@ -8,13 +8,14 @@ Program Prog1;
             Var b, d: Integer;
 			
 			Procedure P2018 (Boolean a, Integer b, Boolean c, Boolean d);
-
-			Var e, f: Boolean;
-			Var g,h : Integer;
-			Function F2018(Boolean a, Boolean b): Boolean;
-				Var e,f : Boolean;
-				Var g,h : Integer;
-				Var i : Boolean;
+                Var e, f: Boolean;
+                Var g,h : Integer;
+                
+                Procedure P3018(Boolean a, Boolean b): Boolean;
+                    Var e,f : Boolean;
+                    Var g,h : Integer;
+                    Var i : Boolean;
+                
 				Begin
 					e := not a;
 					if b then
@@ -23,7 +24,6 @@ Program Prog1;
 						g:= -12;
 					i := e and (b or e);
 					h := g * 3 * (g+3);
-					return g > h && (not i) or false and true or false;
 				End
 			Begin
 				e:= F2018(a and d, b or d)
