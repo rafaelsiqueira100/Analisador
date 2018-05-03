@@ -39,18 +39,44 @@ int main()
 		"35-Parenteses2",
 		"36-Parenteses3",
 		"37-Parenteses4",
-		"38-Parenteses5",*/
+		"38-Parenteses5",
 		"39-Parenteses6",
 		"40-Parenteses7",
 		"41-Parenteses8",
 		"42-Parenteses9",
 		"43-Parenteses10",
 		"44-Parenteses11",
-		"45-Parenteses12",
+		"45-Parenteses12"*/
+		"51-SemOpLogicoAposOpBoolExprLogica",
+		"52-)DemaisAposExprLogica",
+		"53-ChamadaVarDesconhecida",
+		"54-Sem;AposChamadaVar",
+		"55-ChamadaProcDesconhecido",
+		"56-Sem(AposChamadaProc",
+		"57-Sem,AposParamChamadaProc",
+		"58-Sem)AposChamadaProc",
+		"59-ChamadaFuncDesconhecida",
+		"60-SemAtribuicaoAposChamarMesmaFunc",
+		"61-Sem;AposRetornoFunc",
+		"62-Sem(AposChamadaFunc",
+		"63-Sem,AposChamadaFunc",
+		"64-Sem)AposChamadaFunc",
+		"65-Sem(AposDecFunc",
+		"66-SemIdParamDecFunc",
+		"67-Sem,Ou)AposParamDecFunc",
+		"68-Sem)AposParamDecFunc",
+		"69-SemDoisPontosAposDecFunc",
+		"70-SemTipoRetornoDecFunc",
+		"71-Sem;AposDecFunc",
+		"72-SemBeginAntesLogicaFunc",
+		"73-SemRetornoFunc",
+		"",
+		"",
+		"",
 		};
 	//const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos/";
-	const string pasta = "C:/Temp/Analisador-master/arquivos/";
-	int qtos =12;
+	const string pasta = "C:/Temp/Analisador/arquivos/";
+	int qtos =1;
     for (int i = 0; i < qtos; i++){
     	//if (i > 0)
     	//	cout << endl;
@@ -59,11 +85,11 @@ int main()
 
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
-        AnalisadorSintatico a(pasta+"/" + arquivos[i]+ ".pas");
+        /*AnalisadorSintatico a(pasta+"/" + arquivos[i]+ ".pas");
 
         a.CompInicioPrograma();
-        /*
-        AnalisadorLexico al("arquivos/" + arquivos[i]);
+        */
+        AnalisadorLexico al(pasta+"/" + arquivos[i]+".pas");
         while(al.temMaisPedacos()){
             cout << "Ver pedaco :" <<AnalisadorLexico::nomeTipo(al.verPedaco())<< endl;
             cout << "Literal :" <<al.getLiteral()<< endl;
@@ -71,15 +97,15 @@ int main()
             cout << "Proximo pedaco:" <<AnalisadorLexico::nomeTipo(al.proximoPedaco())<< endl;
             cout << "Literal :" <<al.getLiteral()<< endl;
             cout << "Linha atual :" <<al.getLinhaAtual()<< endl;
-        }*/
+        }
         
         cout << endl << endl;
         
-        if (a.NaoHaErro())
+        /*if (a.NaoHaErro())
         	cout << "Arquivo compilado com sucesso!";
         else
         	cout << "Erro detectado, compilacao interrompida";
-        
+        */
         cout << endl <<  "=============================================================";
 
         cout << endl;               
