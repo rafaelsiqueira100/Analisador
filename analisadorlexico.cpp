@@ -93,9 +93,9 @@ fora:this->arquivo.close();
 
 AnalisadorLexico::~AnalisadorLexico()
 {
-    delete this->vetorPalavras;
-    free(this->vetorLinhas);
-    free(this->vetorPedacos);
+   delete [](this->vetorPalavras);
+    delete [](this->vetorLinhas);
+    delete[](this->vetorPedacos);
 }
 string AnalisadorLexico::getLinhaAtual()
 {

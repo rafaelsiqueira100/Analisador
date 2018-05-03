@@ -46,7 +46,7 @@ int main()
 		"42-Parenteses9",
 		"43-Parenteses10",
 		"44-Parenteses11",
-		"45-Parenteses12"*/
+		"45-Parenteses12"
 		"51-SemOpLogicoAposOpBoolExprLogica",
 		"52-)DemaisAposExprLogica",
 		"53-ChamadaVarDesconhecida",
@@ -72,11 +72,18 @@ int main()
 		"73-SemRetornoFunc",
 		"",
 		"",
-		"",
+		"",*/
+		//"51-ArquivoGigante",
+		"52-MuitosTabs",
+		"53-MuitosEspaços",
+		"54-MuitosEnters",
+		"55-ArquivoAposEnd.",
+		"56-IniciaComNumeroTerminaComLetra",
+		"57-CaracteresUnicode"
 		};
 	//const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos/";
 	const string pasta = "C:/Temp/Analisador/arquivos/";
-	int qtos =1;
+	int qtos =7;
     for (int i = 0; i < qtos; i++){
     	//if (i > 0)
     	//	cout << endl;
@@ -97,6 +104,10 @@ int main()
             cout << "Proximo pedaco:" <<AnalisadorLexico::nomeTipo(al.proximoPedaco())<< endl;
             cout << "Literal :" <<al.getLiteral()<< endl;
             cout << "Linha atual :" <<al.getLinhaAtual()<< endl;
+			if (al.getLiteral() == "nada") 
+			{
+				al.getLiteral();
+			}
         }
         
         cout << endl << endl;
