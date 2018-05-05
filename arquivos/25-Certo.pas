@@ -11,7 +11,7 @@ Program Prog1;
                 Var e, f: Boolean;
                 Var g,h : Integer;
                 
-                Procedure P3018(Boolean a, Boolean b): Boolean;
+                Procedure P3018(Boolean a, Boolean b);
                     Var e,f : Boolean;
                     Var g,h : Integer;
                     Var i : Boolean;
@@ -26,20 +26,18 @@ Program Prog1;
 					h := g * 3 * (g+3);
 				End
 			Begin
-				e:= F2018(a and d, b or d)
-				f:= F2018(d or true and(false or (and or d)))
-				if(e and f)
+				if(e and f)then
 					g:= 1012;
 				else
 					g:= -900;
-				if(e or f)
+				if(e or f)then
 					h:= g+3*4+(5/2*7);
 				else
-					h:= g-3+5*((h*3)-(3*g)/4)/7
-				Write(g+h);
+					h:= g-3+5*((h*3)-(3*g)/4)/7;
+				Write(g);
 			End
         Begin
-            b := 2*a-1;
+            b := 2*0-1;
 
             While (b>0) Do
             Begin

@@ -4,7 +4,7 @@ Program Prog1;
     Procedure Proc1 (Boolean b);
         Var a, c: Boolean;        
     Begin
-        If (b)
+        If (a and b)
         Then Begin
             a := true;
             c := not b;
@@ -31,14 +31,14 @@ Program Prog1;
             e := true;
             f := false;
             
-            if(e and f)
+            if(e and f)then
                 g := 1012;
             else
                 g := -900;
-            if(e or f)
+            if(e or f)then
                 h := g+3*4+(5/2*7);
             else
-                h := g-3+5*((h*3)-(3*g)/4)/7
+                h := g-3+5*((h*3)-(3*g)/4)/7;
             Write(g+h);
         End
     Begin
@@ -50,8 +50,8 @@ Program Prog1;
             b := 2*d-1;
         End
 
+		PDentro(true, 1, false, false);
         Func1 := (b+d)/2;
-        P2018();
     End
 Begin
     a := 5;

@@ -4,7 +4,7 @@ Program Prog1;
     Procedure Proc1 (Boolean b);
         Var a, c: Boolean;        
     Begin
-        If (b)
+        If (a and b)
         Then Begin
             a := true;
             c := not b;

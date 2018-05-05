@@ -4,7 +4,7 @@ Program Prog1;
     Procedure Proc1 (Boolean b);
         Var a, c: Boolean;        
     Begin
-        If (b)
+        If (a and b)
         Then Begin
             a := true;
             c := not b;
@@ -31,15 +31,15 @@ Program Prog1;
             e := true;
             f := false;
             
-            if(e and f)
+            if(e and f)then
                 g := 1012;
             else
                 g := -900;
-            if(e or f)
+            if(e or f)then
                 h := g+3*4+(5/2*7);
             else
-                h := g-3+5*((h*3)-(3*g)/4)/7
-            Write(g+h);
+                h := g-3+5*((h*3)-(3*g)/4)/7;
+            Write(g);
         End
     Begin
         b := 2*a-1;
