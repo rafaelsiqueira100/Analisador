@@ -62,6 +62,8 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
     TipoPedaco ant = prox;
 	bool iniciando = true;
     while(!acabouLeitura()){
+		if (listaLinhas.size() == 104) 
+			int n = 0;
         if(ant == Fim)
             int a = 2;
         if(ant == Fim && prox == Ponto)

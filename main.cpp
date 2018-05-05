@@ -19,7 +19,12 @@ int main()
 		"17-Certo",
 		"18-Certo",
 		"19-Certo"*/
-		
+		"20-Certo",
+		"21-Certo",
+		"22-Certo",
+		"23-Certo",
+		"24-Certo",
+		"25-Certo"
 		/*"2-ProgramaSemId",
     	"3-ProgramaComecaSemBegin",    	    	
 		"4-ProcedimentoSemId",
@@ -72,18 +77,18 @@ int main()
 		"73-SemRetornoFunc",
 		"",
 		"",
-		"",*/
+		"",
 		//"51-ArquivoGigante",
-		"52-MuitosTabs",
-		"53-MuitosEspaços",
-		"54-MuitosEnters",
-		"55-ArquivoAposEnd.",
+		//"52-MuitosTabs",
+		//"53-MuitosEspaços",
+		//"54-MuitosEnters",
+		//"55-ArquivoAposEnd.",
 		"56-IniciaComNumeroTerminaComLetra",
-		"57-CaracteresUnicode"
+		"57-CaracteresUnicode"*/
 		};
 	//const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos/";
 	const string pasta = "C:/Temp/Analisador/arquivos/";
-	int qtos =7;
+	int qtos =6;
     for (int i = 0; i < qtos; i++){
     	//if (i > 0)
     	//	cout << endl;
@@ -92,11 +97,11 @@ int main()
 
         cout << "Nome do Arquivo : " << arquivos[i] << endl ;
 
-        /*AnalisadorSintatico a(pasta+"/" + arquivos[i]+ ".pas");
+        AnalisadorSintatico a(pasta+"/" + arquivos[i]+ ".pas");
 
         a.CompInicioPrograma();
-        */
-        AnalisadorLexico al(pasta+"/" + arquivos[i]+".pas");
+        
+        /*AnalisadorLexico al(pasta+"/" + arquivos[i]+".pas");
         while(al.temMaisPedacos()){
             cout << "Ver pedaco :" <<AnalisadorLexico::nomeTipo(al.verPedaco())<< endl;
             cout << "Literal :" <<al.getLiteral()<< endl;
@@ -109,14 +114,20 @@ int main()
 				al.getLiteral();
 			}
         }
-        
+		cout << "Ver pedaco :" << AnalisadorLexico::nomeTipo(al.verPedaco()) << endl;
+		cout << "Literal :" << al.getLiteral() << endl;
+		cout << "Linha atual :" << al.getLinhaAtual() << endl;
+		cout << "Proximo pedaco:" << AnalisadorLexico::nomeTipo(al.proximoPedaco()) << endl;
+		cout << "Literal :" << al.getLiteral() << endl;
+		cout << "Linha atual :" << al.getLinhaAtual() << endl;
+
         cout << endl << endl;
-        
-        /*if (a.NaoHaErro())
+        */
+        if (a.NaoHaErro())
         	cout << "Arquivo compilado com sucesso!";
         else
         	cout << "Erro detectado, compilacao interrompida";
-        */
+        
         cout << endl <<  "=============================================================";
 
         cout << endl;               
