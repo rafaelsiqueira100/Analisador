@@ -32,7 +32,12 @@ class AnalisadorLexico
     int linhaAtual;
     bool acabouLeitura();
     bool consumiu;
-  public:
+	bool armazenarValor(string);
+	bool fimDaPalavra(char *, int);
+	string proximaPalavra(bool);
+	TipoPedaco consuma(bool);
+
+public:
     AnalisadorLexico(string);
     ~AnalisadorLexico();
     static string nomeTipo(TipoPedaco);
@@ -41,11 +46,7 @@ class AnalisadorLexico
     bool temMaisPedacos();
     string getLiteral();
     string getLinhaAtual();
-	bool armazenarValor(string);
-	bool fimDaPalavra(char *, int);
-	string proximaPalavra(bool);
-	TipoPedaco consuma(bool);
-
+	
 };
 
 #endif // ANALISADORLEXICO_H_INCLUDED

@@ -74,7 +74,8 @@ AnalisadorLexico::AnalisadorLexico(string nomeArquivo) : arquivo(),
         listaPedacos.push_back(prox);
         listaLinhas.push_back(this->linhaAtual);
         listaPalavras.push_back(this->getLiteral());
-    }
+		
+	}
 fora:this->arquivo.close();
     this->tamanhoVetor = listaPedacos.size();
     this->vetorPalavras = new string [this->tamanhoVetor];
@@ -90,6 +91,7 @@ fora:this->arquivo.close();
         listaPalavras.pop_front();
         listaPedacos.pop_front();
         listaLinhas.pop_front();
+		
     }
 }
 

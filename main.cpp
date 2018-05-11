@@ -1,12 +1,14 @@
 #include <iostream>
 #include "AnalisadorLexico.h"
 #include <exception>
+#include "Variavel.h"
 #include "AnalisadorSintatico.h"
+#include "main.h"
 //#include "stdafx.h"
 int main()
 {
-    //string arquivos[] = {    	    			
-    	/*"26-SemIdAposTipoParamProc",
+    string arquivos[] = {    	    			
+    	/*"26-SemIdAposTipoParamProc"/*
 		"27-SemVirgulaOu)AposIdParamProc",
 		"28-Sem)AposTodosParamProc",
 		"29-SemPontoVirgulaAposDecProc",
@@ -24,7 +26,7 @@ int main()
 		"22-Certo",
 		"23-Certo",
 		"24-Certo",
-		"25-Certo"
+		*/"25-Certo"
 		/*"2-ProgramaSemId",
     	"3-ProgramaComecaSemBegin",    	    	
 		"4-ProcedimentoSemId",
@@ -85,24 +87,37 @@ int main()
 		//"55-ArquivoAposEnd.",
 		//"56-IniciaComNumeroTerminaComLetra",
 		"57-CaracteresUnicode"*/
-		//};
+		""};
 	//const string pasta = "C:/Users/rafae/Downloads/Analisador/arquivos/";
-	const string pasta = "C:/Temp/Analisador/arquivos/";
-	/*int qtos =6;
-    for (int i = 0; i < qtos; i++){*/
-    	//if (i > 0)
-    	//	cout << endl;
-    		
+	/*const string pasta = "C:/Temp/Analisador/arquivos";
+	int qtos =1;
+    for (int i = 0; i < qtos; i++){
+    	if (i > 0)
+    		cout << endl;
+    */		
     	cout <<"=============================================================" << endl;
-
-        //cout << "Nome do Arquivo : " << arquivos[i] << endl ;
-
-/*        AnalisadorSintatico a(pasta+"/" + arquivos[i]+ ".pas");
+		/*Simbolo* param = new Simbolo[2];//
+		Simbolo p1("param1", 1, SimboloLogico);
+		Simbolo p2("param2", 1, SimboloInteiro);
+		(param[0]) = p1;
+		(param[1]) = p2;*/
+		/*Simbolo* simb = new Simbolo("simb1", 0, SimboloLogico);
+		Simbolo* simb3 = new Simbolo("simb3", 2, SimboloInteiro);
+		TabelaDeSimbolos ts;
+		ts.guarde(simb);
+		ts.guarde(simb3);
+		ts.eliminaNivel(1);*/
+		/*cout << "Nome do Arquivo : " << arquivos[i] << endl ;
+		*/
+		//Metodo m("i", 1,param, -2, SimboloVacuo);
+		//m.getParametro(1);
+			/*
+        AnalisadorSintatico a(pasta+"/" + arquivos[i]+ ".pas");
 
         a.CompInicioPrograma();
-        
-        */AnalisadorLexico al("batata.pas"/*pasta+"/" + arquivos[i]+".pas"*/);
-        /*while(al.temMaisPedacos()){
+       
+        AnalisadorLexico al("C:/Temp/Analisador/arquivos/" + arquivos[i]+".pas");
+		while(al.temMaisPedacos()){
             cout << "Ver pedaco :" <<AnalisadorLexico::nomeTipo(al.verPedaco())<< endl;
             cout << "Literal :" <<al.getLiteral()<< endl;
             cout << "Linha atual :" <<al.getLinhaAtual()<< endl;
@@ -120,10 +135,9 @@ int main()
 		cout << "Proximo pedaco:" << AnalisadorLexico::nomeTipo(al.proximoPedaco()) << endl;
 		cout << "Literal :" << al.getLiteral() << endl;
 		cout << "Linha atual :" << al.getLinhaAtual() << endl;
-		*/
-		bool x = al.armazenarValor("0123a");
-        cout << endl << endl;
-        /*
+		
+		cout << endl << endl;
+        
         if (a.NaoHaErro())
         	cout << "Arquivo compilado com sucesso!";
         else
